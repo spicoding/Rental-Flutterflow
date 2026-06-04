@@ -32,6 +32,8 @@ class _AddressEditorPageWidgetState extends State<AddressEditorPageWidget> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  get FlutterFlowTheme => null;
+
   @override
   void initState() {
     super.initState();
@@ -95,7 +97,7 @@ class _AddressEditorPageWidgetState extends State<AddressEditorPageWidget> {
                                   size: 24,
                                 ),
                                 onPressed: () {
-                                  print('IconButton pressed ...');
+                                  context.pop();
                                 },
                               ),
                               Text(

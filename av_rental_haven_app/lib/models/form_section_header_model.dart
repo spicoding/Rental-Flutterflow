@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class EditProfileReaponsiveModel {
+class FormSectionHeaderModel {
   void initState(BuildContext context) {}
 
   void dispose() {}

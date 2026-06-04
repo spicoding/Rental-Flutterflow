@@ -261,7 +261,7 @@ class _SettingsNotificationsWidgetState
               onPressed: () async {
                 context.pop();
               },
-              text: 'Change Changes',
+              text: 'Save Changes',
               options: FFButtonOptions(
                 width: 190,
                 height: 50,

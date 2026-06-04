@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class EditProfileReaponsiveModel {
+class BillingOptionModel {
   void initState(BuildContext context) {}
 
   void dispose() {}
