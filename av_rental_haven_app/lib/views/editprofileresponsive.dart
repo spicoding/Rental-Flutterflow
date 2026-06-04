@@ -1,15 +1,9 @@
-import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:math';
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import 'edit_profile_reaponsive_model.dart';
 export 'edit_profile_reaponsive_model.dart';
@@ -107,20 +101,10 @@ class _EditProfileReaponsiveWidgetState
               automaticallyImplyLeading: false,
               title: Text(
                 'My Profile',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  font: GoogleFonts.outfit(
-                    fontWeight: FontWeight.w500,
-                    fontStyle: FlutterFlowTheme.of(
-                      context,
-                    ).headlineMedium.fontStyle,
-                  ),
+                style: GoogleFonts.outfit(
                   color: Color(0xFF15161E),
                   fontSize: 24,
-                  letterSpacing: 0.0,
                   fontWeight: FontWeight.w500,
-                  fontStyle: FlutterFlowTheme.of(
-                    context,
-                  ).headlineMedium.fontStyle,
                 ),
               ),
               actions: [],

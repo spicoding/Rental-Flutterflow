@@ -1,12 +1,7 @@
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import 'transaction_history_responsive_model.dart';
 export 'transaction_history_responsive_model.dart';
@@ -31,7 +26,8 @@ class _TransactionHistoryResponsiveWidgetState
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => TransactionHistoryResponsiveModel());
+    _model = TransactionHistoryResponsiveModel();
+    _model.initState(context);
   }
 
   @override
@@ -55,34 +51,22 @@ class _TransactionHistoryResponsiveWidgetState
             ? AppBar(
                 backgroundColor: Colors.white,
                 automaticallyImplyLeading: false,
-                leading: FlutterFlowIconButton(
-                  borderColor: Colors.transparent,
-                  borderRadius: 30,
-                  borderWidth: 1,
-                  buttonSize: 60,
+                leading: IconButton(
                   icon: Icon(
                     Icons.arrow_back_rounded,
                     color: Color(0xFF15161E),
                     size: 30,
                   ),
                   onPressed: () async {
-                    context.pop();
+                    Navigator.of(context).pop();
                   },
                 ),
                 title: Text(
                   'Order Details',
-                  style: FlutterFlowTheme.of(context).bodyLarge.override(
-                    font: GoogleFonts.plusJakartaSans(
-                      fontWeight: FontWeight.w600,
-                      fontStyle: FlutterFlowTheme.of(
-                        context,
-                      ).bodyLarge.fontStyle,
-                    ),
+                  style: GoogleFonts.plusJakartaSans(
                     color: Color(0xFF15161E),
                     fontSize: 16,
-                    letterSpacing: 0.0,
                     fontWeight: FontWeight.w600,
-                    fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
                   ),
                 ),
                 actions: [],

@@ -1,11 +1,6 @@
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import 'home_page_model.dart';
 export 'home_page_model.dart';
@@ -29,16 +24,16 @@ class _HomePageWidgetState extends State<HomePageWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => HomePageModel());
+    _model = HomePageModel();
+    _model.initState(context);
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
-    _model.tabBarController = TabController(
-      vsync: this,
-      length: 3,
-      initialIndex: 0,
-    )..addListener(() => safeSetState(() {}));
+    _model.tabBarController =
+        TabController(vsync: this, length: 3, initialIndex: 0)..addListener(() {
+          if (mounted) setState(() {});
+        });
   }
 
   @override
@@ -103,40 +98,16 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelText: 'Search gear, suppliers etc...',
-                                  labelStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        font: GoogleFonts.outfit(
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).labelMedium.fontStyle,
-                                        ),
-                                        color: Color(0xFF606A85),
-                                        fontSize: 14,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).labelMedium.fontStyle,
-                                      ),
-                                  hintStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        font: GoogleFonts.outfit(
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).labelMedium.fontStyle,
-                                        ),
-                                        color: Color(0xFF606A85),
-                                        fontSize: 14,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).labelMedium.fontStyle,
-                                      ),
+                                  labelStyle: GoogleFonts.outfit(
+                                    fontWeight: FontWeight.w500,
+                                    color: const Color(0xFF606A85),
+                                    fontSize: 14,
+                                  ),
+                                  hintStyle: GoogleFonts.outfit(
+                                    fontWeight: FontWeight.w500,
+                                    color: const Color(0xFF606A85),
+                                    fontSize: 14,
+                                  ),
                                   enabledBorder: InputBorder.none,
                                   focusedBorder: InputBorder.none,
                                   errorBorder: InputBorder.none,
@@ -144,36 +115,18 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                   filled: true,
                                   fillColor: Colors.white,
                                 ),
-                                style: FlutterFlowTheme.of(context).bodyMedium
-                                    .override(
-                                      font: GoogleFonts.plusJakartaSans(
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).bodyMedium.fontStyle,
-                                      ),
-                                      color: Color(0xFF15161E),
-                                      fontSize: 14,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).bodyMedium.fontStyle,
-                                    ),
+                                style: GoogleFonts.plusJakartaSans(
+                                  fontWeight: FontWeight.w500,
+                                  color: Color(0xFF15161E),
+                                  fontSize: 14,
+                                ),
                                 cursorColor: Color(0xFF6F61EF),
-                                validator: _model.textControllerValidator
-                                    .asValidator(context),
                               ),
                             ),
                           ),
                         ),
-                        FlutterFlowIconButton(
-                          borderColor: Color(0xFFE5E7EB),
-                          borderRadius: 20,
-                          borderWidth: 1,
-                          buttonSize: 40,
-                          fillColor: Colors.white,
-                          icon: Icon(
+                        IconButton(
+                          icon: const Icon(
                             Icons.tune_rounded,
                             color: Color(0xFF15161E),
                             size: 24,
@@ -195,22 +148,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
                       child: TabBar(
                         labelColor: Color(0xFF15161E),
                         unselectedLabelColor: Color(0xFF606A85),
-                        labelStyle: FlutterFlowTheme.of(context).labelSmall
-                            .override(
-                              font: GoogleFonts.outfit(
-                                fontWeight: FontWeight.w500,
-                                fontStyle: FlutterFlowTheme.of(
-                                  context,
-                                ).labelSmall.fontStyle,
-                              ),
-                              color: Color(0xFF606A85),
-                              fontSize: 12,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w500,
-                              fontStyle: FlutterFlowTheme.of(
-                                context,
-                              ).labelSmall.fontStyle,
-                            ),
+                        labelStyle: GoogleFonts.outfit(
+                          fontWeight: FontWeight.w500,
+                          color: const Color(0xFF606A85),
+                          fontSize: 12,
+                        ),
                         unselectedLabelStyle: TextStyle(),
                         indicatorColor: Color(0xFF6F61EF),
                         padding: EdgeInsets.all(4),

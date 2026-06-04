@@ -1,16 +1,8 @@
-import '/flutter_flow/flutter_flow_choice_chips.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
 import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:provider/provider.dart';
 
 import 'book_appointment_model.dart';
 export 'book_appointment_model.dart';
@@ -33,21 +25,11 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => BookAppointmentModel());
+    _model = BookAppointmentModel();
+    _model.initState(context);
 
     _model.fullNameTextController ??= TextEditingController();
     _model.fullNameFocusNode ??= FocusNode();
-    _model.fullNameFocusNode!.addListener(() => safeSetState(() {}));
-    _model.ageTextController ??= TextEditingController();
-    _model.ageFocusNode ??= FocusNode();
-    _model.ageFocusNode!.addListener(() => safeSetState(() {}));
-    _model.dateOfBirthTextController ??= TextEditingController();
-    _model.dateOfBirthFocusNode ??= FocusNode();
-    _model.dateOfBirthFocusNode!.addListener(() => safeSetState(() {}));
-    _model.dateOfBirthMask = MaskTextInputFormatter(mask: '##/##/####');
-    _model.descriptionTextController ??= TextEditingController();
-    _model.descriptionFocusNode ??= FocusNode();
-    _model.descriptionFocusNode!.addListener(() => safeSetState(() {}));
   }
 
   @override
@@ -61,7 +43,6 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        FocusScope.of(context).unfocus();
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: Scaffold(
@@ -76,56 +57,29 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
             children: [
               Text(
                 'Book Appointment',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  font: GoogleFonts.outfit(
-                    fontWeight: FontWeight.w500,
-                    fontStyle: FlutterFlowTheme.of(
-                      context,
-                    ).headlineMedium.fontStyle,
-                  ),
-                  color: Color(0xFF15161E),
+                style: GoogleFonts.outfit(
+                  color: const Color(0xFF15161E),
                   fontSize: 24,
-                  letterSpacing: 0.0,
                   fontWeight: FontWeight.w500,
-                  fontStyle: FlutterFlowTheme.of(
-                    context,
-                  ).headlineMedium.fontStyle,
                 ),
               ),
+              const SizedBox(height: 4),
               Text(
                 'Please fill in the information below to continue.',
-                style: FlutterFlowTheme.of(context).labelMedium.override(
-                  font: GoogleFonts.outfit(
-                    fontWeight: FontWeight.w500,
-                    fontStyle: FlutterFlowTheme.of(
-                      context,
-                    ).labelMedium.fontStyle,
-                  ),
-                  color: Color(0xFF606A85),
+                style: GoogleFonts.outfit(
+                  color: const Color(0xFF606A85),
                   fontSize: 14,
-                  letterSpacing: 0.0,
-                  fontWeight: FontWeight.w500,
-                  fontStyle: FlutterFlowTheme.of(context).labelMedium.fontStyle,
                 ),
               ),
-            ].divide(SizedBox(height: 4)),
+            ],
           ),
           actions: [
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 8, 12, 8),
-              child: FlutterFlowIconButton(
-                borderColor: Color(0xFFE5E7EB),
-                borderRadius: 12,
-                borderWidth: 1,
-                buttonSize: 40,
-                fillColor: Colors.white,
-                icon: Icon(
-                  Icons.close_rounded,
-                  color: Color(0xFF15161E),
-                  size: 24,
-                ),
+              child: IconButton(
+                icon: const Icon(Icons.close_rounded, color: Color(0xFF15161E)),
                 onPressed: () async {
-                  context.safePop();
+                  Navigator.of(context).pop();
                 },
               ),
             ),

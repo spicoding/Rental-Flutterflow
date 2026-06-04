@@ -1,12 +1,6 @@
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
-import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import 'checkout_screen_model.dart';
 export 'checkout_screen_model.dart';
@@ -29,7 +23,8 @@ class _CheckoutScreenWidgetState extends State<CheckoutScreenWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => CheckoutScreenModel());
+    _model = CheckoutScreenModel();
+    _model.initState(context);
   }
 
   @override
@@ -43,7 +38,6 @@ class _CheckoutScreenWidgetState extends State<CheckoutScreenWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        FocusScope.of(context).unfocus();
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: Scaffold(
@@ -68,18 +62,14 @@ class _CheckoutScreenWidgetState extends State<CheckoutScreenWidget> {
                       children: [
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                          child: FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 30,
-                            borderWidth: 1,
-                            buttonSize: 50,
+                          child: IconButton(
                             icon: Icon(
                               Icons.arrow_back_rounded,
                               color: Color(0xFF14181B),
                               size: 30,
                             ),
                             onPressed: () async {
-                              context.pop();
+                              Navigator.of(context).pop();
                             },
                           ),
                         ),
@@ -87,22 +77,11 @@ class _CheckoutScreenWidgetState extends State<CheckoutScreenWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                           child: Text(
                             'Back',
-                            style: FlutterFlowTheme.of(context).displaySmall
-                                .override(
-                                  font: GoogleFonts.outfit(
-                                    fontWeight: FontWeight.w600,
-                                    fontStyle: FlutterFlowTheme.of(
-                                      context,
-                                    ).displaySmall.fontStyle,
-                                  ),
-                                  color: Color(0xFF14181B),
-                                  fontSize: 16,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w600,
-                                  fontStyle: FlutterFlowTheme.of(
-                                    context,
-                                  ).displaySmall.fontStyle,
-                                ),
+                            style: GoogleFonts.outfit(
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFF14181B),
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                       ],
@@ -113,22 +92,11 @@ class _CheckoutScreenWidgetState extends State<CheckoutScreenWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                       child: Text(
                         'Cart',
-                        style: FlutterFlowTheme.of(context).displaySmall
-                            .override(
-                              font: GoogleFonts.outfit(
-                                fontWeight: FontWeight.w600,
-                                fontStyle: FlutterFlowTheme.of(
-                                  context,
-                                ).displaySmall.fontStyle,
-                              ),
-                              color: Color(0xFF14181B),
-                              fontSize: 36,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w600,
-                              fontStyle: FlutterFlowTheme.of(
-                                context,
-                              ).displaySmall.fontStyle,
-                            ),
+                        style: GoogleFonts.outfit(
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xFF14181B),
+                          fontSize: 36,
+                        ),
                       ),
                     ),
                   ),
@@ -227,56 +195,19 @@ class _CheckoutScreenWidgetState extends State<CheckoutScreenWidget> {
                                                 ),
                                             child: Text(
                                               'Controller Basic',
-                                              style:
-                                                  FlutterFlowTheme.of(
-                                                    context,
-                                                  ).titleSmall.override(
-                                                    font: GoogleFonts.plusJakartaSans(
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .titleSmall
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF14181B),
-                                                    fontSize: 16,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).titleSmall.fontStyle,
-                                                  ),
+                                              style: GoogleFonts.plusJakartaSans(
+                                                fontWeight: FontWeight.w500,
+                                                color: const Color(0xFF14181B),
+                                                fontSize: 16,
+                                              ),
                                             ),
                                           ),
                                           Text(
                                             '\$125.50',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodySmall
-                                                .override(
-                                                  font:
-                                                      GoogleFonts.plusJakartaSans(
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .bodySmall
-                                                                .fontStyle,
-                                                      ),
-                                                  color: Color(0xFF14181B),
-                                                  fontSize: 12,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.normal,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                        context,
-                                                      ).bodySmall.fontStyle,
-                                                ),
+                                            style: GoogleFonts.plusJakartaSans(
+                                              color: const Color(0xFF14181B),
+                                              fontSize: 12,
+                                            ),
                                           ),
                                           Padding(
                                             padding:
@@ -288,41 +219,17 @@ class _CheckoutScreenWidgetState extends State<CheckoutScreenWidget> {
                                                 ),
                                             child: Text(
                                               'Quanity: 1',
-                                              style:
-                                                  FlutterFlowTheme.of(
-                                                    context,
-                                                  ).labelMedium.override(
-                                                    font: GoogleFonts.plusJakartaSans(
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .labelMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF57636C),
-                                                    fontSize: 14,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).labelMedium.fontStyle,
-                                                  ),
+                                              style: GoogleFonts.plusJakartaSans(
+                                                color: const Color(0xFF57636C),
+                                                fontSize: 14,
+                                              ),
                                             ),
                                           ),
                                         ],
                                       ),
                                     ),
-                                    FlutterFlowIconButton(
-                                      borderColor: Colors.transparent,
-                                      borderRadius: 30,
-                                      borderWidth: 1,
-                                      buttonSize: 40,
-                                      icon: Icon(
+                                    IconButton(
+                                      icon: const Icon(
                                         Icons.edit_outlined,
                                         color: Color(0xFF57636C),
                                         size: 20,
@@ -331,12 +238,8 @@ class _CheckoutScreenWidgetState extends State<CheckoutScreenWidget> {
                                         print('IconButton pressed ...');
                                       },
                                     ),
-                                    FlutterFlowIconButton(
-                                      borderColor: Colors.transparent,
-                                      borderRadius: 30,
-                                      borderWidth: 1,
-                                      buttonSize: 40,
-                                      icon: Icon(
+                                    IconButton(
+                                      icon: const Icon(
                                         Icons.delete_outline_rounded,
                                         color: Color(0xFFE86969),
                                         size: 20,
@@ -678,29 +581,13 @@ class _CheckoutScreenWidgetState extends State<CheckoutScreenWidget> {
                             children: [
                               Text(
                                 'Total',
-                                style: FlutterFlowTheme.of(context).labelLarge
-                                    .override(
-                                      font: GoogleFonts.plusJakartaSans(
-                                        fontWeight: FontWeight.normal,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).labelLarge.fontStyle,
-                                      ),
-                                      color: Color(0xFF57636C),
-                                      fontSize: 16,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.normal,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).labelLarge.fontStyle,
-                                    ),
+                                style: GoogleFonts.plusJakartaSans(
+                                  color: Color(0xFF57636C),
+                                  fontSize: 16,
+                                ),
                               ),
-                              FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 30,
-                                borderWidth: 1,
-                                buttonSize: 36,
-                                icon: Icon(
+                              IconButton(
+                                icon: const Icon(
                                   Icons.info_outlined,
                                   color: Color(0xFF57636C),
                                   size: 18,
@@ -713,22 +600,11 @@ class _CheckoutScreenWidgetState extends State<CheckoutScreenWidget> {
                           ),
                           Text(
                             '\$137.75',
-                            style: FlutterFlowTheme.of(context).displaySmall
-                                .override(
-                                  font: GoogleFonts.outfit(
-                                    fontWeight: FontWeight.w600,
-                                    fontStyle: FlutterFlowTheme.of(
-                                      context,
-                                    ).displaySmall.fontStyle,
-                                  ),
-                                  color: Color(0xFF14181B),
-                                  fontSize: 36,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w600,
-                                  fontStyle: FlutterFlowTheme.of(
-                                    context,
-                                  ).displaySmall.fontStyle,
-                                ),
+                            style: GoogleFonts.outfit(
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFF14181B),
+                              fontSize: 36,
+                            ),
                           ),
                         ],
                       ),
@@ -743,7 +619,7 @@ class _CheckoutScreenWidgetState extends State<CheckoutScreenWidget> {
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () async {
-                context.pushNamed(HomePageWidget.routeName);
+                Navigator.of(context).pushNamed(HomePageWidget.routeName);
               },
               child: Container(
                 width: double.infinity,
@@ -765,26 +641,6 @@ class _CheckoutScreenWidgetState extends State<CheckoutScreenWidget> {
                 alignment: AlignmentDirectional(0, -0.35),
                 child: Text(
                   'Checkout (\$137.75)',
-                  style: FlutterFlowTheme.of(context).headlineMedium.override(
-                    font: GoogleFonts.outfit(
-                      fontWeight: FontWeight.normal,
-                      fontStyle: FlutterFlowTheme.of(
-                        context,
-                      ).headlineMedium.fontStyle,
-                    ),
-                    color: Colors.white,
-                    fontSize: 24,
-                    letterSpacing: 0.0,
-                    fontWeight: FontWeight.normal,
-                    fontStyle: FlutterFlowTheme.of(
-                      context,
-                    ).headlineMedium.fontStyle,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
