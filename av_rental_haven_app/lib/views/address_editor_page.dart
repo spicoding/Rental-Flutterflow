@@ -1,19 +1,10 @@
-import '/components/address_type_chip_widget.dart';
-import '/components/form_section_header_widget.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_google_map.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
+import '../models/address_editor_page_model.dart';
+import '../components/address_type_chip_widget.dart';
+import '../components/form_section_header_widget.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
-import 'address_editor_page_model.dart';
-export 'address_editor_page_model.dart';
 
 /// An address editor
 class AddressEditorPageWidget extends StatefulWidget {
@@ -32,12 +23,10 @@ class _AddressEditorPageWidgetState extends State<AddressEditorPageWidget> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  get FlutterFlowTheme => null;
-
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AddressEditorPageModel());
+    _model = AddressEditorPageModel();
   }
 
   @override
@@ -57,7 +46,7 @@ class _AddressEditorPageWidgetState extends State<AddressEditorPageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         resizeToAvoidBottomInset: false,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -65,7 +54,7 @@ class _AddressEditorPageWidgetState extends State<AddressEditorPageWidget> {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
+                color: Theme.of(context).colorScheme.surface,
                 shape: BoxShape.rectangle,
               ),
               child: Column(
@@ -127,7 +116,7 @@ class _AddressEditorPageWidgetState extends State<AddressEditorPageWidget> {
                   Container(
                     height: 1,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).alternate,
+                      color: Theme.of(context).dividerColor,
                       shape: BoxShape.rectangle,
                     ),
                   ),
@@ -157,14 +146,11 @@ class _AddressEditorPageWidgetState extends State<AddressEditorPageWidget> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  wrapWithModel(
-                                    model: _model.formSectionHeaderModel1,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: FormSectionHeaderWidget(
-                                      title: 'Location',
-                                      subtitle: 'Pin your exact delivery spot',
-                                    ),
+                                  const FormSectionHeaderWidget(
+                                    title: 'Location',
+                                    subtitle: 'Pin your exact delivery spot',
                                   ),
+                                  const SizedBox(height: 16),
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(24),
                                     child: Container(
@@ -173,40 +159,18 @@ class _AddressEditorPageWidgetState extends State<AddressEditorPageWidget> {
                                         borderRadius: BorderRadius.circular(24),
                                         shape: BoxShape.rectangle,
                                         border: Border.all(
-                                          color: FlutterFlowTheme.of(
-                                            context,
-                                          ).alternate,
+                                          color: Theme.of(context).dividerColor,
                                           width: 1,
                                         ),
                                       ),
                                       child: Stack(
                                         alignment: AlignmentDirectional(-1, -1),
                                         children: [
-                                          Container(
-                                            height: 200,
-                                            child: FlutterFlowGoogleMap(
-                                              controller: _model
-                                                  .mapGoogleMapsController,
-                                              onCameraIdle: (latLng) =>
-                                                  _model.mapGoogleMapsCenter =
-                                                      latLng,
-                                              initialLocation:
-                                                  _model.mapGoogleMapsCenter ??=
-                                                      LatLng(40.7128, -74.006),
-                                              markerColor:
-                                                  GoogleMarkerColor.violet,
-                                              mapType: MapType.normal,
-                                              style: GoogleMapStyle.standard,
-                                              initialZoom: 14,
-                                              allowInteraction: true,
-                                              allowZoom: true,
-                                              showZoomControls: false,
-                                              showLocation: false,
-                                              showCompass: false,
-                                              showMapToolbar: false,
-                                              showTraffic: false,
-                                              centerMapOnMarkerTap: true,
-                                              mapTakesGesturePreference: false,
+                                          const Center(
+                                            child: Icon(
+                                              Icons.map_outlined,
+                                              color: Colors.grey,
+                                              size: 50,
                                             ),
                                           ),
                                           Align(
@@ -226,9 +190,9 @@ class _AddressEditorPageWidgetState extends State<AddressEditorPageWidget> {
                                                 child: Container(
                                                   child: Icon(
                                                     Icons.location_on_rounded,
-                                                    color: FlutterFlowTheme.of(
+                                                    color: Theme.of(
                                                       context,
-                                                    ).error,
+                                                    ).colorScheme.error,
                                                     size: 40,
                                                   ),
                                                 ),
@@ -239,125 +203,73 @@ class _AddressEditorPageWidgetState extends State<AddressEditorPageWidget> {
                                       ),
                                     ),
                                   ),
-                                ].divide(SizedBox(height: 16)),
+                                ],
                               ),
+                              const SizedBox(height: 32),
                               Column(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  wrapWithModel(
-                                    model: _model.formSectionHeaderModel2,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: FormSectionHeaderWidget(
-                                      title: 'Address Details',
-                                      subtitle:
-                                          'Enter your street and building information',
-                                    ),
+                                  const FormSectionHeaderWidget(
+                                    title: 'Address Details',
+                                    subtitle:
+                                        'Enter your street and building information',
                                   ),
-                                  FlutterFlowDropDown<String>(
-                                    controller:
-                                        _model.dropdownValueController ??=
-                                            FormFieldController<String>(
-                                              _model.dropdownValue ??=
-                                                  'New York',
-                                            ),
-                                    options: [
-                                      'New York',
-                                      'California',
-                                      'Texas',
-                                      'Florida',
-                                      'Illinois',
-                                    ],
-                                    onChanged: (val) => safeSetState(
-                                      () => _model.dropdownValue = val,
-                                    ),
-                                    width: 200,
-                                    height: 40,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          font: GoogleFonts.inter(
-                                            fontWeight: FlutterFlowTheme.of(
-                                              context,
-                                            ).bodyMedium.fontWeight,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).bodyMedium.fontStyle,
-                                          ),
-                                          letterSpacing: 0.0,
-                                          fontWeight: FlutterFlowTheme.of(
-                                            context,
-                                          ).bodyMedium.fontWeight,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).bodyMedium.fontStyle,
-                                          lineHeight: 1.4,
-                                        ),
-                                    hintText: 'New York',
-                                    icon: Icon(
-                                      Icons.keyboard_arrow_down_rounded,
-                                      color: FlutterFlowTheme.of(
+                                  const SizedBox(height: 16),
+                                  DropdownButtonFormField<String>(
+                                    value: _model.dropdownValue ?? 'New York',
+                                    items:
+                                        [
+                                          'New York',
+                                          'California',
+                                          'Texas',
+                                          'Florida',
+                                          'Illinois',
+                                        ].map((String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(value),
+                                          );
+                                        }).toList(),
+                                    onChanged: (val) {
+                                      setState(
+                                        () => _model.dropdownValue = val,
+                                      );
+                                    },
+                                    decoration: InputDecoration(
+                                      labelText: 'State / Region',
+                                      labelStyle: GoogleFonts.inter(
+                                        color: Theme.of(
+                                          context,
+                                        ).textTheme.bodySmall?.color,
+                                        fontSize: 14,
+                                      ),
+                                      filled: true,
+                                      fillColor: Theme.of(
                                         context,
-                                      ).secondaryText,
-                                      size: 24,
-                                    ),
-                                    fillColor: FlutterFlowTheme.of(
-                                      context,
-                                    ).secondaryBackground,
-                                    elevation: 2,
-                                    borderColor: FlutterFlowTheme.of(
-                                      context,
-                                    ).alternate,
-                                    borderWidth: 1,
-                                    borderRadius: 16,
-                                    margin: EdgeInsetsDirectional.fromSTEB(
-                                      16,
-                                      0,
-                                      16,
-                                      0,
-                                    ),
-                                    hidesUnderline: true,
-                                    isOverButton: false,
-                                    isSearchable: false,
-                                    isMultiSelect: false,
-                                    labelText: 'State / Region',
-                                    labelTextStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          font: GoogleFonts.inter(
-                                            fontWeight: FlutterFlowTheme.of(
-                                              context,
-                                            ).labelMedium.fontWeight,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).labelMedium.fontStyle,
-                                          ),
-                                          letterSpacing: 0.0,
-                                          fontWeight: FlutterFlowTheme.of(
-                                            context,
-                                          ).labelMedium.fontWeight,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).labelMedium.fontStyle,
-                                          lineHeight: 1.4,
+                                      ).colorScheme.surface,
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(16),
+                                        borderSide: BorderSide(
+                                          color: Theme.of(context).dividerColor,
                                         ),
+                                      ),
+                                    ),
                                   ),
-                                ].divide(SizedBox(height: 16)),
+                                ],
                               ),
+                              const SizedBox(height: 32),
                               Column(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  wrapWithModel(
-                                    model: _model.formSectionHeaderModel3,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: FormSectionHeaderWidget(
-                                      title: 'Address Label',
-                                      subtitle: 'Save this address as...',
-                                    ),
+                                  const FormSectionHeaderWidget(
+                                    title: 'Address Label',
+                                    subtitle: 'Save this address as...',
                                   ),
+                                  const SizedBox(height: 16),
                                   SingleChildScrollView(
                                     scrollDirection: Axis.horizontal,
                                     child: Row(
@@ -367,67 +279,51 @@ class _AddressEditorPageWidgetState extends State<AddressEditorPageWidget> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        wrapWithModel(
-                                          model: _model.addressTypeChipModel1,
-                                          updateCallback: () =>
-                                              safeSetState(() {}),
-                                          child: AddressTypeChipWidget(
-                                            selected: true,
-                                            icon: Icon(
-                                              Icons.home_rounded,
-                                              size: 18,
-                                            ),
-                                            label: 'Home',
+                                        AddressTypeChipWidget(
+                                          selected: true,
+                                          icon: Icon(
+                                            Icons.home_rounded,
+                                            size: 18,
                                           ),
+                                          label: 'Home',
                                         ),
-                                        wrapWithModel(
-                                          model: _model.addressTypeChipModel2,
-                                          updateCallback: () =>
-                                              safeSetState(() {}),
-                                          child: AddressTypeChipWidget(
-                                            selected: false,
-                                            icon: Icon(
-                                              Icons.work_rounded,
-                                              size: 18,
-                                            ),
-                                            label: 'Work',
+                                        const SizedBox(width: 8),
+                                        AddressTypeChipWidget(
+                                          selected: false,
+                                          icon: Icon(
+                                            Icons.work_rounded,
+                                            size: 18,
                                           ),
+                                          label: 'Work',
                                         ),
-                                        wrapWithModel(
-                                          model: _model.addressTypeChipModel3,
-                                          updateCallback: () =>
-                                              safeSetState(() {}),
-                                          child: AddressTypeChipWidget(
-                                            selected: false,
-                                            icon: Icon(
-                                              Icons.label_rounded,
-                                              size: 18,
-                                            ),
-                                            label: 'Other',
+                                        const SizedBox(width: 8),
+                                        AddressTypeChipWidget(
+                                          selected: false,
+                                          icon: Icon(
+                                            Icons.label_rounded,
+                                            size: 18,
                                           ),
+                                          label: 'Other',
                                         ),
-                                      ].divide(SizedBox(width: 8)),
+                                      ],
                                     ),
                                   ),
-                                ].divide(SizedBox(height: 16)),
+                                ],
                               ),
+                              const SizedBox(height: 32),
                               Column(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  wrapWithModel(
-                                    model: _model.formSectionHeaderModel4,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: FormSectionHeaderWidget(
-                                      title: 'Delivery Instructions',
-                                      subtitle: 'Notes for the delivery team',
-                                    ),
+                                  const FormSectionHeaderWidget(
+                                    title: 'Delivery Instructions',
+                                    subtitle: 'Notes for the delivery team',
                                   ),
-                                ].divide(SizedBox(height: 16)),
+                                ],
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                   0,
                                   24,
                                   0,
@@ -439,13 +335,11 @@ class _AddressEditorPageWidgetState extends State<AddressEditorPageWidget> {
                                     thickness: 1,
                                     indent: 0,
                                     endIndent: 0,
-                                    color: FlutterFlowTheme.of(
-                                      context,
-                                    ).alternate,
+                                    color: Theme.of(context).dividerColor,
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(height: 32)),
+                            ],
                           ),
                         ),
                       ),
@@ -456,7 +350,7 @@ class _AddressEditorPageWidgetState extends State<AddressEditorPageWidget> {
             ),
             Container(
               decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
+                color: Theme.of(context).colorScheme.surface,
                 shape: BoxShape.rectangle,
               ),
               child: Column(
@@ -466,7 +360,7 @@ class _AddressEditorPageWidgetState extends State<AddressEditorPageWidget> {
                   Container(
                     height: 1,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).alternate,
+                      color: Theme.of(context).dividerColor,
                       shape: BoxShape.rectangle,
                     ),
                   ),
