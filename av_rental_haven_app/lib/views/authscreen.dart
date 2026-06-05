@@ -1,5 +1,3 @@
-import 'dart:math';
-import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -212,7 +210,7 @@ class _AuthScreenWidgetState extends State<AuthScreenWidget>
                                                       0,
                                                       16,
                                                     ),
-                                                child: Container(
+                                                child: SizedBox(
                                                   width: double.infinity,
                                                   child: TextFormField(
                                                     controller: _model
@@ -328,7 +326,7 @@ class _AuthScreenWidgetState extends State<AuthScreenWidget>
                                                       0,
                                                       16,
                                                     ),
-                                                child: Container(
+                                                child: SizedBox(
                                                   width: double.infinity,
                                                   child: TextFormField(
                                                     controller: _model
@@ -775,7 +773,7 @@ class _AuthScreenWidgetState extends State<AuthScreenWidget>
                                                       0,
                                                       16,
                                                     ),
-                                                child: Container(
+                                                child: SizedBox(
                                                   width: double.infinity,
                                                   child: TextFormField(
                                                     controller: _model
@@ -890,7 +888,7 @@ class _AuthScreenWidgetState extends State<AuthScreenWidget>
                                                       0,
                                                       16,
                                                     ),
-                                                child: Container(
+                                                child: SizedBox(
                                                   width: double.infinity,
                                                   child: TextFormField(
                                                     controller: _model
@@ -1024,7 +1022,7 @@ class _AuthScreenWidgetState extends State<AuthScreenWidget>
                                                       0,
                                                       16,
                                                     ),
-                                                child: Container(
+                                                child: SizedBox(
                                                   width: double.infinity,
                                                   child: TextFormField(
                                                     controller: _model

@@ -1,19 +1,8 @@
-import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
-import 'dart:ui';
-import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
-import 'payment_model.dart';
-export 'payment_model.dart';
+import '../models/paymentmodel.dart';
 
 class PaymentWidget extends StatefulWidget {
   const PaymentWidget({super.key});
@@ -31,42 +20,10 @@ class _PaymentWidgetState extends State<PaymentWidget>
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final animationsMap = <String, AnimationInfo>{};
-
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => PaymentModel());
-
-    animationsMap.addAll({
-      'containerOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: Offset(0.0, 80.0),
-            end: Offset(0.0, 0.0),
-          ),
-        ],
-      ),
-    });
-    setupAnimations(
-      animationsMap.values.where(
-        (anim) =>
-            anim.trigger == AnimationTrigger.onActionTrigger ||
-            !anim.applyInitialState,
-      ),
-      this,
-    );
+    _model = PaymentModel();
   }
 
   @override
@@ -89,34 +46,23 @@ class _PaymentWidgetState extends State<PaymentWidget>
         appBar: AppBar(
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
+          leading: IconButton(
+            icon: const Icon(
               Icons.arrow_back_rounded,
               color: Color(0xFF101213),
               size: 30,
             ),
-            onPressed: () async {
-              context.pop();
+            onPressed: () {
+              Navigator.of(context).pop();
             },
           ),
           title: Text(
             'Details',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-              font: GoogleFonts.plusJakartaSans(
-                fontWeight: FontWeight.w500,
-                fontStyle: FlutterFlowTheme.of(
-                  context,
-                ).headlineMedium.fontStyle,
-              ),
-              color: Color(0xFF101213),
+            style: GoogleFonts.plusJakartaSans(
+              textStyle: Theme.of(context).textTheme.headlineMedium,
+              color: const Color(0xFF101213),
               fontSize: 24,
-              letterSpacing: 0.0,
               fontWeight: FontWeight.w500,
-              fontStyle: FlutterFlowTheme.of(context).headlineMedium.fontStyle,
             ),
           ),
           actions: [],
@@ -137,20 +83,11 @@ class _PaymentWidgetState extends State<PaymentWidget>
                   children: [
                     Text(
                       'Invoice Amount',
-                      style: FlutterFlowTheme.of(context).labelMedium.override(
-                        font: GoogleFonts.plusJakartaSans(
-                          fontWeight: FontWeight.w500,
-                          fontStyle: FlutterFlowTheme.of(
-                            context,
-                          ).labelMedium.fontStyle,
-                        ),
-                        color: Color(0xFF57636C),
+                      style: GoogleFonts.plusJakartaSans(
+                        textStyle: Theme.of(context).textTheme.labelMedium,
+                        color: const Color(0xFF57636C),
                         fontSize: 14,
-                        letterSpacing: 0.0,
                         fontWeight: FontWeight.w500,
-                        fontStyle: FlutterFlowTheme.of(
-                          context,
-                        ).labelMedium.fontStyle,
                       ),
                     ),
                     Padding(
@@ -176,22 +113,14 @@ class _PaymentWidgetState extends State<PaymentWidget>
                             ),
                             child: Text(
                               'DUE',
-                              style: FlutterFlowTheme.of(context).bodyMedium
-                                  .override(
-                                    font: GoogleFonts.plusJakartaSans(
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).bodyMedium.fontStyle,
-                                    ),
-                                    color: Color(0xFF101213),
-                                    fontSize: 14,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FlutterFlowTheme.of(
-                                      context,
-                                    ).bodyMedium.fontStyle,
-                                  ),
+                              style: GoogleFonts.plusJakartaSans(
+                                textStyle: Theme.of(
+                                  context,
+                                ).textTheme.bodyMedium,
+                                color: const Color(0xFF101213),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
                         ),
@@ -204,20 +133,12 @@ class _PaymentWidgetState extends State<PaymentWidget>
                 padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                 child: Text(
                   '\$245.00',
-                  style: FlutterFlowTheme.of(context).displayLarge.override(
-                    font: GoogleFonts.outfit(
-                      fontWeight: FontWeight.normal,
-                      fontStyle: FlutterFlowTheme.of(
-                        context,
-                      ).displayLarge.fontStyle,
-                    ),
-                    color: Color(0xFF101213),
+                  style: GoogleFonts.outfit(
+                    textStyle: Theme.of(context).textTheme.displayLarge,
+                    color: const Color(0xFF101213),
                     fontSize: 64,
                     letterSpacing: 0.0,
                     fontWeight: FontWeight.normal,
-                    fontStyle: FlutterFlowTheme.of(
-                      context,
-                    ).displayLarge.fontStyle,
                   ),
                 ),
               ),
@@ -236,22 +157,15 @@ class _PaymentWidgetState extends State<PaymentWidget>
                           children: [
                             Text(
                               'Due on:',
-                              style: FlutterFlowTheme.of(context).labelSmall
-                                  .override(
-                                    font: GoogleFonts.plusJakartaSans(
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).labelSmall.fontStyle,
-                                    ),
-                                    color: Color(0xFF57636C),
-                                    fontSize: 12,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FlutterFlowTheme.of(
-                                      context,
-                                    ).labelSmall.fontStyle,
-                                  ),
+                              style: GoogleFonts.plusJakartaSans(
+                                textStyle: Theme.of(
+                                  context,
+                                ).textTheme.labelSmall,
+                                color: const Color(0xFF57636C),
+                                fontSize: 12,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
@@ -262,22 +176,15 @@ class _PaymentWidgetState extends State<PaymentWidget>
                               ),
                               child: Text(
                                 'May 30th, 2026',
-                                style: FlutterFlowTheme.of(context).titleLarge
-                                    .override(
-                                      font: GoogleFonts.outfit(
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).titleLarge.fontStyle,
-                                      ),
-                                      color: Color(0xFF101213),
-                                      fontSize: 18,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).titleLarge.fontStyle,
-                                    ),
+                                style: GoogleFonts.outfit(
+                                  textStyle: Theme.of(
+                                    context,
+                                  ).textTheme.titleLarge,
+                                  color: const Color(0xFF101213),
+                                  fontSize: 18,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
                           ],
@@ -291,43 +198,27 @@ class _PaymentWidgetState extends State<PaymentWidget>
                         children: [
                           Text(
                             'Invoice #:',
-                            style: FlutterFlowTheme.of(context).labelSmall
-                                .override(
-                                  font: GoogleFonts.plusJakartaSans(
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FlutterFlowTheme.of(
-                                      context,
-                                    ).labelSmall.fontStyle,
-                                  ),
-                                  color: Color(0xFF57636C),
-                                  fontSize: 12,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
-                                  fontStyle: FlutterFlowTheme.of(
-                                    context,
-                                  ).labelSmall.fontStyle,
-                                ),
+                            style: GoogleFonts.plusJakartaSans(
+                              textStyle: Theme.of(context).textTheme.labelSmall,
+                              color: const Color(0xFF57636C),
+                              fontSize: 12,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                             child: Text(
                               '5242124422',
-                              style: FlutterFlowTheme.of(context).titleLarge
-                                  .override(
-                                    font: GoogleFonts.outfit(
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).titleLarge.fontStyle,
-                                    ),
-                                    color: Color(0xFF101213),
-                                    fontSize: 18,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FlutterFlowTheme.of(
-                                      context,
-                                    ).titleLarge.fontStyle,
-                                  ),
+                              style: GoogleFonts.outfit(
+                                textStyle: Theme.of(
+                                  context,
+                                ).textTheme.titleLarge,
+                                color: const Color(0xFF101213),
+                                fontSize: 18,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
                         ],
@@ -340,20 +231,11 @@ class _PaymentWidgetState extends State<PaymentWidget>
                 padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
                 child: Text(
                   'Note',
-                  style: FlutterFlowTheme.of(context).labelSmall.override(
-                    font: GoogleFonts.plusJakartaSans(
-                      fontWeight: FontWeight.w500,
-                      fontStyle: FlutterFlowTheme.of(
-                        context,
-                      ).labelSmall.fontStyle,
-                    ),
-                    color: Color(0xFF57636C),
+                  style: GoogleFonts.plusJakartaSans(
+                    textStyle: Theme.of(context).textTheme.labelSmall,
+                    color: const Color(0xFF57636C),
                     fontSize: 12,
-                    letterSpacing: 0.0,
                     fontWeight: FontWeight.w500,
-                    fontStyle: FlutterFlowTheme.of(
-                      context,
-                    ).labelSmall.fontStyle,
                   ),
                 ),
               ),
@@ -361,20 +243,11 @@ class _PaymentWidgetState extends State<PaymentWidget>
                 padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
                 child: Text(
                   'Our invoice details reflect a clear breakdown of the goods and services provided, including item descriptions, quantities, agreed prices, applicable taxes, and payment terms, ensuring a comprehensive and transparent record of the transaction.',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    font: GoogleFonts.plusJakartaSans(
-                      fontWeight: FontWeight.w500,
-                      fontStyle: FlutterFlowTheme.of(
-                        context,
-                      ).bodyMedium.fontStyle,
-                    ),
-                    color: Color(0xFF101213),
+                  style: GoogleFonts.plusJakartaSans(
+                    textStyle: Theme.of(context).textTheme.bodyMedium,
+                    color: const Color(0xFF101213),
                     fontSize: 14,
-                    letterSpacing: 0.0,
                     fontWeight: FontWeight.w500,
-                    fontStyle: FlutterFlowTheme.of(
-                      context,
-                    ).bodyMedium.fontStyle,
                   ),
                 ),
               ),
@@ -382,114 +255,100 @@ class _PaymentWidgetState extends State<PaymentWidget>
                 padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
                 child: Text(
                   'Customer Information',
-                  style: FlutterFlowTheme.of(context).labelSmall.override(
-                    font: GoogleFonts.plusJakartaSans(
-                      fontWeight: FontWeight.w500,
-                      fontStyle: FlutterFlowTheme.of(
-                        context,
-                      ).labelSmall.fontStyle,
-                    ),
-                    color: Color(0xFF57636C),
+                  style: GoogleFonts.plusJakartaSans(
+                    textStyle: Theme.of(context).textTheme.labelSmall,
+                    color: const Color(0xFF57636C),
                     fontSize: 12,
-                    letterSpacing: 0.0,
                     fontWeight: FontWeight.w500,
-                    fontStyle: FlutterFlowTheme.of(
-                      context,
-                    ).labelSmall.fontStyle,
                   ),
                 ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFF1F4F8),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(12),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(40),
-                          child: Image.network(
-                            'https://images.unsplash.com/photo-1610737241336-371badac3b66?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDV8fHVzZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
-                            width: 40,
-                            height: 40,
-                            fit: BoxFit.cover,
+                child:
+                    Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFF1F4F8),
+                            borderRadius: BorderRadius.circular(8),
                           ),
-                        ),
-                        Expanded(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                              16,
-                              0,
-                              0,
-                              0,
-                            ),
-                            child: Column(
+                            padding: EdgeInsets.all(12),
+                            child: Row(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Text(
-                                  'Albert Swiss',
-                                  style: FlutterFlowTheme.of(context).bodyLarge
-                                      .override(
-                                        font: GoogleFonts.plusJakartaSans(
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).bodyLarge.fontStyle,
-                                        ),
-                                        color: Color(0xFF101213),
-                                        fontSize: 16,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).bodyLarge.fontStyle,
-                                      ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                    0,
-                                    4,
-                                    0,
-                                    0,
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(40),
+                                  child: Image.network(
+                                    'https://images.unsplash.com/photo-1610737241336-371badac3b66?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDV8fHVzZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+                                    width: 40,
+                                    height: 40,
+                                    fit: BoxFit.cover,
                                   ),
-                                  child: Text(
-                                    'albert@companyname.com',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelSmall
-                                        .override(
-                                          font: GoogleFonts.plusJakartaSans(
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle: FlutterFlowTheme.of(
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                      16,
+                                      0,
+                                      0,
+                                      0,
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Albert Swiss',
+                                          style: GoogleFonts.plusJakartaSans(
+                                            textStyle: Theme.of(
                                               context,
-                                            ).labelSmall.fontStyle,
+                                            ).textTheme.bodyLarge,
+                                            color: const Color(0xFF101213),
+                                            fontSize: 16,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
                                           ),
-                                          color: Color(0xFF57636C),
-                                          fontSize: 12,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).labelSmall.fontStyle,
                                         ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                0,
+                                                4,
+                                                0,
+                                                0,
+                                              ),
+                                          child: Text(
+                                            'albert@companyname.com',
+                                            style: GoogleFonts.plusJakartaSans(
+                                              textStyle: Theme.of(
+                                                context,
+                                              ).textTheme.labelSmall,
+                                              color: const Color(0xFF57636C),
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],
                             ),
                           ),
+                        )
+                        .animate()
+                        .fade(duration: 600.ms)
+                        .move(
+                          begin: const Offset(0, 80),
+                          end: Offset.zero,
+                          duration: 600.ms,
                         ),
-                      ],
-                    ),
-                  ),
-                ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
@@ -506,22 +365,15 @@ class _PaymentWidgetState extends State<PaymentWidget>
                           children: [
                             Text(
                               'Billing Address:',
-                              style: FlutterFlowTheme.of(context).labelSmall
-                                  .override(
-                                    font: GoogleFonts.plusJakartaSans(
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).labelSmall.fontStyle,
-                                    ),
-                                    color: Color(0xFF57636C),
-                                    fontSize: 12,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FlutterFlowTheme.of(
-                                      context,
-                                    ).labelSmall.fontStyle,
-                                  ),
+                              style: GoogleFonts.plusJakartaSans(
+                                textStyle: Theme.of(
+                                  context,
+                                ).textTheme.labelSmall,
+                                color: const Color(0xFF57636C),
+                                fontSize: 12,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
@@ -532,22 +384,15 @@ class _PaymentWidgetState extends State<PaymentWidget>
                               ),
                               child: Text(
                                 'Gig Dynamics Ngong rd next to ASK Dome Nairobi.',
-                                style: FlutterFlowTheme.of(context).titleLarge
-                                    .override(
-                                      font: GoogleFonts.outfit(
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).titleLarge.fontStyle,
-                                      ),
-                                      color: Color(0xFF101213),
-                                      fontSize: 18,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).titleLarge.fontStyle,
-                                    ),
+                                style: GoogleFonts.outfit(
+                                  textStyle: Theme.of(
+                                    context,
+                                  ).textTheme.titleLarge,
+                                  color: const Color(0xFF101213),
+                                  fontSize: 18,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
                           ],
@@ -561,43 +406,27 @@ class _PaymentWidgetState extends State<PaymentWidget>
                         children: [
                           Text(
                             'Customer Since:',
-                            style: FlutterFlowTheme.of(context).labelSmall
-                                .override(
-                                  font: GoogleFonts.plusJakartaSans(
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FlutterFlowTheme.of(
-                                      context,
-                                    ).labelSmall.fontStyle,
-                                  ),
-                                  color: Color(0xFF57636C),
-                                  fontSize: 12,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
-                                  fontStyle: FlutterFlowTheme.of(
-                                    context,
-                                  ).labelSmall.fontStyle,
-                                ),
+                            style: GoogleFonts.plusJakartaSans(
+                              textStyle: Theme.of(context).textTheme.labelSmall,
+                              color: const Color(0xFF57636C),
+                              fontSize: 12,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                             child: Text(
                               'February 30th, 2026',
-                              style: FlutterFlowTheme.of(context).titleLarge
-                                  .override(
-                                    font: GoogleFonts.outfit(
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).titleLarge.fontStyle,
-                                    ),
-                                    color: Color(0xFF101213),
-                                    fontSize: 18,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FlutterFlowTheme.of(
-                                      context,
-                                    ).titleLarge.fontStyle,
-                                  ),
+                              style: GoogleFonts.outfit(
+                                textStyle: Theme.of(
+                                  context,
+                                ).textTheme.titleLarge,
+                                color: const Color(0xFF101213),
+                                fontSize: 18,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
                         ],
@@ -615,44 +444,26 @@ class _PaymentWidgetState extends State<PaymentWidget>
                     Expanded(
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
-                        child: FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
-                          },
-                          text: 'Share',
-                          icon: Icon(Icons.ios_share, size: 15),
-                          options: FFButtonOptions(
-                            width: 130,
-                            height: 40,
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0,
-                              0,
-                              0,
-                              0,
-                            ),
-                            color: Colors.white,
-                            textStyle: FlutterFlowTheme.of(context).bodyLarge
-                                .override(
-                                  font: GoogleFonts.plusJakartaSans(
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FlutterFlowTheme.of(
-                                      context,
-                                    ).bodyLarge.fontStyle,
-                                  ),
-                                  color: Color(0xFF101213),
-                                  fontSize: 16,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
-                                  fontStyle: FlutterFlowTheme.of(
-                                    context,
-                                  ).bodyLarge.fontStyle,
-                                ),
-                            borderSide: BorderSide(
+                        child: ElevatedButton.icon(
+                          onPressed: () {},
+                          label: const Text('Share'),
+                          icon: const Icon(Icons.ios_share, size: 15),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            foregroundColor: const Color(0xFF101213),
+                            elevation: 0,
+                            side: const BorderSide(
                               color: Color(0xFFE0E3E7),
                               width: 1,
                             ),
-                            borderRadius: BorderRadius.circular(8),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            minimumSize: const Size(130, 40),
+                            textStyle: GoogleFonts.plusJakartaSans(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ),
@@ -660,46 +471,28 @@ class _PaymentWidgetState extends State<PaymentWidget>
                     Expanded(
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                        child: FFButtonWidget(
+                        child: ElevatedButton.icon(
                           onPressed: () async {
-                            context.pushNamed(
-                              AddressEditorPageWidget.routeName,
-                            );
+                            // context.pushNamed(AddressEditorPageWidget.routeName);
                           },
-                          text: 'Edit',
-                          icon: Icon(Icons.edit_outlined, size: 15),
-                          options: FFButtonOptions(
-                            width: 130,
-                            height: 40,
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0,
-                              0,
-                              0,
-                              0,
-                            ),
-                            color: Colors.white,
-                            textStyle: FlutterFlowTheme.of(context).bodyLarge
-                                .override(
-                                  font: GoogleFonts.plusJakartaSans(
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FlutterFlowTheme.of(
-                                      context,
-                                    ).bodyLarge.fontStyle,
-                                  ),
-                                  color: Color(0xFF101213),
-                                  fontSize: 16,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
-                                  fontStyle: FlutterFlowTheme.of(
-                                    context,
-                                  ).bodyLarge.fontStyle,
-                                ),
-                            borderSide: BorderSide(
+                          label: const Text('Edit'),
+                          icon: const Icon(Icons.edit_outlined, size: 15),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            foregroundColor: const Color(0xFF101213),
+                            elevation: 0,
+                            side: const BorderSide(
                               color: Color(0xFFE0E3E7),
                               width: 1,
                             ),
-                            borderRadius: BorderRadius.circular(8),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            minimumSize: const Size(130, 40),
+                            textStyle: GoogleFonts.plusJakartaSans(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ),
@@ -709,36 +502,27 @@ class _PaymentWidgetState extends State<PaymentWidget>
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
-                child: FFButtonWidget(
+                child: ElevatedButton.icon(
                   onPressed: () async {
-                    context.pushNamed(PaymentPageWidget.routeName);
+                    // context.pushNamed(PaymentPageWidget.routeName);
                   },
-                  text: 'Mark as Paid',
-                  icon: Icon(Icons.check_circle_outline_rounded, size: 15),
-                  options: FFButtonOptions(
-                    width: double.infinity,
-                    height: 48,
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    color: Color(0xFF4B39EF),
-                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                      font: GoogleFonts.plusJakartaSans(
-                        fontWeight: FontWeight.w500,
-                        fontStyle: FlutterFlowTheme.of(
-                          context,
-                        ).titleSmall.fontStyle,
-                      ),
-                      color: Colors.white,
-                      fontSize: 16,
-                      letterSpacing: 0.0,
-                      fontWeight: FontWeight.w500,
-                      fontStyle: FlutterFlowTheme.of(
-                        context,
-                      ).titleSmall.fontStyle,
-                    ),
+                  label: const Text('Mark as Paid'),
+                  icon: const Icon(
+                    Icons.check_circle_outline_rounded,
+                    size: 15,
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF4B39EF),
+                    foregroundColor: Colors.white,
                     elevation: 3,
-                    borderSide: BorderSide(color: Colors.transparent, width: 1),
-                    borderRadius: BorderRadius.circular(8),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    minimumSize: const Size(double.infinity, 48),
+                    textStyle: GoogleFonts.plusJakartaSans(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ),

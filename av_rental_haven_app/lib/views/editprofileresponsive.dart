@@ -1,12 +1,10 @@
-import 'dart:math';
-import 'dart:ui';
+// ignore_for_file: avoid_print
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'edit_profile_reaponsive_model.dart';
-export 'edit_profile_reaponsive_model.dart';
+import '../models/editprofileresponsivemodel.dart';
 
 class EditProfileReaponsiveWidget extends StatefulWidget {
   const EditProfileReaponsiveWidget({super.key});
@@ -20,67 +18,16 @@ class EditProfileReaponsiveWidget extends StatefulWidget {
 }
 
 class _EditProfileReaponsiveWidgetState
-    extends State<EditProfileReaponsiveWidget>
-    with TickerProviderStateMixin {
+    extends State<EditProfileReaponsiveWidget> {
   late EditProfileReaponsiveModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final animationsMap = <String, AnimationInfo>{};
-
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => EditProfileReaponsiveModel());
-
-    animationsMap.addAll({
-      'containerOnPageLoadAnimation1': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: Offset(0.0, 90.0),
-            end: Offset(0.0, 0.0),
-          ),
-        ],
-      ),
-      'containerOnPageLoadAnimation2': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: Offset(0.0, 90.0),
-            end: Offset(0.0, 0.0),
-          ),
-        ],
-      ),
-    });
-    setupAnimations(
-      animationsMap.values.where(
-        (anim) =>
-            anim.trigger == AnimationTrigger.onActionTrigger ||
-            !anim.applyInitialState,
-      ),
-      this,
-    );
+    _model = EditProfileReaponsiveModel();
+    _model.initState(context);
   }
 
   @override
@@ -117,11 +64,7 @@ class _EditProfileReaponsiveWidgetState
         child: Row(
           mainAxisSize: MainAxisSize.max,
           children: [
-            if (responsiveVisibility(
-              context: context,
-              phone: false,
-              tablet: false,
-            ))
+            if (MediaQuery.sizeOf(context).width > 991.0)
               Container(
                 width: 270,
                 height: double.infinity,
@@ -155,23 +98,11 @@ class _EditProfileReaponsiveWidgetState
                               ),
                               child: Text(
                                 'check.io',
-                                style: FlutterFlowTheme.of(context)
-                                    .headlineMedium
-                                    .override(
-                                      font: GoogleFonts.outfit(
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).headlineMedium.fontStyle,
-                                      ),
-                                      color: Color(0xFF15161E),
-                                      fontSize: 24,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).headlineMedium.fontStyle,
-                                    ),
+                                style: GoogleFonts.outfit(
+                                  color: const Color(0xFF15161E),
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
                           ],
@@ -196,24 +127,14 @@ class _EditProfileReaponsiveWidgetState
                               ),
                               child: Text(
                                 'Platform Navigation',
-                                style: FlutterFlowTheme.of(context).labelMedium
-                                    .override(
-                                      font: GoogleFonts.plusJakartaSans(
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).labelMedium.fontStyle,
-                                      ),
-                                      color: Color(0xFF606A85),
-                                      fontSize: 14,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).labelMedium.fontStyle,
-                                    ),
+                                style: GoogleFonts.plusJakartaSans(
+                                  color: const Color(0xFF606A85),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
+                            const SizedBox(height: 12),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                 16,
@@ -255,28 +176,11 @@ class _EditProfileReaponsiveWidgetState
                                         ),
                                         child: Text(
                                           'Dashboard',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                font:
-                                                    GoogleFonts.plusJakartaSans(
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                color: Color(0xFF15161E),
-                                                fontSize: 14,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w500,
-                                                fontStyle: FlutterFlowTheme.of(
-                                                  context,
-                                                ).bodyMedium.fontStyle,
-                                              ),
+                                          style: GoogleFonts.plusJakartaSans(
+                                            color: const Color(0xFF15161E),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -284,6 +188,7 @@ class _EditProfileReaponsiveWidgetState
                                 ),
                               ),
                             ),
+                            const SizedBox(height: 12),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                 16,
@@ -325,28 +230,11 @@ class _EditProfileReaponsiveWidgetState
                                         ),
                                         child: Text(
                                           'Chats',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                font:
-                                                    GoogleFonts.plusJakartaSans(
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                color: Color(0xFF15161E),
-                                                fontSize: 14,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w500,
-                                                fontStyle: FlutterFlowTheme.of(
-                                                  context,
-                                                ).bodyMedium.fontStyle,
-                                              ),
+                                          style: GoogleFonts.plusJakartaSans(
+                                            color: const Color(0xFF15161E),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -354,6 +242,7 @@ class _EditProfileReaponsiveWidgetState
                                 ),
                               ),
                             ),
+                            const SizedBox(height: 12),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                 16,
@@ -395,28 +284,11 @@ class _EditProfileReaponsiveWidgetState
                                         ),
                                         child: Text(
                                           'Projects',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                font:
-                                                    GoogleFonts.plusJakartaSans(
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                color: Color(0xFF15161E),
-                                                fontSize: 14,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w500,
-                                                fontStyle: FlutterFlowTheme.of(
-                                                  context,
-                                                ).bodyMedium.fontStyle,
-                                              ),
+                                          style: GoogleFonts.plusJakartaSans(
+                                            color: const Color(0xFF15161E),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -424,6 +296,7 @@ class _EditProfileReaponsiveWidgetState
                                 ),
                               ),
                             ),
+                            const SizedBox(height: 12),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                 16,
@@ -467,29 +340,11 @@ class _EditProfileReaponsiveWidgetState
                                               ),
                                           child: Text(
                                             'Recent Orders',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  font:
-                                                      GoogleFonts.plusJakartaSans(
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                                  color: Color(0xFF15161E),
-                                                  fontSize: 14,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                        context,
-                                                      ).bodyMedium.fontStyle,
-                                                ),
+                                            style: GoogleFonts.plusJakartaSans(
+                                              color: const Color(0xFF15161E),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -514,27 +369,10 @@ class _EditProfileReaponsiveWidgetState
                                             child: Text(
                                               '12',
                                               style:
-                                                  FlutterFlowTheme.of(
-                                                    context,
-                                                  ).bodyMedium.override(
-                                                    font: GoogleFonts.plusJakartaSans(
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
+                                                  GoogleFonts.plusJakartaSans(
                                                     color: Colors.white,
                                                     fontSize: 14,
-                                                    letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w500,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).bodyMedium.fontStyle,
                                                   ),
                                             ),
                                           ),
@@ -545,6 +383,7 @@ class _EditProfileReaponsiveWidgetState
                                 ),
                               ),
                             ),
+                            const SizedBox(height: 12),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                 16,
@@ -554,24 +393,14 @@ class _EditProfileReaponsiveWidgetState
                               ),
                               child: Text(
                                 'Settings',
-                                style: FlutterFlowTheme.of(context).labelMedium
-                                    .override(
-                                      font: GoogleFonts.plusJakartaSans(
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).labelMedium.fontStyle,
-                                      ),
-                                      color: Color(0xFF606A85),
-                                      fontSize: 14,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).labelMedium.fontStyle,
-                                    ),
+                                style: GoogleFonts.plusJakartaSans(
+                                  color: const Color(0xFF606A85),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
+                            const SizedBox(height: 12),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                 16,
@@ -613,28 +442,11 @@ class _EditProfileReaponsiveWidgetState
                                         ),
                                         child: Text(
                                           'Billing',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                font:
-                                                    GoogleFonts.plusJakartaSans(
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                color: Color(0xFF15161E),
-                                                fontSize: 14,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w500,
-                                                fontStyle: FlutterFlowTheme.of(
-                                                  context,
-                                                ).bodyMedium.fontStyle,
-                                              ),
+                                          style: GoogleFonts.plusJakartaSans(
+                                            color: const Color(0xFF15161E),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -642,6 +454,7 @@ class _EditProfileReaponsiveWidgetState
                                 ),
                               ),
                             ),
+                            const SizedBox(height: 12),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                 16,
@@ -683,28 +496,11 @@ class _EditProfileReaponsiveWidgetState
                                         ),
                                         child: Text(
                                           'Explore',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                font:
-                                                    GoogleFonts.plusJakartaSans(
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                color: Color(0xFF15161E),
-                                                fontSize: 14,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w500,
-                                                fontStyle: FlutterFlowTheme.of(
-                                                  context,
-                                                ).bodyMedium.fontStyle,
-                                              ),
+                                          style: GoogleFonts.plusJakartaSans(
+                                            color: const Color(0xFF15161E),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -712,7 +508,7 @@ class _EditProfileReaponsiveWidgetState
                                 ),
                               ),
                             ),
-                          ].divide(SizedBox(height: 12)),
+                          ],
                         ),
                       ),
                       Align(
@@ -743,10 +539,7 @@ class _EditProfileReaponsiveWidgetState
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        setDarkModeSetting(
-                                          context,
-                                          ThemeMode.light,
-                                        );
+                                        // Theme handling
                                       },
                                       child: Container(
                                         width: 115,
@@ -761,13 +554,11 @@ class _EditProfileReaponsiveWidgetState
                                             10,
                                           ),
                                           border: Border.all(
-                                            color: valueOrDefault<Color>(
-                                              Theme.of(context).brightness ==
-                                                      Brightness.light
-                                                  ? Color(0xFFE5E7EB)
-                                                  : Color(0xFFF1F4F8),
-                                              Color(0xFFE5E7EB),
-                                            ),
+                                            color:
+                                                Theme.of(context).brightness ==
+                                                    Brightness.light
+                                                ? const Color(0xFFE5E7EB)
+                                                : const Color(0xFFF1F4F8),
                                             width: 1,
                                           ),
                                         ),
@@ -798,36 +589,21 @@ class _EditProfileReaponsiveWidgetState
                                               child: Text(
                                                 'Light Mode',
                                                 style:
-                                                    FlutterFlowTheme.of(
-                                                      context,
-                                                    ).bodyMedium.override(
-                                                      font: GoogleFonts.plusJakartaSans(
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
+                                                    GoogleFonts.plusJakartaSans(
                                                       color:
                                                           Theme.of(
                                                                 context,
                                                               ).brightness ==
                                                               Brightness.light
-                                                          ? Color(0xFF15161E)
-                                                          : Color(0xFF606A85),
+                                                          ? const Color(
+                                                              0xFF15161E,
+                                                            )
+                                                          : const Color(
+                                                              0xFF606A85,
+                                                            ),
                                                       fontSize: 14,
-                                                      letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .bodyMedium
-                                                              .fontStyle,
                                                     ),
                                               ),
                                             ),
@@ -843,10 +619,7 @@ class _EditProfileReaponsiveWidgetState
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        setDarkModeSetting(
-                                          context,
-                                          ThemeMode.dark,
-                                        );
+                                        // Theme handling
                                       },
                                       child: Container(
                                         width: 115,
@@ -861,13 +634,11 @@ class _EditProfileReaponsiveWidgetState
                                             10,
                                           ),
                                           border: Border.all(
-                                            color: valueOrDefault<Color>(
-                                              Theme.of(context).brightness ==
-                                                      Brightness.dark
-                                                  ? Color(0xFFE5E7EB)
-                                                  : Color(0xFFF1F4F8),
-                                              Color(0xFFF1F4F8),
-                                            ),
+                                            color:
+                                                Theme.of(context).brightness ==
+                                                    Brightness.dark
+                                                ? const Color(0xFFE5E7EB)
+                                                : const Color(0xFFF1F4F8),
                                             width: 1,
                                           ),
                                         ),
@@ -898,36 +669,21 @@ class _EditProfileReaponsiveWidgetState
                                               child: Text(
                                                 'Dark Mode',
                                                 style:
-                                                    FlutterFlowTheme.of(
-                                                      context,
-                                                    ).bodyMedium.override(
-                                                      font: GoogleFonts.plusJakartaSans(
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
+                                                    GoogleFonts.plusJakartaSans(
                                                       color:
                                                           Theme.of(
                                                                 context,
                                                               ).brightness ==
                                                               Brightness.dark
-                                                          ? Color(0xFF15161E)
-                                                          : Color(0xFF606A85),
+                                                          ? const Color(
+                                                              0xFF15161E,
+                                                            )
+                                                          : const Color(
+                                                              0xFF606A85,
+                                                            ),
                                                       fontSize: 14,
-                                                      letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .bodyMedium
-                                                              .fontStyle,
                                                     ),
                                               ),
                                             ),
@@ -995,43 +751,19 @@ class _EditProfileReaponsiveWidgetState
                                   children: [
                                     Text(
                                       'Casper Ghost',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
-                                          .override(
-                                            font: GoogleFonts.plusJakartaSans(
-                                              fontWeight: FontWeight.w600,
-                                              fontStyle: FlutterFlowTheme.of(
-                                                context,
-                                              ).bodyLarge.fontStyle,
-                                            ),
-                                            color: Color(0xFF15161E),
-                                            fontSize: 16,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).bodyLarge.fontStyle,
-                                          ),
+                                      style: GoogleFonts.plusJakartaSans(
+                                        color: const Color(0xFF15161E),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                     Text(
                                       'admin@gmail.com',
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            font: GoogleFonts.plusJakartaSans(
-                                              fontWeight: FontWeight.w500,
-                                              fontStyle: FlutterFlowTheme.of(
-                                                context,
-                                              ).labelMedium.fontStyle,
-                                            ),
-                                            color: Color(0xFF606A85),
-                                            fontSize: 14,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).labelMedium.fontStyle,
-                                          ),
+                                      style: GoogleFonts.plusJakartaSans(
+                                        color: const Color(0xFF606A85),
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -1065,11 +797,7 @@ class _EditProfileReaponsiveWidgetState
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      if (responsiveVisibility(
-                        context: context,
-                        phone: false,
-                        tablet: false,
-                      ))
+                      if (MediaQuery.sizeOf(context).width > 991.0)
                         Container(
                           width: double.infinity,
                           height: 24,
@@ -1162,34 +890,14 @@ class _EditProfileReaponsiveWidgetState
                                                 children: [
                                                   Text(
                                                     'Casper Ghost',
-                                                    style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).headlineSmall.override(
-                                                          font: GoogleFonts.outfit(
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .headlineSmall
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
-                                                            0xFF15161E,
-                                                          ),
-                                                          fontSize: 22,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .headlineSmall
-                                                                  .fontStyle,
-                                                        ),
+                                                    style: GoogleFonts.outfit(
+                                                      color: const Color(
+                                                        0xFF15161E,
+                                                      ),
+                                                      fontSize: 22,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
                                                   ),
                                                   Padding(
                                                     padding:
@@ -1202,33 +910,13 @@ class _EditProfileReaponsiveWidgetState
                                                     child: Text(
                                                       'casper@ghustbusters.com',
                                                       style:
-                                                          FlutterFlowTheme.of(
-                                                            context,
-                                                          ).labelMedium.override(
-                                                            font: GoogleFonts.plusJakartaSans(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                        context,
-                                                                      )
-                                                                      .labelMedium
-                                                                      .fontStyle,
-                                                            ),
-                                                            color: Color(
+                                                          GoogleFonts.plusJakartaSans(
+                                                            color: const Color(
                                                               0xFF606A85,
                                                             ),
                                                             fontSize: 14,
-                                                            letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .labelMedium
-                                                                    .fontStyle,
                                                           ),
                                                     ),
                                                   ),
@@ -1256,117 +944,75 @@ class _EditProfileReaponsiveWidgetState
                                                   0,
                                                   12,
                                                 ),
-                                            child:
-                                                Container(
-                                                  width: 200,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                          8,
-                                                        ),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional.fromSTEB(
-                                                          12,
-                                                          12,
-                                                          12,
-                                                          0,
-                                                        ),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Icon(
-                                                          Icons.receipt_rounded,
-                                                          color: Color(
-                                                            0xFF6F61EF,
+                                            child: Container(
+                                              width: 200,
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsetsDirectional.fromSTEB(
+                                                      12,
+                                                      12,
+                                                      12,
+                                                      0,
+                                                    ),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.receipt_rounded,
+                                                      color: Color(0xFF6F61EF),
+                                                      size: 44,
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional.fromSTEB(
+                                                            0,
+                                                            8,
+                                                            0,
+                                                            4,
                                                           ),
-                                                          size: 44,
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional.fromSTEB(
-                                                                0,
-                                                                8,
-                                                                0,
-                                                                4,
-                                                              ),
-                                                          child: Text(
-                                                            '2,200',
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style: FlutterFlowTheme.of(context).headlineSmall.override(
-                                                              font: GoogleFonts.outfit(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                fontStyle:
-                                                                    FlutterFlowTheme.of(
-                                                                          context,
-                                                                        )
-                                                                        .headlineSmall
-                                                                        .fontStyle,
-                                                              ),
-                                                              color: Color(
-                                                                0xFF15161E,
-                                                              ),
+                                                      child: Text(
+                                                        '2,200',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            GoogleFonts.outfit(
+                                                              color:
+                                                                  const Color(
+                                                                    0xFF15161E,
+                                                                  ),
                                                               fontSize: 22,
-                                                              letterSpacing:
-                                                                  0.0,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                        context,
-                                                                      )
-                                                                      .headlineSmall
-                                                                      .fontStyle,
                                                             ),
-                                                          ),
-                                                        ),
-                                                        Text(
-                                                          'Orders Placed',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: FlutterFlowTheme.of(context).labelMedium.override(
-                                                            font: GoogleFonts.plusJakartaSans(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                        context,
-                                                                      )
-                                                                      .labelMedium
-                                                                      .fontStyle,
-                                                            ),
-                                                            color: Color(
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      'Orders Placed',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          GoogleFonts.plusJakartaSans(
+                                                            color: const Color(
                                                               0xFF606A85,
                                                             ),
                                                             fontSize: 14,
-                                                            letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .labelMedium
-                                                                    .fontStyle,
                                                           ),
-                                                        ),
-                                                      ],
                                                     ),
-                                                  ),
-                                                ).animateOnPageLoad(
-                                                  animationsMap['containerOnPageLoadAnimation1']!,
+                                                  ],
                                                 ),
+                                              ),
+                                            ),
                                           ),
                                         ),
                                         Expanded(
@@ -1378,118 +1024,75 @@ class _EditProfileReaponsiveWidgetState
                                                   0,
                                                   12,
                                                 ),
-                                            child:
-                                                Container(
-                                                  width: 200,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                          8,
-                                                        ),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional.fromSTEB(
-                                                          12,
-                                                          12,
-                                                          12,
-                                                          0,
-                                                        ),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Icon(
-                                                          Icons
-                                                              .ssid_chart_rounded,
-                                                          color: Color(
-                                                            0xFF6F61EF,
+                                            child: Container(
+                                              width: 200,
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsetsDirectional.fromSTEB(
+                                                      12,
+                                                      12,
+                                                      12,
+                                                      0,
+                                                    ),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.ssid_chart_rounded,
+                                                      color: Color(0xFF6F61EF),
+                                                      size: 44,
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional.fromSTEB(
+                                                            0,
+                                                            8,
+                                                            0,
+                                                            4,
                                                           ),
-                                                          size: 44,
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional.fromSTEB(
-                                                                0,
-                                                                8,
-                                                                0,
-                                                                4,
-                                                              ),
-                                                          child: Text(
-                                                            '\$212.4k',
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style: FlutterFlowTheme.of(context).headlineSmall.override(
-                                                              font: GoogleFonts.outfit(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                fontStyle:
-                                                                    FlutterFlowTheme.of(
-                                                                          context,
-                                                                        )
-                                                                        .headlineSmall
-                                                                        .fontStyle,
-                                                              ),
-                                                              color: Color(
-                                                                0xFF15161E,
-                                                              ),
+                                                      child: Text(
+                                                        '\$212.4k',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            GoogleFonts.outfit(
+                                                              color:
+                                                                  const Color(
+                                                                    0xFF15161E,
+                                                                  ),
                                                               fontSize: 22,
-                                                              letterSpacing:
-                                                                  0.0,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                        context,
-                                                                      )
-                                                                      .headlineSmall
-                                                                      .fontStyle,
                                                             ),
-                                                          ),
-                                                        ),
-                                                        Text(
-                                                          'Money Earned',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: FlutterFlowTheme.of(context).labelMedium.override(
-                                                            font: GoogleFonts.plusJakartaSans(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                        context,
-                                                                      )
-                                                                      .labelMedium
-                                                                      .fontStyle,
-                                                            ),
-                                                            color: Color(
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      'Money Earned',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          GoogleFonts.plusJakartaSans(
+                                                            color: const Color(
                                                               0xFF606A85,
                                                             ),
                                                             fontSize: 14,
-                                                            letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .labelMedium
-                                                                    .fontStyle,
                                                           ),
-                                                        ),
-                                                      ],
                                                     ),
-                                                  ),
-                                                ).animateOnPageLoad(
-                                                  animationsMap['containerOnPageLoadAnimation2']!,
+                                                  ],
                                                 ),
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -1523,28 +1126,11 @@ class _EditProfileReaponsiveWidgetState
                                         ),
                                         child: Text(
                                           'My Account Information',
-                                          style: FlutterFlowTheme.of(context)
-                                              .labelMedium
-                                              .override(
-                                                font:
-                                                    GoogleFonts.plusJakartaSans(
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .labelMedium
-                                                              .fontStyle,
-                                                    ),
-                                                color: Color(0xFF606A85),
-                                                fontSize: 14,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w500,
-                                                fontStyle: FlutterFlowTheme.of(
-                                                  context,
-                                                ).labelMedium.fontStyle,
-                                              ),
+                                          style: GoogleFonts.plusJakartaSans(
+                                            color: const Color(0xFF606A85),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -1588,32 +1174,13 @@ class _EditProfileReaponsiveWidgetState
                                                   Text(
                                                     'Change Password',
                                                     style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).bodyLarge.override(
-                                                          font: GoogleFonts.plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .bodyLarge
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
+                                                        GoogleFonts.plusJakartaSans(
+                                                          color: const Color(
                                                             0xFF15161E,
                                                           ),
                                                           fontSize: 16,
-                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w600,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .bodyLarge
-                                                                  .fontStyle,
                                                         ),
                                                   ),
                                                   Expanded(
@@ -1680,32 +1247,13 @@ class _EditProfileReaponsiveWidgetState
                                                   Text(
                                                     'Edit Profile',
                                                     style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).bodyLarge.override(
-                                                          font: GoogleFonts.plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .bodyLarge
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
+                                                        GoogleFonts.plusJakartaSans(
+                                                          color: const Color(
                                                             0xFF15161E,
                                                           ),
                                                           fontSize: 16,
-                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w600,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .bodyLarge
-                                                                  .fontStyle,
                                                         ),
                                                   ),
                                                   Expanded(
@@ -1760,29 +1308,11 @@ class _EditProfileReaponsiveWidgetState
                                               ),
                                           child: Text(
                                             'Support',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelMedium
-                                                .override(
-                                                  font:
-                                                      GoogleFonts.plusJakartaSans(
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .labelMedium
-                                                                .fontStyle,
-                                                      ),
-                                                  color: Color(0xFF606A85),
-                                                  fontSize: 14,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                        context,
-                                                      ).labelMedium.fontStyle,
-                                                ),
+                                            style: GoogleFonts.plusJakartaSans(
+                                              color: const Color(0xFF606A85),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -1827,32 +1357,13 @@ class _EditProfileReaponsiveWidgetState
                                                   Text(
                                                     'Tutorial',
                                                     style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).bodyLarge.override(
-                                                          font: GoogleFonts.plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .bodyLarge
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
+                                                        GoogleFonts.plusJakartaSans(
+                                                          color: const Color(
                                                             0xFF15161E,
                                                           ),
                                                           fontSize: 16,
-                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w600,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .bodyLarge
-                                                                  .fontStyle,
                                                         ),
                                                   ),
                                                   Expanded(
@@ -1919,32 +1430,13 @@ class _EditProfileReaponsiveWidgetState
                                                   Text(
                                                     'Submit a Bug',
                                                     style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).bodyLarge.override(
-                                                          font: GoogleFonts.plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .bodyLarge
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
+                                                        GoogleFonts.plusJakartaSans(
+                                                          color: const Color(
                                                             0xFF15161E,
                                                           ),
                                                           fontSize: 16,
-                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w600,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .bodyLarge
-                                                                  .fontStyle,
                                                         ),
                                                   ),
                                                   Expanded(
@@ -2011,32 +1503,13 @@ class _EditProfileReaponsiveWidgetState
                                                   Text(
                                                     'Submit a Feature Request',
                                                     style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).bodyLarge.override(
-                                                          font: GoogleFonts.plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .bodyLarge
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
+                                                        GoogleFonts.plusJakartaSans(
+                                                          color: const Color(
                                                             0xFF15161E,
                                                           ),
                                                           fontSize: 16,
-                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w600,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .bodyLarge
-                                                                  .fontStyle,
                                                         ),
                                                   ),
                                                   Expanded(
@@ -2101,10 +1574,7 @@ class _EditProfileReaponsiveWidgetState
                                                     highlightColor:
                                                         Colors.transparent,
                                                     onTap: () async {
-                                                      setDarkModeSetting(
-                                                        context,
-                                                        ThemeMode.light,
-                                                      );
+                                                      // Theme handling
                                                     },
                                                     child: Container(
                                                       width: 115,
@@ -2122,20 +1592,18 @@ class _EditProfileReaponsiveWidgetState
                                                               10,
                                                             ),
                                                         border: Border.all(
-                                                          color: valueOrDefault<Color>(
-                                                            Theme.of(
-                                                                      context,
-                                                                    ).brightness ==
-                                                                    Brightness
-                                                                        .light
-                                                                ? Color(
-                                                                    0xFFE5E7EB,
-                                                                  )
-                                                                : Color(
-                                                                    0xFFF1F4F8,
-                                                                  ),
-                                                            Color(0xFFE5E7EB),
-                                                          ),
+                                                          color:
+                                                              Theme.of(
+                                                                    context,
+                                                                  ).brightness ==
+                                                                  Brightness
+                                                                      .light
+                                                              ? const Color(
+                                                                  0xFFE5E7EB,
+                                                                )
+                                                              : const Color(
+                                                                  0xFFF1F4F8,
+                                                                ),
                                                           width: 1,
                                                         ),
                                                       ),
@@ -2173,40 +1641,23 @@ class _EditProfileReaponsiveWidgetState
                                                                 ),
                                                             child: Text(
                                                               'Light ',
-                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                font: GoogleFonts.plusJakartaSans(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontStyle:
-                                                                      FlutterFlowTheme.of(
-                                                                        context,
-                                                                      ).bodyMedium.fontStyle,
-                                                                ),
+                                                              style: GoogleFonts.plusJakartaSans(
                                                                 color:
                                                                     Theme.of(
                                                                           context,
                                                                         ).brightness ==
                                                                         Brightness
                                                                             .light
-                                                                    ? Color(
+                                                                    ? const Color(
                                                                         0xFF15161E,
                                                                       )
-                                                                    : Color(
+                                                                    : const Color(
                                                                         0xFF606A85,
                                                                       ),
                                                                 fontSize: 14,
-                                                                letterSpacing:
-                                                                    0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w500,
-                                                                fontStyle:
-                                                                    FlutterFlowTheme.of(
-                                                                          context,
-                                                                        )
-                                                                        .bodyMedium
-                                                                        .fontStyle,
                                                               ),
                                                             ),
                                                           ),
@@ -2226,10 +1677,7 @@ class _EditProfileReaponsiveWidgetState
                                                     highlightColor:
                                                         Colors.transparent,
                                                     onTap: () async {
-                                                      setDarkModeSetting(
-                                                        context,
-                                                        ThemeMode.dark,
-                                                      );
+                                                      // Theme handling
                                                     },
                                                     child: Container(
                                                       width: 115,
@@ -2296,40 +1744,23 @@ class _EditProfileReaponsiveWidgetState
                                                                 ),
                                                             child: Text(
                                                               'Dark',
-                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                font: GoogleFonts.plusJakartaSans(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontStyle:
-                                                                      FlutterFlowTheme.of(
-                                                                        context,
-                                                                      ).bodyMedium.fontStyle,
-                                                                ),
+                                                              style: GoogleFonts.plusJakartaSans(
                                                                 color:
                                                                     Theme.of(
                                                                           context,
                                                                         ).brightness ==
                                                                         Brightness
                                                                             .dark
-                                                                    ? Color(
+                                                                    ? const Color(
                                                                         0xFF15161E,
                                                                       )
-                                                                    : Color(
+                                                                    : const Color(
                                                                         0xFF606A85,
                                                                       ),
                                                                 fontSize: 14,
-                                                                letterSpacing:
-                                                                    0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w500,
-                                                                fontStyle:
-                                                                    FlutterFlowTheme.of(
-                                                                          context,
-                                                                        )
-                                                                        .bodyMedium
-                                                                        .fontStyle,
                                                               ),
                                                             ),
                                                           ),
@@ -2353,60 +1784,27 @@ class _EditProfileReaponsiveWidgetState
                                           0,
                                           0,
                                         ),
-                                        child: FFButtonWidget(
-                                          onPressed: () {
-                                            print('Button pressed ...');
-                                          },
-                                          text: 'Log Out',
-                                          options: FFButtonOptions(
-                                            width: 130,
-                                            height: 50,
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                  0,
-                                                  0,
-                                                  0,
-                                                  0,
-                                                ),
-                                            iconPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                  0,
-                                                  0,
-                                                  0,
-                                                  0,
-                                                ),
-                                            color: Colors.white,
-                                            textStyle:
-                                                FlutterFlowTheme.of(
-                                                  context,
-                                                ).titleSmall.override(
-                                                  font:
-                                                      GoogleFonts.plusJakartaSans(
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .titleSmall
-                                                                .fontStyle,
-                                                      ),
-                                                  color: Color(0xFF606A85),
-                                                  fontSize: 16,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                        context,
-                                                      ).titleSmall.fontStyle,
-                                                ),
-                                            elevation: 0,
-                                            borderSide: BorderSide(
+                                        child: OutlinedButton(
+                                          onPressed: () =>
+                                              print('Button pressed ...'),
+                                          style: OutlinedButton.styleFrom(
+                                            fixedSize: const Size(130, 50),
+                                            backgroundColor: Colors.white,
+                                            side: const BorderSide(
                                               color: Color(0xFFE5E7EB),
                                               width: 2,
                                             ),
-                                            borderRadius: BorderRadius.circular(
-                                              12,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                            ),
+                                          ),
+                                          child: Text(
+                                            'Log Out',
+                                            style: GoogleFonts.plusJakartaSans(
+                                              color: const Color(0xFF606A85),
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                           ),
                                         ),
@@ -2419,7 +1817,8 @@ class _EditProfileReaponsiveWidgetState
                           ),
                         ),
                       ),
-                    ].addToEnd(SizedBox(height: 72)),
+                      const SizedBox(height: 72),
+                    ],
                   ),
                 ),
               ),

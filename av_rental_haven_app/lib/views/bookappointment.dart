@@ -1,32 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../models/book_appointment_model.dart';
-
-extension StringCapitalizationExtension on String {
-  String toCapitalization(TextCapitalization capitalization) {
-    switch (capitalization) {
-      case TextCapitalization.characters:
-        return toUpperCase();
-      case TextCapitalization.words:
-        return split(' ')
-            .map((word) {
-              if (word.isEmpty) return word;
-              return '${word[0].toUpperCase()}${word.substring(1)}';
-            })
-            .join(' ');
-      case TextCapitalization.sentences:
-        return replaceAllMapped(
-          RegExp('(^\\s*|[.!?]\\s+)([a-z])'),
-          (match) => '${match.group(1)}${match.group(2)!.toUpperCase()}',
-        );
-      case TextCapitalization.none:
-        return this;
-    }
-  }
-}
 
 class BookAppointmentWidget extends StatefulWidget {
   const BookAppointmentWidget({super.key});
@@ -222,24 +197,7 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                     validator: (val) => _model
                                         .fullNameTextControllerValidator
                                         ?.call(context, val),
-                                    inputFormatters: [
-                                      if (defaultTargetPlatform !=
-                                              TargetPlatform.android &&
-                                          defaultTargetPlatform !=
-                                              TargetPlatform.iOS)
-                                        TextInputFormatter.withFunction((
-                                          oldValue,
-                                          newValue,
-                                        ) {
-                                          return TextEditingValue(
-                                            selection: newValue.selection,
-                                            text: newValue.text
-                                                .toCapitalization(
-                                                  TextCapitalization.words,
-                                                ),
-                                          );
-                                        }),
-                                    ],
+                                    inputFormatters: const [],
                                   ),
                                   const SizedBox(height: 12),
                                   TextFormField(
@@ -317,24 +275,7 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                     validator: (val) => _model
                                         .ageTextControllerValidator
                                         ?.call(context, val),
-                                    inputFormatters: [
-                                      if (defaultTargetPlatform !=
-                                              TargetPlatform.android &&
-                                          defaultTargetPlatform !=
-                                              TargetPlatform.iOS)
-                                        TextInputFormatter.withFunction((
-                                          oldValue,
-                                          newValue,
-                                        ) {
-                                          return TextEditingValue(
-                                            selection: newValue.selection,
-                                            text: newValue.text
-                                                .toCapitalization(
-                                                  TextCapitalization.words,
-                                                ),
-                                          );
-                                        }),
-                                    ],
+                                    inputFormatters: const [],
                                   ),
                                   const SizedBox(height: 12),
                                   TextFormField(
@@ -415,7 +356,7 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                     validator: (val) => _model
                                         .dateOfBirthTextControllerValidator
                                         ?.call(context, val),
-                                    inputFormatters: [_model.dateOfBirthMask],
+                                    inputFormatters: const [],
                                   ),
                                   const SizedBox(height: 12),
                                   Text(
@@ -547,24 +488,7 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                     validator: (val) => _model
                                         .descriptionTextControllerValidator
                                         ?.call(context, val),
-                                    inputFormatters: [
-                                      if (defaultTargetPlatform !=
-                                              TargetPlatform.android &&
-                                          defaultTargetPlatform !=
-                                              TargetPlatform.iOS)
-                                        TextInputFormatter.withFunction((
-                                          oldValue,
-                                          newValue,
-                                        ) {
-                                          return TextEditingValue(
-                                            selection: newValue.selection,
-                                            text: newValue.text
-                                                .toCapitalization(
-                                                  TextCapitalization.words,
-                                                ),
-                                          );
-                                        }),
-                                    ],
+                                    inputFormatters: const [],
                                   ),
                                   const SizedBox(height: 12),
                                   Row(
@@ -605,6 +529,7 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                                 if (datePickedDate != null) {
                                                   datePickedTime =
                                                       await showTimePicker(
+                                                        // ignore: use_build_context_synchronously
                                                         context: context,
                                                         initialTime:
                                                             TimeOfDay.now(),

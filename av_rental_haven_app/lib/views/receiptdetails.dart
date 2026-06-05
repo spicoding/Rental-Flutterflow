@@ -1,15 +1,7 @@
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
-import 'receipt_details_model.dart';
-export 'receipt_details_model.dart';
+import '../models/receiptdetailsmodel.dart';
 
 class ReceiptDetailsWidget extends StatefulWidget {
   const ReceiptDetailsWidget({super.key});
@@ -29,7 +21,7 @@ class _ReceiptDetailsWidgetState extends State<ReceiptDetailsWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ReceiptDetailsModel());
+    _model = ReceiptDetailsModel();
   }
 
   @override
@@ -52,34 +44,23 @@ class _ReceiptDetailsWidgetState extends State<ReceiptDetailsWidget> {
         appBar: AppBar(
           backgroundColor: Color(0xFFF1F4F8),
           automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
+          leading: IconButton(
+            icon: const Icon(
               Icons.arrow_back_rounded,
               color: Color(0xFF15161E),
               size: 30,
             ),
             onPressed: () async {
-              context.pop();
+              Navigator.of(context).pop();
             },
           ),
           title: Text(
             'Receipt Details',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-              font: GoogleFonts.outfit(
-                fontWeight: FontWeight.w500,
-                fontStyle: FlutterFlowTheme.of(
-                  context,
-                ).headlineMedium.fontStyle,
-              ),
-              color: Color(0xFF15161E),
+            style: GoogleFonts.outfit(
+              color: const Color(0xFF15161E),
               fontSize: 24,
               letterSpacing: 0.0,
               fontWeight: FontWeight.w500,
-              fontStyle: FlutterFlowTheme.of(context).headlineMedium.fontStyle,
             ),
           ),
           actions: [],
@@ -152,251 +133,154 @@ class _ReceiptDetailsWidgetState extends State<ReceiptDetailsWidget> {
                                 ),
                               ),
                             ),
+                            const SizedBox(height: 8),
                             Align(
                               alignment: AlignmentDirectional(0, -1),
                               child: Text(
                                 'Transaction Success',
-                                style: FlutterFlowTheme.of(context).labelMedium
-                                    .override(
-                                      font: GoogleFonts.outfit(
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).labelMedium.fontStyle,
-                                      ),
-                                      color: Color(0xFF606A85),
-                                      fontSize: 14,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).labelMedium.fontStyle,
-                                    ),
+                                style: GoogleFonts.outfit(
+                                  color: const Color(0xFF606A85),
+                                  fontSize: 14,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
+                            const SizedBox(height: 8),
                             Align(
                               alignment: AlignmentDirectional(0, -1),
                               child: Text(
                                 '\$25,250',
-                                style: FlutterFlowTheme.of(context)
-                                    .displayMedium
-                                    .override(
-                                      font: GoogleFonts.outfit(
-                                        fontWeight: FontWeight.normal,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).displayMedium.fontStyle,
-                                      ),
-                                      color: Color(0xFF15161E),
-                                      fontSize: 44,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.normal,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).displayMedium.fontStyle,
-                                    ),
+                                style: GoogleFonts.outfit(
+                                  color: const Color(0xFF15161E),
+                                  fontSize: 44,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.normal,
+                                ),
                               ),
                             ),
-                            Divider(
+                            const SizedBox(height: 8),
+                            const Divider(
                               height: 16,
                               thickness: 2,
                               color: Color(0xFFE5E7EB),
                             ),
+                            const SizedBox(height: 8),
                             RichText(
                               textScaler: MediaQuery.of(context).textScaler,
                               text: TextSpan(
                                 children: [
-                                  TextSpan(
+                                  const TextSpan(
                                     text: 'Bank Address\n',
                                     style: TextStyle(),
                                   ),
                                   TextSpan(
                                     text:
                                         '459 West Hollywood Blvd. Los Angeles California, 98201',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          font: GoogleFonts.figtree(
-                                            fontWeight: FontWeight.bold,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).bodyLarge.fontStyle,
-                                          ),
-                                          color: Color(0xFF15161E),
-                                          fontSize: 16,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.bold,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).bodyLarge.fontStyle,
-                                          lineHeight: 1.5,
-                                        ),
+                                    style: GoogleFonts.figtree(
+                                      color: const Color(0xFF15161E),
+                                      fontSize: 16,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ],
-                                style: FlutterFlowTheme.of(context).labelMedium
-                                    .override(
-                                      font: GoogleFonts.outfit(
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).labelMedium.fontStyle,
-                                      ),
-                                      color: Color(0xFF606A85),
-                                      fontSize: 14,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).labelMedium.fontStyle,
-                                    ),
+                                style: GoogleFonts.outfit(
+                                  color: const Color(0xFF606A85),
+                                  fontSize: 14,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
+                            const SizedBox(height: 8),
                             RichText(
                               textScaler: MediaQuery.of(context).textScaler,
                               text: TextSpan(
                                 children: [
-                                  TextSpan(
+                                  const TextSpan(
                                     text: 'Bank Name: ',
                                     style: TextStyle(),
                                   ),
                                   TextSpan(
                                     text: 'Bankisimo.io',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          font: GoogleFonts.figtree(
-                                            fontWeight: FontWeight.bold,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).bodyLarge.fontStyle,
-                                          ),
-                                          color: Color(0xFF15161E),
-                                          fontSize: 16,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.bold,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).bodyLarge.fontStyle,
-                                          lineHeight: 1.5,
-                                        ),
+                                    style: GoogleFonts.figtree(
+                                      color: const Color(0xFF15161E),
+                                      fontSize: 16,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ],
-                                style: FlutterFlowTheme.of(context).labelMedium
-                                    .override(
-                                      font: GoogleFonts.outfit(
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).labelMedium.fontStyle,
-                                      ),
-                                      color: Color(0xFF606A85),
-                                      fontSize: 14,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).labelMedium.fontStyle,
-                                    ),
+                                style: GoogleFonts.outfit(
+                                  color: const Color(0xFF606A85),
+                                  fontSize: 14,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
+                            const SizedBox(height: 8),
                             RichText(
                               textScaler: MediaQuery.of(context).textScaler,
                               text: TextSpan(
                                 children: [
-                                  TextSpan(
+                                  const TextSpan(
                                     text: 'Account #: ',
                                     style: TextStyle(),
                                   ),
                                   TextSpan(
                                     text: '123456789',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          font: GoogleFonts.figtree(
-                                            fontWeight: FontWeight.bold,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).bodyLarge.fontStyle,
-                                          ),
-                                          color: Color(0xFF15161E),
-                                          fontSize: 16,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.bold,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).bodyLarge.fontStyle,
-                                          lineHeight: 1.5,
-                                        ),
+                                    style: GoogleFonts.figtree(
+                                      color: const Color(0xFF15161E),
+                                      fontSize: 16,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ],
-                                style: FlutterFlowTheme.of(context).labelMedium
-                                    .override(
-                                      font: GoogleFonts.outfit(
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).labelMedium.fontStyle,
-                                      ),
-                                      color: Color(0xFF606A85),
-                                      fontSize: 14,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).labelMedium.fontStyle,
-                                    ),
+                                style: GoogleFonts.outfit(
+                                  color: const Color(0xFF606A85),
+                                  fontSize: 14,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
+                            const SizedBox(height: 8),
                             RichText(
                               textScaler: MediaQuery.of(context).textScaler,
                               text: TextSpan(
                                 children: [
-                                  TextSpan(text: 'IBAN: ', style: TextStyle()),
+                                  const TextSpan(
+                                    text: 'IBAN: ',
+                                    style: TextStyle(),
+                                  ),
                                   TextSpan(
                                     text: '1234567890123',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          font: GoogleFonts.figtree(
-                                            fontWeight: FontWeight.bold,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).bodyLarge.fontStyle,
-                                          ),
-                                          color: Color(0xFF15161E),
-                                          fontSize: 16,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.bold,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).bodyLarge.fontStyle,
-                                          lineHeight: 1.5,
-                                        ),
+                                    style: GoogleFonts.figtree(
+                                      color: const Color(0xFF15161E),
+                                      fontSize: 16,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ],
-                                style: FlutterFlowTheme.of(context).labelMedium
-                                    .override(
-                                      font: GoogleFonts.outfit(
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).labelMedium.fontStyle,
-                                      ),
-                                      color: Color(0xFF606A85),
-                                      fontSize: 14,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).labelMedium.fontStyle,
-                                    ),
+                                style: GoogleFonts.outfit(
+                                  color: const Color(0xFF606A85),
+                                  fontSize: 14,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
-                            Divider(
+                            const SizedBox(height: 8),
+                            const Divider(
                               height: 16,
                               thickness: 2,
                               color: Color(0xFFE5E7EB),
                             ),
+                            const SizedBox(height: 8),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                 12,
@@ -410,68 +294,38 @@ class _ReceiptDetailsWidgetState extends State<ReceiptDetailsWidget> {
                                 children: [
                                   Text(
                                     'Recipient',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          font: GoogleFonts.outfit(
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).labelMedium.fontStyle,
-                                          ),
-                                          color: Color(0xFF606A85),
-                                          fontSize: 14,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).labelMedium.fontStyle,
-                                        ),
+                                    style: GoogleFonts.outfit(
+                                      color: const Color(0xFF606A85),
+                                      fontSize: 14,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
+                                  const SizedBox(height: 4),
                                   Text(
                                     'Abigail Rogers',
                                     textAlign: TextAlign.end,
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineSmall
-                                        .override(
-                                          font: GoogleFonts.outfit(
-                                            fontWeight: FontWeight.bold,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).headlineSmall.fontStyle,
-                                          ),
-                                          color: Color(0xFF15161E),
-                                          fontSize: 22,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.bold,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).headlineSmall.fontStyle,
-                                        ),
+                                    style: GoogleFonts.outfit(
+                                      color: const Color(0xFF15161E),
+                                      fontSize: 22,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
+                                  const SizedBox(height: 4),
                                   Text(
                                     'abigail.rogers@domain.com',
                                     textAlign: TextAlign.end,
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          font: GoogleFonts.outfit(
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).labelMedium.fontStyle,
-                                          ),
-                                          color: Color(0xFF6F61EF),
-                                          fontSize: 14,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).labelMedium.fontStyle,
-                                        ),
+                                    style: GoogleFonts.outfit(
+                                      color: const Color(0xFF6F61EF),
+                                      fontSize: 14,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
+                                  const SizedBox(height: 4),
                                   Padding(
-                                    padding: EdgeInsets.all(12),
+                                    padding: const EdgeInsets.all(12),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -490,13 +344,16 @@ class _ReceiptDetailsWidgetState extends State<ReceiptDetailsWidget> {
                                               width: 2,
                                             ),
                                           ),
-                                          child: Padding(
+                                          child: const Padding(
                                             padding: EdgeInsets.all(2),
                                             child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(40),
-                                              child: Image.network(
-                                                'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(40),
+                                              ),
+                                              child: Image(
+                                                image: NetworkImage(
+                                                  'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
+                                                ),
                                                 width: 60,
                                                 height: 60,
                                                 fit: BoxFit.cover,
@@ -504,6 +361,7 @@ class _ReceiptDetailsWidgetState extends State<ReceiptDetailsWidget> {
                                             ),
                                           ),
                                         ),
+                                        const SizedBox(width: 16),
                                         Stack(
                                           alignment: AlignmentDirectional(0, 0),
                                           children: [
@@ -533,7 +391,7 @@ class _ReceiptDetailsWidgetState extends State<ReceiptDetailsWidget> {
                                                 0,
                                                 0,
                                               ),
-                                              child: Icon(
+                                              child: const Icon(
                                                 Icons
                                                     .keyboard_double_arrow_right_rounded,
                                                 color: Color(0xFF606A85),
@@ -542,6 +400,7 @@ class _ReceiptDetailsWidgetState extends State<ReceiptDetailsWidget> {
                                             ),
                                           ],
                                         ),
+                                        const SizedBox(width: 16),
                                         Container(
                                           width: 48,
                                           height: 48,
@@ -553,13 +412,16 @@ class _ReceiptDetailsWidgetState extends State<ReceiptDetailsWidget> {
                                               width: 2,
                                             ),
                                           ),
-                                          child: Padding(
+                                          child: const Padding(
                                             padding: EdgeInsets.all(2),
                                             child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(40),
-                                              child: Image.network(
-                                                'https://images.unsplash.com/photo-1505033575518-a36ea2ef75ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZSUyMHVzZXJ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=900&q=60',
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(40),
+                                              ),
+                                              child: Image(
+                                                image: NetworkImage(
+                                                  'https://images.unsplash.com/photo-1505033575518-a36ea2ef75ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZSUyMHVzZXJ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=900&q=60',
+                                                ),
                                                 width: 60,
                                                 height: 60,
                                                 fit: BoxFit.cover,
@@ -567,19 +429,21 @@ class _ReceiptDetailsWidgetState extends State<ReceiptDetailsWidget> {
                                             ),
                                           ),
                                         ),
-                                      ].divide(SizedBox(width: 16)),
+                                      ],
                                     ),
                                   ),
-                                ].divide(SizedBox(height: 4)).addToEnd(SizedBox(height: 12)),
+                                  const SizedBox(height: 12),
+                                ],
                               ),
                             ),
-                          ].divide(SizedBox(height: 8)),
+                          ],
                         ),
                       ),
                     ),
                   ),
                 ),
-              ].addToEnd(SizedBox(height: 44)),
+                const SizedBox(height: 44),
+              ],
             ),
           ),
         ),

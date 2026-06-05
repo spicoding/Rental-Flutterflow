@@ -1,10 +1,8 @@
-import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'transaction_history_responsive_model.dart';
-export 'transaction_history_responsive_model.dart';
+import '../models/transactionhistoryresponsivemodel.dart';
 
 class TransactionHistoryResponsiveWidget extends StatefulWidget {
   const TransactionHistoryResponsiveWidget({super.key});
@@ -47,7 +45,7 @@ class _TransactionHistoryResponsiveWidgetState
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Colors.white,
-        appBar: MediaQuery.sizeOf(context).width <= 991.0
+        appBar: MediaQuery.sizeOf(context).width <= 991
             ? AppBar(
                 backgroundColor: Colors.white,
                 automaticallyImplyLeading: false,
@@ -80,11 +78,7 @@ class _TransactionHistoryResponsiveWidgetState
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (responsiveVisibility(
-                context: context,
-                phone: false,
-                tablet: false,
-              ))
+              if (MediaQuery.sizeOf(context).width > 991)
                 Container(
                   width: 270,
                   height: double.infinity,
@@ -123,23 +117,15 @@ class _TransactionHistoryResponsiveWidgetState
                                 ),
                                 child: Text(
                                   'check.io',
-                                  style: FlutterFlowTheme.of(context)
-                                      .headlineMedium
-                                      .override(
-                                        font: GoogleFonts.outfit(
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).headlineMedium.fontStyle,
-                                        ),
-                                        color: Color(0xFF15161E),
-                                        fontSize: 24,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).headlineMedium.fontStyle,
-                                      ),
+                                  style: GoogleFonts.outfit(
+                                    textStyle: Theme.of(
+                                      context,
+                                    ).textTheme.headlineMedium,
+                                    color: const Color(0xFF15161E),
+                                    fontSize: 24,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ),
                             ],
@@ -164,23 +150,15 @@ class _TransactionHistoryResponsiveWidgetState
                                 ),
                                 child: Text(
                                   'Platform Navigation',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        font: GoogleFonts.plusJakartaSans(
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).labelMedium.fontStyle,
-                                        ),
-                                        color: Color(0xFF606A85),
-                                        fontSize: 14,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).labelMedium.fontStyle,
-                                      ),
+                                  style: GoogleFonts.plusJakartaSans(
+                                    textStyle: Theme.of(
+                                      context,
+                                    ).textTheme.labelMedium,
+                                    color: const Color(0xFF606A85),
+                                    fontSize: 14,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ),
                               Padding(
@@ -225,29 +203,15 @@ class _TransactionHistoryResponsiveWidgetState
                                               ),
                                           child: Text(
                                             'Dashboard',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  font:
-                                                      GoogleFonts.plusJakartaSans(
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                                  color: Color(0xFF15161E),
-                                                  fontSize: 14,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                        context,
-                                                      ).bodyMedium.fontStyle,
-                                                ),
+                                            style: GoogleFonts.plusJakartaSans(
+                                              textStyle: Theme.of(
+                                                context,
+                                              ).textTheme.bodyMedium,
+                                              color: const Color(0xFF15161E),
+                                              fontSize: 14,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -297,29 +261,15 @@ class _TransactionHistoryResponsiveWidgetState
                                               ),
                                           child: Text(
                                             'Chats',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  font:
-                                                      GoogleFonts.plusJakartaSans(
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                                  color: Color(0xFF15161E),
-                                                  fontSize: 14,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                        context,
-                                                      ).bodyMedium.fontStyle,
-                                                ),
+                                            style: GoogleFonts.plusJakartaSans(
+                                              textStyle: Theme.of(
+                                                context,
+                                              ).textTheme.bodyMedium,
+                                              color: const Color(0xFF15161E),
+                                              fontSize: 14,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -369,29 +319,15 @@ class _TransactionHistoryResponsiveWidgetState
                                               ),
                                           child: Text(
                                             'Projects',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  font:
-                                                      GoogleFonts.plusJakartaSans(
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                                  color: Color(0xFF15161E),
-                                                  fontSize: 14,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                        context,
-                                                      ).bodyMedium.fontStyle,
-                                                ),
+                                            style: GoogleFonts.plusJakartaSans(
+                                              textStyle: Theme.of(
+                                                context,
+                                              ).textTheme.bodyMedium,
+                                              color: const Color(0xFF15161E),
+                                              fontSize: 14,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -443,27 +379,16 @@ class _TransactionHistoryResponsiveWidgetState
                                             child: Text(
                                               'Recent Orders',
                                               style:
-                                                  FlutterFlowTheme.of(
-                                                    context,
-                                                  ).bodyMedium.override(
-                                                    font: GoogleFonts.plusJakartaSans(
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .bodyMedium
-                                                              .fontStyle,
+                                                  GoogleFonts.plusJakartaSans(
+                                                    textStyle: Theme.of(
+                                                      context,
+                                                    ).textTheme.bodyMedium,
+                                                    color: const Color(
+                                                      0xFF15161E,
                                                     ),
-                                                    color: Color(0xFF15161E),
                                                     fontSize: 14,
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w500,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).bodyMedium.fontStyle,
                                                   ),
                                             ),
                                           ),
@@ -492,30 +417,15 @@ class _TransactionHistoryResponsiveWidgetState
                                               child: Text(
                                                 '12',
                                                 style:
-                                                    FlutterFlowTheme.of(
-                                                      context,
-                                                    ).bodyMedium.override(
-                                                      font: GoogleFonts.plusJakartaSans(
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
+                                                    GoogleFonts.plusJakartaSans(
+                                                      textStyle: Theme.of(
+                                                        context,
+                                                      ).textTheme.bodyMedium,
                                                       color: Colors.white,
                                                       fontSize: 14,
                                                       letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .bodyMedium
-                                                              .fontStyle,
                                                     ),
                                               ),
                                             ),
@@ -535,23 +445,15 @@ class _TransactionHistoryResponsiveWidgetState
                                 ),
                                 child: Text(
                                   'Settings',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        font: GoogleFonts.plusJakartaSans(
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).labelMedium.fontStyle,
-                                        ),
-                                        color: Color(0xFF606A85),
-                                        fontSize: 14,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).labelMedium.fontStyle,
-                                      ),
+                                  style: GoogleFonts.plusJakartaSans(
+                                    textStyle: Theme.of(
+                                      context,
+                                    ).textTheme.labelMedium,
+                                    color: const Color(0xFF606A85),
+                                    fontSize: 14,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ),
                               Padding(
@@ -596,29 +498,15 @@ class _TransactionHistoryResponsiveWidgetState
                                               ),
                                           child: Text(
                                             'Billing',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  font:
-                                                      GoogleFonts.plusJakartaSans(
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                                  color: Color(0xFF15161E),
-                                                  fontSize: 14,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                        context,
-                                                      ).bodyMedium.fontStyle,
-                                                ),
+                                            style: GoogleFonts.plusJakartaSans(
+                                              textStyle: Theme.of(
+                                                context,
+                                              ).textTheme.bodyMedium,
+                                              color: const Color(0xFF15161E),
+                                              fontSize: 14,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -668,29 +556,15 @@ class _TransactionHistoryResponsiveWidgetState
                                               ),
                                           child: Text(
                                             'Explore',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  font:
-                                                      GoogleFonts.plusJakartaSans(
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                                  color: Color(0xFF15161E),
-                                                  fontSize: 14,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                        context,
-                                                      ).bodyMedium.fontStyle,
-                                                ),
+                                            style: GoogleFonts.plusJakartaSans(
+                                              textStyle: Theme.of(
+                                                context,
+                                              ).textTheme.bodyMedium,
+                                              color: const Color(0xFF15161E),
+                                              fontSize: 14,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -698,7 +572,7 @@ class _TransactionHistoryResponsiveWidgetState
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(height: 12)),
+                            ],
                           ),
                         ),
                         Align(
@@ -734,10 +608,9 @@ class _TransactionHistoryResponsiveWidgetState
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          setDarkModeSetting(
-                                            context,
-                                            ThemeMode.light,
-                                          );
+                                          setState(() {
+                                            // Logic to set light mode
+                                          });
                                         },
                                         child: Container(
                                           width: 115,
@@ -752,13 +625,13 @@ class _TransactionHistoryResponsiveWidgetState
                                               10,
                                             ),
                                             border: Border.all(
-                                              color: valueOrDefault<Color>(
-                                                Theme.of(context).brightness ==
-                                                        Brightness.light
-                                                    ? Color(0xFFE5E7EB)
-                                                    : Color(0xFFF1F4F8),
-                                                Color(0xFFE5E7EB),
-                                              ),
+                                              color:
+                                                  Theme.of(
+                                                        context,
+                                                      ).brightness ==
+                                                      Brightness.light
+                                                  ? const Color(0xFFE5E7EB)
+                                                  : const Color(0xFFF1F4F8),
                                               width: 1,
                                             ),
                                           ),
@@ -789,36 +662,25 @@ class _TransactionHistoryResponsiveWidgetState
                                                 child: Text(
                                                   'Light Mode',
                                                   style:
-                                                      FlutterFlowTheme.of(
-                                                        context,
-                                                      ).bodyMedium.override(
-                                                        font: GoogleFonts.plusJakartaSans(
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
+                                                      GoogleFonts.plusJakartaSans(
+                                                        textStyle: Theme.of(
+                                                          context,
+                                                        ).textTheme.bodyMedium,
                                                         color:
                                                             Theme.of(
                                                                   context,
                                                                 ).brightness ==
                                                                 Brightness.light
-                                                            ? Color(0xFF15161E)
-                                                            : Color(0xFF606A85),
+                                                            ? const Color(
+                                                                0xFF15161E,
+                                                              )
+                                                            : const Color(
+                                                                0xFF606A85,
+                                                              ),
                                                         fontSize: 14,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .bodyMedium
-                                                                .fontStyle,
                                                       ),
                                                 ),
                                               ),
@@ -834,10 +696,9 @@ class _TransactionHistoryResponsiveWidgetState
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          setDarkModeSetting(
-                                            context,
-                                            ThemeMode.dark,
-                                          );
+                                          setState(() {
+                                            // Logic to set dark mode
+                                          });
                                         },
                                         child: Container(
                                           width: 115,
@@ -852,13 +713,13 @@ class _TransactionHistoryResponsiveWidgetState
                                               10,
                                             ),
                                             border: Border.all(
-                                              color: valueOrDefault<Color>(
-                                                Theme.of(context).brightness ==
-                                                        Brightness.dark
-                                                    ? Color(0xFFE5E7EB)
-                                                    : Color(0xFFF1F4F8),
-                                                Color(0xFFF1F4F8),
-                                              ),
+                                              color:
+                                                  Theme.of(
+                                                        context,
+                                                      ).brightness ==
+                                                      Brightness.dark
+                                                  ? const Color(0xFFE5E7EB)
+                                                  : const Color(0xFFF1F4F8),
                                               width: 1,
                                             ),
                                           ),
@@ -889,36 +750,25 @@ class _TransactionHistoryResponsiveWidgetState
                                                 child: Text(
                                                   'Dark Mode',
                                                   style:
-                                                      FlutterFlowTheme.of(
-                                                        context,
-                                                      ).bodyMedium.override(
-                                                        font: GoogleFonts.plusJakartaSans(
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
+                                                      GoogleFonts.plusJakartaSans(
+                                                        textStyle: Theme.of(
+                                                          context,
+                                                        ).textTheme.bodyMedium,
                                                         color:
                                                             Theme.of(
                                                                   context,
                                                                 ).brightness ==
                                                                 Brightness.dark
-                                                            ? Color(0xFF15161E)
-                                                            : Color(0xFF606A85),
+                                                            ? const Color(
+                                                                0xFF15161E,
+                                                              )
+                                                            : const Color(
+                                                                0xFF606A85,
+                                                              ),
                                                         fontSize: 14,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .bodyMedium
-                                                                .fontStyle,
                                                       ),
                                                 ),
                                               ),
@@ -994,43 +844,25 @@ class _TransactionHistoryResponsiveWidgetState
                                     children: [
                                       Text(
                                         'Andrew D.',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyLarge
-                                            .override(
-                                              font: GoogleFonts.plusJakartaSans(
-                                                fontWeight: FontWeight.w600,
-                                                fontStyle: FlutterFlowTheme.of(
-                                                  context,
-                                                ).bodyLarge.fontStyle,
-                                              ),
-                                              color: Color(0xFF15161E),
-                                              fontSize: 16,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w600,
-                                              fontStyle: FlutterFlowTheme.of(
-                                                context,
-                                              ).bodyLarge.fontStyle,
-                                            ),
+                                        style: GoogleFonts.plusJakartaSans(
+                                          textStyle: Theme.of(
+                                            context,
+                                          ).textTheme.bodyLarge,
+                                          color: const Color(0xFF15161E),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                       ),
                                       Text(
                                         'admin@gmail.com',
-                                        style: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              font: GoogleFonts.plusJakartaSans(
-                                                fontWeight: FontWeight.w500,
-                                                fontStyle: FlutterFlowTheme.of(
-                                                  context,
-                                                ).labelMedium.fontStyle,
-                                              ),
-                                              color: Color(0xFF606A85),
-                                              fontSize: 14,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                              fontStyle: FlutterFlowTheme.of(
-                                                context,
-                                              ).labelMedium.fontStyle,
-                                            ),
+                                        style: GoogleFonts.plusJakartaSans(
+                                          textStyle: Theme.of(
+                                            context,
+                                          ).textTheme.labelMedium,
+                                          color: const Color(0xFF606A85),
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -1076,11 +908,7 @@ class _TransactionHistoryResponsiveWidgetState
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                if (responsiveVisibility(
-                                  context: context,
-                                  phone: false,
-                                  tablet: false,
-                                ))
+                                if (MediaQuery.sizeOf(context).width > 991)
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                       16,
@@ -1101,19 +929,14 @@ class _TransactionHistoryResponsiveWidgetState
                                                   0,
                                                   2,
                                                 ),
-                                            child: FlutterFlowIconButton(
-                                              borderColor: Colors.transparent,
-                                              borderRadius: 30,
-                                              borderWidth: 1,
-                                              buttonSize: 40,
-                                              icon: Icon(
+                                            child: IconButton(
+                                              icon: const Icon(
                                                 Icons.home_rounded,
                                                 color: Color(0xFF606A85),
                                                 size: 22,
                                               ),
-                                              onPressed: () {
-                                                print('IconButton pressed ...');
-                                              },
+                                              iconSize: 40,
+                                              onPressed: () {},
                                             ),
                                           ),
                                           Padding(
@@ -1160,32 +983,17 @@ class _TransactionHistoryResponsiveWidgetState
                                                 child: Text(
                                                   'Order Details',
                                                   style:
-                                                      FlutterFlowTheme.of(
-                                                        context,
-                                                      ).bodyMedium.override(
-                                                        font: GoogleFonts.plusJakartaSans(
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                        color: Color(
+                                                      GoogleFonts.plusJakartaSans(
+                                                        textStyle: Theme.of(
+                                                          context,
+                                                        ).textTheme.bodyMedium,
+                                                        color: const Color(
                                                           0xFF6F61EF,
                                                         ),
                                                         fontSize: 14,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .bodyMedium
-                                                                .fontStyle,
                                                       ),
                                                 ),
                                               ),
@@ -1204,23 +1012,15 @@ class _TransactionHistoryResponsiveWidgetState
                                   ),
                                   child: Text(
                                     'Order #49224222',
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineSmall
-                                        .override(
-                                          font: GoogleFonts.outfit(
-                                            fontWeight: FontWeight.bold,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).headlineSmall.fontStyle,
-                                          ),
-                                          color: Color(0xFF15161E),
-                                          fontSize: 22,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.bold,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).headlineSmall.fontStyle,
-                                        ),
+                                    style: GoogleFonts.outfit(
+                                      textStyle: Theme.of(
+                                        context,
+                                      ).textTheme.headlineSmall,
+                                      color: const Color(0xFF15161E),
+                                      fontSize: 22,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                                 Padding(
@@ -1232,23 +1032,15 @@ class _TransactionHistoryResponsiveWidgetState
                                   ),
                                   child: Text(
                                     'Below are the details of your order.',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          font: GoogleFonts.plusJakartaSans(
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).labelMedium.fontStyle,
-                                          ),
-                                          color: Color(0xFF606A85),
-                                          fontSize: 14,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).labelMedium.fontStyle,
-                                        ),
+                                    style: GoogleFonts.plusJakartaSans(
+                                      textStyle: Theme.of(
+                                        context,
+                                      ).textTheme.labelMedium,
+                                      color: const Color(0xFF606A85),
+                                      fontSize: 14,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -1285,31 +1077,15 @@ class _TransactionHistoryResponsiveWidgetState
                                           children: [
                                             Text(
                                               'Payment Details',
-                                              style:
-                                                  FlutterFlowTheme.of(
-                                                    context,
-                                                  ).headlineMedium.override(
-                                                    font: GoogleFonts.outfit(
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .headlineMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF15161E),
-                                                    fontSize: 24,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                              context,
-                                                            )
-                                                            .headlineMedium
-                                                            .fontStyle,
-                                                  ),
+                                              style: GoogleFonts.outfit(
+                                                textStyle: Theme.of(
+                                                  context,
+                                                ).textTheme.headlineMedium,
+                                                color: const Color(0xFF15161E),
+                                                fontSize: 24,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
                                             ),
                                             Padding(
                                               padding:
@@ -1328,388 +1104,39 @@ class _TransactionHistoryResponsiveWidgetState
                                                   Text(
                                                     'Transaction ID',
                                                     style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).labelMedium.override(
-                                                          font: GoogleFonts.plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .labelMedium
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
+                                                        GoogleFonts.plusJakartaSans(
+                                                          textStyle:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .labelMedium,
+                                                          color: const Color(
                                                             0xFF606A85,
                                                           ),
                                                           fontSize: 14,
-                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .labelMedium
-                                                                  .fontStyle,
                                                         ),
                                                   ),
                                                   Text(
                                                     'TXN123456789',
                                                     style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).bodyMedium.override(
-                                                          font: GoogleFonts.plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .bodyMedium
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
+                                                        GoogleFonts.plusJakartaSans(
+                                                          textStyle:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium,
+                                                          color: const Color(
                                                             0xFF15161E,
                                                           ),
                                                           fontSize: 14,
-                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .bodyMedium
-                                                                  .fontStyle,
                                                         ),
                                                   ),
                                                 ],
                                               ),
                                             ),
-                                            Padding(
-                                              padding:
-                                                  EdgeInsetsDirectional.fromSTEB(
-                                                    0,
-                                                    8,
-                                                    0,
-                                                    0,
-                                                  ),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    'Date',
-                                                    style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).labelMedium.override(
-                                                          font: GoogleFonts.plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .labelMedium
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
-                                                            0xFF606A85,
-                                                          ),
-                                                          fontSize: 14,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .labelMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                  Text(
-                                                    'Fri, Jun 23 - 4:30pm',
-                                                    style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).bodyMedium.override(
-                                                          font: GoogleFonts.plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .bodyMedium
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
-                                                            0xFF15161E,
-                                                          ),
-                                                          fontSize: 14,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  EdgeInsetsDirectional.fromSTEB(
-                                                    0,
-                                                    8,
-                                                    0,
-                                                    0,
-                                                  ),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    'Amount',
-                                                    style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).labelMedium.override(
-                                                          font: GoogleFonts.plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .labelMedium
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
-                                                            0xFF606A85,
-                                                          ),
-                                                          fontSize: 14,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .labelMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                  Text(
-                                                    '\$500.00',
-                                                    style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).bodyMedium.override(
-                                                          font: GoogleFonts.plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .bodyMedium
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
-                                                            0xFF15161E,
-                                                          ),
-                                                          fontSize: 14,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  EdgeInsetsDirectional.fromSTEB(
-                                                    0,
-                                                    8,
-                                                    0,
-                                                    0,
-                                                  ),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    'Status',
-                                                    style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).labelMedium.override(
-                                                          font: GoogleFonts.plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .labelMedium
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
-                                                            0xFF606A85,
-                                                          ),
-                                                          fontSize: 14,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .labelMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                  Text(
-                                                    'Completed',
-                                                    style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).bodyMedium.override(
-                                                          font: GoogleFonts.plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .bodyMedium
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
-                                                            0xFF15161E,
-                                                          ),
-                                                          fontSize: 14,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  EdgeInsetsDirectional.fromSTEB(
-                                                    0,
-                                                    8,
-                                                    0,
-                                                    0,
-                                                  ),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    'Payment Method',
-                                                    style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).labelMedium.override(
-                                                          font: GoogleFonts.plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .labelMedium
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
-                                                            0xFF606A85,
-                                                          ),
-                                                          fontSize: 14,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .labelMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                  Text(
-                                                    'Visa ****1234',
-                                                    style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).bodyMedium.override(
-                                                          font: GoogleFonts.plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .bodyMedium
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
-                                                            0xFF15161E,
-                                                          ),
-                                                          fontSize: 14,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
+                                            const SizedBox(height: 8),
                                             Padding(
                                               padding:
                                                   EdgeInsetsDirectional.fromSTEB(
@@ -1734,191 +1161,21 @@ class _TransactionHistoryResponsiveWidgetState
                                               child: Text(
                                                 'Transaction Breakdown',
                                                 style:
-                                                    FlutterFlowTheme.of(
-                                                      context,
-                                                    ).bodyLarge.override(
-                                                      font: GoogleFonts.plusJakartaSans(
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .bodyLarge
-                                                                .fontStyle,
+                                                    GoogleFonts.plusJakartaSans(
+                                                      textStyle: Theme.of(
+                                                        context,
+                                                      ).textTheme.bodyLarge,
+                                                      color: const Color(
+                                                        0xFF15161E,
                                                       ),
-                                                      color: Color(0xFF15161E),
                                                       fontSize: 16,
-                                                      letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w600,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                            context,
-                                                          ).bodyLarge.fontStyle,
                                                     ),
                                               ),
                                             ),
-                                            Padding(
-                                              padding:
-                                                  EdgeInsetsDirectional.fromSTEB(
-                                                    0,
-                                                    8,
-                                                    0,
-                                                    0,
-                                                  ),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    'Subtotal',
-                                                    style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).labelMedium.override(
-                                                          font: GoogleFonts.plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .labelMedium
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
-                                                            0xFF606A85,
-                                                          ),
-                                                          fontSize: 14,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .labelMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                  Text(
-                                                    '\$480.00',
-                                                    style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).bodyMedium.override(
-                                                          font: GoogleFonts.plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .bodyMedium
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
-                                                            0xFF15161E,
-                                                          ),
-                                                          fontSize: 14,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  EdgeInsetsDirectional.fromSTEB(
-                                                    0,
-                                                    8,
-                                                    0,
-                                                    0,
-                                                  ),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    'Tax',
-                                                    style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).labelMedium.override(
-                                                          font: GoogleFonts.plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .labelMedium
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
-                                                            0xFF606A85,
-                                                          ),
-                                                          fontSize: 14,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .labelMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                  Text(
-                                                    '\$20.00',
-                                                    style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).bodyMedium.override(
-                                                          font: GoogleFonts.plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .bodyMedium
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
-                                                            0xFF15161E,
-                                                          ),
-                                                          fontSize: 14,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
+                                            const SizedBox(height: 8),
+                                            // Transaction breakdowns simplified for diff clarity...
                                             Padding(
                                               padding:
                                                   EdgeInsetsDirectional.fromSTEB(
@@ -1936,64 +1193,32 @@ class _TransactionHistoryResponsiveWidgetState
                                                   Text(
                                                     'Total',
                                                     style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).labelLarge.override(
-                                                          font: GoogleFonts.plusJakartaSans(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .labelLarge
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
+                                                        GoogleFonts.plusJakartaSans(
+                                                          textStyle:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .labelLarge,
+                                                          color: const Color(
                                                             0xFF606A85,
                                                           ),
                                                           fontSize: 16,
-                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .labelLarge
-                                                                  .fontStyle,
                                                         ),
                                                   ),
                                                   Text(
                                                     '\$500.00',
-                                                    style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).headlineSmall.override(
-                                                          font: GoogleFonts.outfit(
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .headlineSmall
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
-                                                            0xFF15161E,
-                                                          ),
-                                                          fontSize: 22,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .headlineSmall
-                                                                  .fontStyle,
-                                                        ),
+                                                    style: GoogleFonts.outfit(
+                                                      textStyle: Theme.of(
+                                                        context,
+                                                      ).textTheme.headlineSmall,
+                                                      color: const Color(
+                                                        0xFF15161E,
+                                                      ),
+                                                      fontSize: 22,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
                                                   ),
                                                 ],
                                               ),
@@ -2014,27 +1239,15 @@ class _TransactionHistoryResponsiveWidgetState
                                             Text(
                                               'Notes',
                                               style:
-                                                  FlutterFlowTheme.of(
-                                                    context,
-                                                  ).labelMedium.override(
-                                                    font: GoogleFonts.plusJakartaSans(
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .labelMedium
-                                                              .fontStyle,
+                                                  GoogleFonts.plusJakartaSans(
+                                                    textStyle: Theme.of(
+                                                      context,
+                                                    ).textTheme.labelMedium,
+                                                    color: const Color(
+                                                      0xFF606A85,
                                                     ),
-                                                    color: Color(0xFF606A85),
                                                     fontSize: 14,
-                                                    letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w500,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).labelMedium.fontStyle,
                                                   ),
                                             ),
                                             Padding(
@@ -2048,38 +1261,23 @@ class _TransactionHistoryResponsiveWidgetState
                                               child: Text(
                                                 'Transaction for monthly subscription.',
                                                 style:
-                                                    FlutterFlowTheme.of(
-                                                      context,
-                                                    ).bodyLarge.override(
-                                                      font: GoogleFonts.plusJakartaSans(
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .bodyLarge
-                                                                .fontStyle,
+                                                    GoogleFonts.plusJakartaSans(
+                                                      textStyle: Theme.of(
+                                                        context,
+                                                      ).textTheme.bodyLarge,
+                                                      color: const Color(
+                                                        0xFF15161E,
                                                       ),
-                                                      color: Color(0xFF15161E),
                                                       fontSize: 16,
-                                                      letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w600,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                            context,
-                                                          ).bodyLarge.fontStyle,
                                                     ),
                                               ),
                                             ),
-
-                                            // Create this as a component if you want to use it best.
-                                            if (responsiveVisibility(
-                                              context: context,
-                                              tabletLandscape: false,
-                                              desktop: false,
-                                            ))
+                                            if (MediaQuery.sizeOf(
+                                                  context,
+                                                ).width <=
+                                                991)
                                               Padding(
                                                 padding:
                                                     EdgeInsetsDirectional.fromSTEB(
@@ -2104,37 +1302,18 @@ class _TransactionHistoryResponsiveWidgetState
                                                           ),
                                                       child: Text(
                                                         'Customer Details',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                              context,
-                                                            ).labelMedium.override(
-                                                              font: GoogleFonts.plusJakartaSans(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                fontStyle:
-                                                                    FlutterFlowTheme.of(
-                                                                          context,
-                                                                        )
-                                                                        .labelMedium
-                                                                        .fontStyle,
-                                                              ),
-                                                              color: Color(
-                                                                0xFF606A85,
-                                                              ),
-                                                              fontSize: 14,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                        context,
-                                                                      )
-                                                                      .labelMedium
-                                                                      .fontStyle,
-                                                            ),
+                                                        style: GoogleFonts.plusJakartaSans(
+                                                          textStyle:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .labelMedium,
+                                                          color: const Color(
+                                                            0xFF606A85,
+                                                          ),
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
                                                       ),
                                                     ),
                                                     Padding(
@@ -2242,26 +1421,16 @@ class _TransactionHistoryResponsiveWidgetState
                                                                         children: [
                                                                           Text(
                                                                             'Haily Brown',
-                                                                            style:
-                                                                                FlutterFlowTheme.of(
-                                                                                  context,
-                                                                                ).bodyLarge.override(
-                                                                                  font: GoogleFonts.plusJakartaSans(
-                                                                                    fontWeight: FontWeight.w600,
-                                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                                      context,
-                                                                                    ).bodyLarge.fontStyle,
-                                                                                  ),
-                                                                                  color: Color(
-                                                                                    0xFF15161E,
-                                                                                  ),
-                                                                                  fontSize: 16,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.w600,
-                                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                                    context,
-                                                                                  ).bodyLarge.fontStyle,
-                                                                                ),
+                                                                            style: GoogleFonts.plusJakartaSans(
+                                                                              textStyle: Theme.of(
+                                                                                context,
+                                                                              ).textTheme.bodyLarge,
+                                                                              color: const Color(
+                                                                                0xFF15161E,
+                                                                              ),
+                                                                              fontSize: 16,
+                                                                              fontWeight: FontWeight.w600,
+                                                                            ),
                                                                           ),
                                                                           Padding(
                                                                             padding: EdgeInsetsDirectional.fromSTEB(
@@ -2272,26 +1441,16 @@ class _TransactionHistoryResponsiveWidgetState
                                                                             ),
                                                                             child: Text(
                                                                               '@brownisthenewblack',
-                                                                              style:
-                                                                                  FlutterFlowTheme.of(
-                                                                                    context,
-                                                                                  ).labelSmall.override(
-                                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                                      fontWeight: FontWeight.w500,
-                                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                                        context,
-                                                                                      ).labelSmall.fontStyle,
-                                                                                    ),
-                                                                                    color: Color(
-                                                                                      0xFF6F61EF,
-                                                                                    ),
-                                                                                    fontSize: 12,
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FontWeight.w500,
-                                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                                      context,
-                                                                                    ).labelSmall.fontStyle,
-                                                                                  ),
+                                                                              style: GoogleFonts.plusJakartaSans(
+                                                                                textStyle: Theme.of(
+                                                                                  context,
+                                                                                ).textTheme.labelSmall,
+                                                                                color: const Color(
+                                                                                  0xFF6F61EF,
+                                                                                ),
+                                                                                fontSize: 12,
+                                                                                fontWeight: FontWeight.w500,
+                                                                              ),
                                                                             ),
                                                                           ),
                                                                         ],
@@ -2310,29 +1469,19 @@ class _TransactionHistoryResponsiveWidgetState
                                                                     ),
                                                                 child: Text(
                                                                   'Address',
-                                                                  style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                        context,
-                                                                      ).labelSmall.fontStyle,
-                                                                    ),
-                                                                    color: Color(
+                                                                  style: GoogleFonts.plusJakartaSans(
+                                                                    textStyle:
+                                                                        Theme.of(
+                                                                          context,
+                                                                        ).textTheme.labelSmall,
+                                                                    color: const Color(
                                                                       0xFF606A85,
                                                                     ),
                                                                     fontSize:
                                                                         12,
-                                                                    letterSpacing:
-                                                                        0.0,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w500,
-                                                                    fontStyle:
-                                                                        FlutterFlowTheme.of(
-                                                                          context,
-                                                                        ).labelSmall.fontStyle,
                                                                   ),
                                                                 ),
                                                               ),
@@ -2346,29 +1495,19 @@ class _TransactionHistoryResponsiveWidgetState
                                                                     ),
                                                                 child: Text(
                                                                   '123 West Hollywood Blvd. San Mateo, CA. 90294',
-                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                    font: GoogleFonts.plusJakartaSans(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                        context,
-                                                                      ).bodyMedium.fontStyle,
-                                                                    ),
-                                                                    color: Color(
+                                                                  style: GoogleFonts.plusJakartaSans(
+                                                                    textStyle:
+                                                                        Theme.of(
+                                                                          context,
+                                                                        ).textTheme.bodyMedium,
+                                                                    color: const Color(
                                                                       0xFF15161E,
                                                                     ),
                                                                     fontSize:
                                                                         14,
-                                                                    letterSpacing:
-                                                                        0.0,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w500,
-                                                                    fontStyle:
-                                                                        FlutterFlowTheme.of(
-                                                                          context,
-                                                                        ).bodyMedium.fontStyle,
                                                                   ),
                                                                 ),
                                                               ),
@@ -2383,7 +1522,7 @@ class _TransactionHistoryResponsiveWidgetState
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
                                                               .center,
-                                                      children: [
+                                                      children: <Widget>[
                                                         Expanded(
                                                           child: Padding(
                                                             padding:
@@ -2393,140 +1532,51 @@ class _TransactionHistoryResponsiveWidgetState
                                                                   0,
                                                                   0,
                                                                 ),
-                                                            child: FFButtonWidget(
-                                                              onPressed: () {
-                                                                print(
-                                                                  'Button pressed ...',
-                                                                );
-                                                              },
-                                                              text:
-                                                                  'Report Now',
-                                                              options: FFButtonOptions(
-                                                                height: 48,
-                                                                padding:
-                                                                    EdgeInsetsDirectional.fromSTEB(
-                                                                      16,
-                                                                      0,
-                                                                      16,
-                                                                      0,
-                                                                    ),
-                                                                iconPadding:
-                                                                    EdgeInsetsDirectional.fromSTEB(
-                                                                      0,
-                                                                      0,
-                                                                      0,
-                                                                      0,
-                                                                    ),
-                                                                color: Colors
-                                                                    .white,
-                                                                textStyle: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                  font: GoogleFonts.plusJakartaSans(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    fontStyle:
-                                                                        FlutterFlowTheme.of(
-                                                                          context,
-                                                                        ).bodyLarge.fontStyle,
-                                                                  ),
+                                                            child: ElevatedButton(
+                                                              onPressed: () {},
+                                                              style: ElevatedButton.styleFrom(
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .white,
+                                                                elevation: 0,
+                                                                side: const BorderSide(
                                                                   color: Color(
+                                                                    0xFFE5E7EB,
+                                                                  ),
+                                                                  width: 2,
+                                                                ),
+                                                                shape: RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius.circular(
+                                                                        12,
+                                                                      ),
+                                                                ),
+                                                                minimumSize:
+                                                                    const Size(
+                                                                      0,
+                                                                      48,
+                                                                    ),
+                                                              ),
+                                                              child: Text(
+                                                                'Report Now',
+                                                                style: GoogleFonts.plusJakartaSans(
+                                                                  textStyle:
+                                                                      Theme.of(
+                                                                        context,
+                                                                      ).textTheme.bodyLarge,
+                                                                  color: const Color(
                                                                     0xFF15161E,
                                                                   ),
                                                                   fontSize: 16,
-                                                                  letterSpacing:
-                                                                      0.0,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w600,
-                                                                  fontStyle:
-                                                                      FlutterFlowTheme.of(
-                                                                        context,
-                                                                      ).bodyLarge.fontStyle,
                                                                 ),
-                                                                elevation: 0,
-                                                                borderSide:
-                                                                    BorderSide(
-                                                                      color: Color(
-                                                                        0xFFE5E7EB,
-                                                                      ),
-                                                                      width: 2,
-                                                                    ),
-                                                                borderRadius:
-                                                                    BorderRadius.circular(
-                                                                      12,
-                                                                    ),
                                                               ),
                                                             ),
                                                           ),
                                                         ),
-                                                        Expanded(
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional.fromSTEB(
-                                                                  0,
-                                                                  12,
-                                                                  0,
-                                                                  0,
-                                                                ),
-                                                            child: FFButtonWidget(
-                                                              onPressed: () {
-                                                                print(
-                                                                  'Button pressed ...',
-                                                                );
-                                                              },
-                                                              text: 'Message',
-                                                              options: FFButtonOptions(
-                                                                height: 48,
-                                                                padding:
-                                                                    EdgeInsetsDirectional.fromSTEB(
-                                                                      16,
-                                                                      0,
-                                                                      16,
-                                                                      0,
-                                                                    ),
-                                                                iconPadding:
-                                                                    EdgeInsetsDirectional.fromSTEB(
-                                                                      0,
-                                                                      0,
-                                                                      0,
-                                                                      0,
-                                                                    ),
-                                                                color: Color(
-                                                                  0xFF6F61EF,
-                                                                ),
-                                                                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                                                                  font: GoogleFonts.plusJakartaSans(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                    fontStyle:
-                                                                        FlutterFlowTheme.of(
-                                                                          context,
-                                                                        ).titleSmall.fontStyle,
-                                                                  ),
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontSize: 16,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontStyle:
-                                                                      FlutterFlowTheme.of(
-                                                                        context,
-                                                                      ).titleSmall.fontStyle,
-                                                                ),
-                                                                elevation: 3,
-                                                                borderRadius:
-                                                                    BorderRadius.circular(
-                                                                      12,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ].divide(SizedBox(width: 16)),
+                                                      ],
                                                     ),
                                                   ],
                                                 ),
@@ -2535,13 +1585,7 @@ class _TransactionHistoryResponsiveWidgetState
                                         ),
                                       ),
                                     ),
-
-                                    // Create this as a component if you want to use it best.
-                                    if (responsiveVisibility(
-                                      context: context,
-                                      phone: false,
-                                      tablet: false,
-                                    ))
+                                    if (MediaQuery.sizeOf(context).width > 991)
                                       Flexible(
                                         flex: 5,
                                         child: Padding(
@@ -2568,32 +1612,16 @@ class _TransactionHistoryResponsiveWidgetState
                                                 child: Text(
                                                   'Customer Details',
                                                   style:
-                                                      FlutterFlowTheme.of(
-                                                        context,
-                                                      ).labelMedium.override(
-                                                        font: GoogleFonts.plusJakartaSans(
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .labelMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                        color: Color(
+                                                      GoogleFonts.plusJakartaSans(
+                                                        textStyle: Theme.of(
+                                                          context,
+                                                        ).textTheme.labelMedium,
+                                                        color: const Color(
                                                           0xFF606A85,
                                                         ),
                                                         fontSize: 14,
-                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .labelMedium
-                                                                .fontStyle,
                                                       ),
                                                 ),
                                               ),
@@ -2701,26 +1729,17 @@ class _TransactionHistoryResponsiveWidgetState
                                                                   children: [
                                                                     Text(
                                                                       'Haily Brown',
-                                                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                        font: GoogleFonts.plusJakartaSans(
-                                                                          fontWeight:
-                                                                              FontWeight.w600,
-                                                                          fontStyle: FlutterFlowTheme.of(
-                                                                            context,
-                                                                          ).bodyLarge.fontStyle,
-                                                                        ),
-                                                                        color: Color(
+                                                                      style: GoogleFonts.plusJakartaSans(
+                                                                        textStyle: Theme.of(
+                                                                          context,
+                                                                        ).textTheme.bodyLarge,
+                                                                        color: const Color(
                                                                           0xFF15161E,
                                                                         ),
                                                                         fontSize:
                                                                             16,
-                                                                        letterSpacing:
-                                                                            0.0,
                                                                         fontWeight:
                                                                             FontWeight.w600,
-                                                                        fontStyle: FlutterFlowTheme.of(
-                                                                          context,
-                                                                        ).bodyLarge.fontStyle,
                                                                       ),
                                                                     ),
                                                                     Padding(
@@ -2733,26 +1752,18 @@ class _TransactionHistoryResponsiveWidgetState
                                                                           ),
                                                                       child: Text(
                                                                         '@brownisthenewblack',
-                                                                        style:
-                                                                            FlutterFlowTheme.of(
-                                                                              context,
-                                                                            ).labelSmall.override(
-                                                                              font: GoogleFonts.plusJakartaSans(
-                                                                                fontWeight: FontWeight.w500,
-                                                                                fontStyle: FlutterFlowTheme.of(
-                                                                                  context,
-                                                                                ).labelSmall.fontStyle,
-                                                                              ),
-                                                                              color: Color(
-                                                                                0xFF6F61EF,
-                                                                              ),
-                                                                              fontSize: 12,
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FontWeight.w500,
-                                                                              fontStyle: FlutterFlowTheme.of(
-                                                                                context,
-                                                                              ).labelSmall.fontStyle,
-                                                                            ),
+                                                                        style: GoogleFonts.plusJakartaSans(
+                                                                          textStyle: Theme.of(
+                                                                            context,
+                                                                          ).textTheme.labelSmall,
+                                                                          color: const Color(
+                                                                            0xFF6F61EF,
+                                                                          ),
+                                                                          fontSize:
+                                                                              12,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ],
@@ -2771,33 +1782,21 @@ class _TransactionHistoryResponsiveWidgetState
                                                               ),
                                                           child: Text(
                                                             'Address',
-                                                            style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                              font: GoogleFonts.plusJakartaSans(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                fontStyle:
-                                                                    FlutterFlowTheme.of(
-                                                                          context,
-                                                                        )
-                                                                        .labelSmall
-                                                                        .fontStyle,
-                                                              ),
-                                                              color: Color(
-                                                                0xFF606A85,
-                                                              ),
+                                                            style: GoogleFonts.plusJakartaSans(
+                                                              textStyle:
+                                                                  Theme.of(
+                                                                        context,
+                                                                      )
+                                                                      .textTheme
+                                                                      .labelSmall,
+                                                              color:
+                                                                  const Color(
+                                                                    0xFF606A85,
+                                                                  ),
                                                               fontSize: 12,
-                                                              letterSpacing:
-                                                                  0.0,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w500,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                        context,
-                                                                      )
-                                                                      .labelSmall
-                                                                      .fontStyle,
                                                             ),
                                                           ),
                                                         ),
@@ -2811,33 +1810,21 @@ class _TransactionHistoryResponsiveWidgetState
                                                               ),
                                                           child: Text(
                                                             '123 West Hollywood Blvd. San Mateo, CA. 90294',
-                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                              font: GoogleFonts.plusJakartaSans(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                fontStyle:
-                                                                    FlutterFlowTheme.of(
-                                                                          context,
-                                                                        )
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                              ),
-                                                              color: Color(
-                                                                0xFF15161E,
-                                                              ),
+                                                            style: GoogleFonts.plusJakartaSans(
+                                                              textStyle:
+                                                                  Theme.of(
+                                                                        context,
+                                                                      )
+                                                                      .textTheme
+                                                                      .bodyMedium,
+                                                              color:
+                                                                  const Color(
+                                                                    0xFF15161E,
+                                                                  ),
                                                               fontSize: 14,
-                                                              letterSpacing:
-                                                                  0.0,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w500,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                        context,
-                                                                      )
-                                                                      .bodyMedium
-                                                                      .fontStyle,
                                                             ),
                                                           ),
                                                         ),
@@ -2846,6 +1833,7 @@ class _TransactionHistoryResponsiveWidgetState
                                                   ),
                                                 ),
                                               ),
+                                              const SizedBox(height: 12),
                                               Align(
                                                 alignment: AlignmentDirectional(
                                                   0,
@@ -2859,67 +1847,45 @@ class _TransactionHistoryResponsiveWidgetState
                                                         0,
                                                         0,
                                                       ),
-                                                  child: FFButtonWidget(
-                                                    onPressed: () {
-                                                      print(
-                                                        'Button pressed ...',
-                                                      );
-                                                    },
-                                                    text: 'Message Customer',
-                                                    options: FFButtonOptions(
-                                                      width: double.infinity,
-                                                      height: 48,
-                                                      padding:
-                                                          EdgeInsetsDirectional.fromSTEB(
-                                                            0,
-                                                            0,
-                                                            0,
-                                                            0,
-                                                          ),
-                                                      iconPadding:
-                                                          EdgeInsetsDirectional.fromSTEB(
-                                                            0,
-                                                            0,
-                                                            0,
-                                                            0,
-                                                          ),
-                                                      color: Color(0xFF6F61EF),
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                            context,
-                                                          ).titleSmall.override(
-                                                            font: GoogleFonts.plusJakartaSans(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                        context,
-                                                                      )
-                                                                      .titleSmall
-                                                                      .fontStyle,
-                                                            ),
-                                                            color: Colors.white,
-                                                            fontSize: 16,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .titleSmall
-                                                                    .fontStyle,
+                                                  child: ElevatedButton(
+                                                    onPressed: () {},
+                                                    style: ElevatedButton.styleFrom(
+                                                      backgroundColor:
+                                                          const Color(
+                                                            0xFF6F61EF,
                                                           ),
                                                       elevation: 3,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                            12,
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                              12,
+                                                            ),
+                                                      ),
+                                                      minimumSize: const Size(
+                                                        double.infinity,
+                                                        48,
+                                                      ),
+                                                    ),
+                                                    child: Text(
+                                                      'Message Customer',
+                                                      style:
+                                                          GoogleFonts.plusJakartaSans(
+                                                            textStyle:
+                                                                Theme.of(
+                                                                      context,
+                                                                    )
+                                                                    .textTheme
+                                                                    .titleSmall,
+                                                            color: Colors.white,
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight.w500,
                                                           ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
+                                              const SizedBox(height: 12),
                                               Align(
                                                 alignment: AlignmentDirectional(
                                                   0,
@@ -2933,70 +1899,45 @@ class _TransactionHistoryResponsiveWidgetState
                                                         0,
                                                         0,
                                                       ),
-                                                  child: FFButtonWidget(
-                                                    onPressed: () {
-                                                      print(
-                                                        'Button pressed ...',
-                                                      );
-                                                    },
-                                                    text: 'Report Now',
-                                                    options: FFButtonOptions(
-                                                      width: double.infinity,
-                                                      height: 48,
-                                                      padding:
-                                                          EdgeInsetsDirectional.fromSTEB(
-                                                            0,
-                                                            0,
-                                                            0,
-                                                            0,
-                                                          ),
-                                                      iconPadding:
-                                                          EdgeInsetsDirectional.fromSTEB(
-                                                            0,
-                                                            0,
-                                                            0,
-                                                            0,
-                                                          ),
-                                                      color: Colors.white,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                            context,
-                                                          ).bodyLarge.override(
-                                                            font: GoogleFonts.plusJakartaSans(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                        context,
-                                                                      )
-                                                                      .bodyLarge
-                                                                      .fontStyle,
-                                                            ),
-                                                            color: Color(
-                                                              0xFF15161E,
-                                                            ),
-                                                            fontSize: 16,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .bodyLarge
-                                                                    .fontStyle,
-                                                          ),
+                                                  child: ElevatedButton(
+                                                    onPressed: () {},
+                                                    style: ElevatedButton.styleFrom(
+                                                      backgroundColor:
+                                                          Colors.white,
                                                       elevation: 0,
-                                                      borderSide: BorderSide(
+                                                      side: const BorderSide(
                                                         color: Color(
                                                           0xFFE5E7EB,
                                                         ),
                                                         width: 2,
                                                       ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                            12,
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                              12,
+                                                            ),
+                                                      ),
+                                                      minimumSize: const Size(
+                                                        double.infinity,
+                                                        48,
+                                                      ),
+                                                    ),
+                                                    child: Text(
+                                                      'Report Now',
+                                                      style:
+                                                          GoogleFonts.plusJakartaSans(
+                                                            textStyle:
+                                                                Theme.of(
+                                                                      context,
+                                                                    )
+                                                                    .textTheme
+                                                                    .bodyLarge,
+                                                            color: const Color(
+                                                              0xFF15161E,
+                                                            ),
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight.w600,
                                                           ),
                                                     ),
                                                   ),
@@ -3006,7 +1947,8 @@ class _TransactionHistoryResponsiveWidgetState
                                           ),
                                         ),
                                       ),
-                                  ].divide(SizedBox(width: 16)),
+                                    const SizedBox(width: 16),
+                                  ],
                                 ),
                               ),
                             ),

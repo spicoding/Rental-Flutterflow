@@ -1,17 +1,5 @@
-import '/flutter_flow/flutter_flow_checkbox_group.dart';
-import '/flutter_flow/flutter_flow_count_controller.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-
-import 'product_details_model.dart';
-export 'product_details_model.dart';
 
 class ProductDetailsWidget extends StatefulWidget {
   const ProductDetailsWidget({super.key});
@@ -24,22 +12,12 @@ class ProductDetailsWidget extends StatefulWidget {
 }
 
 class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
-  late ProductDetailsModel _model;
+  final List<String> _checkboxGroupValues1 = [];
+  final List<String> _checkboxGroupValues2 = [];
+  final List<String> _checkboxGroupValues3 = [];
+  int _countControllerValue = 1;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  @override
-  void initState() {
-    super.initState();
-    _model = createModel(context, () => ProductDetailsModel());
-  }
-
-  @override
-  void dispose() {
-    _model.dispose();
-
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,19 +32,13 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
+          leading: IconButton(
+            icon: const Icon(
               Icons.arrow_back_rounded,
               color: Color(0xFF57636C),
               size: 30,
             ),
-            onPressed: () {
-              print('IconButton pressed ...');
-            },
+            onPressed: () {},
           ),
           actions: [],
           centerTitle: false,
@@ -99,44 +71,28 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(16, 4, 0, 0),
                         child: Text(
                           'Product Name',
-                          style: FlutterFlowTheme.of(context).headlineMedium
-                              .override(
-                                font: GoogleFonts.outfit(
-                                  fontWeight: FontWeight.w500,
-                                  fontStyle: FlutterFlowTheme.of(
-                                    context,
-                                  ).headlineMedium.fontStyle,
-                                ),
-                                color: Color(0xFF0F1113),
-                                fontSize: 24,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.w500,
-                                fontStyle: FlutterFlowTheme.of(
-                                  context,
-                                ).headlineMedium.fontStyle,
-                              ),
+                          style: GoogleFonts.outfit(
+                            textStyle: Theme.of(
+                              context,
+                            ).textTheme.headlineMedium,
+                            color: const Color(0xFF0F1113),
+                            fontSize: 24,
+                            letterSpacing: 0.0,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 4, 0, 0),
                         child: Text(
                           '\$9.00',
-                          style: FlutterFlowTheme.of(context).labelLarge
-                              .override(
-                                font: GoogleFonts.outfit(
-                                  fontWeight: FontWeight.w500,
-                                  fontStyle: FlutterFlowTheme.of(
-                                    context,
-                                  ).labelLarge.fontStyle,
-                                ),
-                                color: Color(0xFF57636C),
-                                fontSize: 16,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.w500,
-                                fontStyle: FlutterFlowTheme.of(
-                                  context,
-                                ).labelLarge.fontStyle,
-                              ),
+                          style: GoogleFonts.outfit(
+                            textStyle: Theme.of(context).textTheme.labelLarge,
+                            color: const Color(0xFF57636C),
+                            fontSize: 16,
+                            letterSpacing: 0.0,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                       Divider(
@@ -150,48 +106,28 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                         child: Text(
                           'Description',
-                          style: FlutterFlowTheme.of(context).labelMedium
-                              .override(
-                                font: GoogleFonts.outfit(
-                                  fontWeight: FontWeight.w500,
-                                  fontStyle: FlutterFlowTheme.of(
-                                    context,
-                                  ).labelMedium.fontStyle,
-                                ),
-                                color: Color(0xFF57636C),
-                                fontSize: 14,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.w500,
-                                fontStyle: FlutterFlowTheme.of(
-                                  context,
-                                ).labelMedium.fontStyle,
-                              ),
+                          style: GoogleFonts.outfit(
+                            textStyle: Theme.of(context).textTheme.labelMedium,
+                            color: const Color(0xFF57636C),
+                            fontSize: 14,
+                            letterSpacing: 0.0,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
                         child: Text(
                           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                          style: FlutterFlowTheme.of(context).bodyLarge
-                              .override(
-                                font: GoogleFonts.outfit(
-                                  fontWeight: FlutterFlowTheme.of(
-                                    context,
-                                  ).bodyLarge.fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(
-                                    context,
-                                  ).bodyLarge.fontStyle,
-                                ),
-                                color: Color(0xFF0F1113),
-                                fontSize: 16,
-                                letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(
-                                  context,
-                                ).bodyLarge.fontWeight,
-                                fontStyle: FlutterFlowTheme.of(
-                                  context,
-                                ).bodyLarge.fontStyle,
-                              ),
+                          style: GoogleFonts.outfit(
+                            textStyle: Theme.of(context).textTheme.bodyLarge,
+                            color: const Color(0xFF0F1113),
+                            fontSize: 16,
+                            letterSpacing: 0.0,
+                            fontWeight: Theme.of(
+                              context,
+                            ).textTheme.bodyLarge?.fontWeight,
+                          ),
                         ),
                       ),
                       Padding(
@@ -216,66 +152,50 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                                 alignment: AlignmentDirectional(-0.9, 0),
                                 child: Text(
                                   'Type of Milk',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        font: GoogleFonts.outfit(
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).labelMedium.fontStyle,
-                                        ),
-                                        color: Color(0xFF57636C),
-                                        fontSize: 14,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).labelMedium.fontStyle,
-                                      ),
+                                  style: GoogleFonts.outfit(
+                                    textStyle: Theme.of(
+                                      context,
+                                    ).textTheme.labelMedium,
+                                    color: const Color(0xFF57636C),
+                                    fontSize: 14,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ),
                             ),
-                            FlutterFlowCheckboxGroup(
-                              options: [
-                                'Organic Whole milk',
-                                'Almond Milk',
-                                'Oat Milk',
-                              ],
-                              onChanged: (val) => safeSetState(
-                                () => _model.checkboxGroupValues1 = val,
-                              ),
-                              controller:
-                                  _model.checkboxGroupValueController1 ??=
-                                      FormFieldController<List<String>>([]),
-                              activeColor: Color(0xFF4B39EF),
-                              checkColor: Colors.white,
-                              checkboxBorderColor: Color(0xFF57636C),
-                              textStyle: FlutterFlowTheme.of(context).bodyMedium
-                                  .override(
-                                    font: GoogleFonts.outfit(
-                                      fontWeight: FontWeight.normal,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).bodyMedium.fontStyle,
-                                    ),
-                                    color: Color(0xFF0F1113),
-                                    fontSize: 14,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                    fontStyle: FlutterFlowTheme.of(
+                            ...[
+                              'Organic Whole milk',
+                              'Almond Milk',
+                              'Oat Milk',
+                            ].map((option) {
+                              return CheckboxListTile(
+                                title: Text(
+                                  option,
+                                  style: GoogleFonts.outfit(
+                                    textStyle: Theme.of(
                                       context,
-                                    ).bodyMedium.fontStyle,
+                                    ).textTheme.bodyMedium,
+                                    color: const Color(0xFF0F1113),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.normal,
                                   ),
-                              itemPadding: EdgeInsetsDirectional.fromSTEB(
-                                8,
-                                0,
-                                0,
-                                0,
-                              ),
-                              checkboxBorderRadius: BorderRadius.circular(4),
-                              initialized: _model.checkboxGroupValues1 != null,
-                            ),
+                                ),
+                                value: _checkboxGroupValues1.contains(option),
+                                onChanged: (val) {
+                                  setState(() {
+                                    if (val == true) {
+                                      _checkboxGroupValues1.add(option);
+                                    } else {
+                                      _checkboxGroupValues1.remove(option);
+                                    }
+                                  });
+                                },
+                                activeColor: const Color(0xFF4B39EF),
+                                controlAffinity:
+                                    ListTileControlAffinity.leading,
+                              );
+                            }),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                 0,
@@ -293,62 +213,46 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                                 alignment: AlignmentDirectional(-0.9, 0),
                                 child: Text(
                                   'Size',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        font: GoogleFonts.outfit(
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).labelMedium.fontStyle,
-                                        ),
-                                        color: Color(0xFF57636C),
-                                        fontSize: 14,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).labelMedium.fontStyle,
-                                      ),
+                                  style: GoogleFonts.outfit(
+                                    textStyle: Theme.of(
+                                      context,
+                                    ).textTheme.labelMedium,
+                                    color: const Color(0xFF57636C),
+                                    fontSize: 14,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ),
                             ),
-                            FlutterFlowCheckboxGroup(
-                              options: ['12oz', '16oz'],
-                              onChanged: (val) => safeSetState(
-                                () => _model.checkboxGroupValues2 = val,
-                              ),
-                              controller:
-                                  _model.checkboxGroupValueController2 ??=
-                                      FormFieldController<List<String>>([]),
-                              activeColor: Color(0xFF4B39EF),
-                              checkColor: Colors.white,
-                              checkboxBorderColor: Color(0xFF57636C),
-                              textStyle: FlutterFlowTheme.of(context).bodyMedium
-                                  .override(
-                                    font: GoogleFonts.outfit(
-                                      fontWeight: FontWeight.normal,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).bodyMedium.fontStyle,
-                                    ),
-                                    color: Color(0xFF0F1113),
-                                    fontSize: 14,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                    fontStyle: FlutterFlowTheme.of(
+                            ...['12oz', '16oz'].map((option) {
+                              return CheckboxListTile(
+                                title: Text(
+                                  option,
+                                  style: GoogleFonts.outfit(
+                                    textStyle: Theme.of(
                                       context,
-                                    ).bodyMedium.fontStyle,
+                                    ).textTheme.bodyMedium,
+                                    color: const Color(0xFF0F1113),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.normal,
                                   ),
-                              itemPadding: EdgeInsetsDirectional.fromSTEB(
-                                8,
-                                0,
-                                0,
-                                0,
-                              ),
-                              checkboxBorderRadius: BorderRadius.circular(4),
-                              initialized: _model.checkboxGroupValues2 != null,
-                            ),
+                                ),
+                                value: _checkboxGroupValues2.contains(option),
+                                onChanged: (val) {
+                                  setState(() {
+                                    if (val == true) {
+                                      _checkboxGroupValues2.add(option);
+                                    } else {
+                                      _checkboxGroupValues2.remove(option);
+                                    }
+                                  });
+                                },
+                                activeColor: const Color(0xFF4B39EF),
+                                controlAffinity:
+                                    ListTileControlAffinity.leading,
+                              );
+                            }),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                 0,
@@ -366,62 +270,46 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                                 alignment: AlignmentDirectional(-0.9, 0),
                                 child: Text(
                                   'Ice / Hot',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        font: GoogleFonts.outfit(
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).labelMedium.fontStyle,
-                                        ),
-                                        color: Color(0xFF57636C),
-                                        fontSize: 14,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).labelMedium.fontStyle,
-                                      ),
+                                  style: GoogleFonts.outfit(
+                                    textStyle: Theme.of(
+                                      context,
+                                    ).textTheme.labelMedium,
+                                    color: const Color(0xFF57636C),
+                                    fontSize: 14,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ),
                             ),
-                            FlutterFlowCheckboxGroup(
-                              options: ['Iced', 'Hot'],
-                              onChanged: (val) => safeSetState(
-                                () => _model.checkboxGroupValues3 = val,
-                              ),
-                              controller:
-                                  _model.checkboxGroupValueController3 ??=
-                                      FormFieldController<List<String>>([]),
-                              activeColor: Color(0xFF4B39EF),
-                              checkColor: Colors.white,
-                              checkboxBorderColor: Color(0xFF57636C),
-                              textStyle: FlutterFlowTheme.of(context).bodyMedium
-                                  .override(
-                                    font: GoogleFonts.outfit(
-                                      fontWeight: FontWeight.normal,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).bodyMedium.fontStyle,
-                                    ),
-                                    color: Color(0xFF0F1113),
-                                    fontSize: 14,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                    fontStyle: FlutterFlowTheme.of(
+                            ...['Iced', 'Hot'].map((option) {
+                              return CheckboxListTile(
+                                title: Text(
+                                  option,
+                                  style: GoogleFonts.outfit(
+                                    textStyle: Theme.of(
                                       context,
-                                    ).bodyMedium.fontStyle,
+                                    ).textTheme.bodyMedium,
+                                    color: const Color(0xFF0F1113),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.normal,
                                   ),
-                              itemPadding: EdgeInsetsDirectional.fromSTEB(
-                                8,
-                                0,
-                                0,
-                                0,
-                              ),
-                              checkboxBorderRadius: BorderRadius.circular(4),
-                              initialized: _model.checkboxGroupValues3 != null,
-                            ),
+                                ),
+                                value: _checkboxGroupValues3.contains(option),
+                                onChanged: (val) {
+                                  setState(() {
+                                    if (val == true) {
+                                      _checkboxGroupValues3.add(option);
+                                    } else {
+                                      _checkboxGroupValues3.remove(option);
+                                    }
+                                  });
+                                },
+                                activeColor: const Color(0xFF4B39EF),
+                                controlAffinity:
+                                    ListTileControlAffinity.leading,
+                              );
+                            }),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                 0,
@@ -439,23 +327,15 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                                 alignment: AlignmentDirectional(-0.9, 0),
                                 child: Text(
                                   'Quanity',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        font: GoogleFonts.outfit(
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).labelMedium.fontStyle,
-                                        ),
-                                        color: Color(0xFF57636C),
-                                        fontSize: 14,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).labelMedium.fontStyle,
-                                      ),
+                                  style: GoogleFonts.outfit(
+                                    textStyle: Theme.of(
+                                      context,
+                                    ).textTheme.labelMedium,
+                                    color: const Color(0xFF57636C),
+                                    fontSize: 14,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ),
                             ),
@@ -478,48 +358,54 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
                                     width: 1,
                                   ),
                                 ),
-                                child: FlutterFlowCountController(
-                                  decrementIconBuilder: (enabled) => Icon(
-                                    Icons.remove_rounded,
-                                    color: enabled
-                                        ? Color(0xFF57636C)
-                                        : Color(0xFFDBE2E7),
-                                    size: 20,
-                                  ),
-                                  incrementIconBuilder: (enabled) => Icon(
-                                    Icons.add_rounded,
-                                    color: enabled
-                                        ? Color(0xFF4B39EF)
-                                        : Color(0xFFDBE2E7),
-                                    size: 20,
-                                  ),
-                                  countBuilder: (count) => Text(
-                                    count.toString(),
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineSmall
-                                        .override(
-                                          font: GoogleFonts.outfit(
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).headlineSmall.fontStyle,
-                                          ),
-                                          color: Color(0xFF0F1113),
-                                          fontSize: 20,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).headlineSmall.fontStyle,
-                                        ),
-                                  ),
-                                  count: _model.countControllerValue ??= 1,
-                                  updateCount: (count) => safeSetState(
-                                    () => _model.countControllerValue = count,
-                                  ),
-                                  stepSize: 1,
-                                  minimum: 1,
-                                  maximum: 10,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    IconButton(
+                                      icon: Icon(
+                                        Icons.remove_rounded,
+                                        color: _countControllerValue > 1
+                                            ? const Color(0xFF57636C)
+                                            : const Color(0xFFDBE2E7),
+                                        size: 20,
+                                      ),
+                                      onPressed: () {
+                                        if (_countControllerValue > 1) {
+                                          setState(
+                                            () => _countControllerValue--,
+                                          );
+                                        }
+                                      },
+                                    ),
+                                    Text(
+                                      _countControllerValue.toString(),
+                                      style: GoogleFonts.outfit(
+                                        textStyle: Theme.of(
+                                          context,
+                                        ).textTheme.headlineSmall,
+                                        color: const Color(0xFF0F1113),
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      icon: Icon(
+                                        Icons.add_rounded,
+                                        color: _countControllerValue < 10
+                                            ? const Color(0xFF4B39EF)
+                                            : const Color(0xFFDBE2E7),
+                                        size: 20,
+                                      ),
+                                      onPressed: () {
+                                        if (_countControllerValue < 10) {
+                                          setState(
+                                            () => _countControllerValue++,
+                                          );
+                                        }
+                                      },
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
@@ -532,35 +418,24 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 16),
-                child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
-                  },
-                  text: 'Add To Cart',
-                  options: FFButtonOptions(
-                    width: double.infinity,
-                    height: 50,
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    color: Color(0xFF0F1113),
-                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                      font: GoogleFonts.outfit(
-                        fontWeight: FontWeight.normal,
-                        fontStyle: FlutterFlowTheme.of(
-                          context,
-                        ).titleSmall.fontStyle,
-                      ),
-                      color: Colors.white,
-                      fontSize: 16,
-                      letterSpacing: 0.0,
-                      fontWeight: FontWeight.normal,
-                      fontStyle: FlutterFlowTheme.of(
-                        context,
-                      ).titleSmall.fontStyle,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF0F1113),
+                    minimumSize: const Size(double.infinity, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
                     ),
                     elevation: 3,
-                    borderSide: BorderSide(color: Colors.transparent, width: 1),
-                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    'Add To Cart',
+                    style: GoogleFonts.outfit(
+                      textStyle: Theme.of(context).textTheme.titleSmall,
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
+                    ),
                   ),
                 ),
               ),

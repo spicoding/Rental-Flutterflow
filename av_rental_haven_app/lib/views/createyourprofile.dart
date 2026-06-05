@@ -1,22 +1,9 @@
-import '/backend/firebase_storage/storage.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/upload_data.dart';
-import 'dart:async';
-import 'dart:ui';
-import '/index.dart';
+// ignore_for_file: deprecated_member_use
+
+import '../models/create_your_profile_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-
-import 'create_your_profile_model.dart';
-export 'create_your_profile_model.dart';
 
 class CreateYourProfileWidget extends StatefulWidget {
   const CreateYourProfileWidget({super.key});
@@ -37,7 +24,7 @@ class _CreateYourProfileWidgetState extends State<CreateYourProfileWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => CreateYourProfileModel());
+    _model = CreateYourProfileModel();
 
     _model.yourNameTextController ??= TextEditingController();
     _model.yourNameFocusNode ??= FocusNode();
@@ -62,7 +49,7 @@ class _CreateYourProfileWidgetState extends State<CreateYourProfileWidget> {
       key: scaffoldKey,
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100),
+        preferredSize: const Size.fromHeight(100),
         child: AppBar(
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
@@ -81,19 +68,20 @@ class _CreateYourProfileWidgetState extends State<CreateYourProfileWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                          child: FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 30,
-                            borderWidth: 1,
-                            buttonSize: 50,
-                            icon: Icon(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                            12,
+                            0,
+                            0,
+                            0,
+                          ),
+                          child: IconButton(
+                            icon: const Icon(
                               Icons.arrow_back_rounded,
                               color: Color(0xFF14181B),
                               size: 30,
                             ),
                             onPressed: () async {
-                              context.pop();
+                              Navigator.of(context).pop();
                             },
                           ),
                         ),
@@ -104,22 +92,11 @@ class _CreateYourProfileWidgetState extends State<CreateYourProfileWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                     child: Text(
                       'Create your Profile',
-                      style: FlutterFlowTheme.of(context).headlineMedium
-                          .override(
-                            font: GoogleFonts.outfit(
-                              fontWeight: FontWeight.normal,
-                              fontStyle: FlutterFlowTheme.of(
-                                context,
-                              ).headlineMedium.fontStyle,
-                            ),
-                            color: Color(0xFF14181B),
-                            fontSize: 22,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.normal,
-                            fontStyle: FlutterFlowTheme.of(
-                              context,
-                            ).headlineMedium.fontStyle,
-                          ),
+                      style: GoogleFonts.outfit(
+                        color: const Color(0xFF14181B),
+                        fontSize: 22,
+                        fontWeight: FontWeight.normal,
+                      ),
                     ),
                   ),
                 ],
@@ -148,70 +125,14 @@ class _CreateYourProfileWidgetState extends State<CreateYourProfileWidget> {
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
-                      final selectedMedia =
-                          await selectMediaWithSourceBottomSheet(
-                            context: context,
-                            imageQuality: 80,
-                            allowPhoto: true,
-                            backgroundColor: Color(0xFFF1F4F8),
-                            textColor: Color(0xFF14181B),
-                            pickerFontFamily: 'Outfit',
-                          );
-                      if (selectedMedia != null &&
-                          selectedMedia.every(
-                            (m) => validateFileFormat(m.storagePath, context),
-                          )) {
-                        safeSetState(
-                          () => _model.isDataUploading_uploadData1mc = true,
-                        );
-                        var selectedUploadedFiles = <FFUploadedFile>[];
-
-                        var downloadUrls = <String>[];
-                        try {
-                          showUploadMessage(
-                            context,
-                            'Uploading file...',
-                            showLoading: true,
-                          );
-                          selectedUploadedFiles = selectedMedia
-                              .map(
-                                (m) => FFUploadedFile(
-                                  name: m.storagePath.split('/').last,
-                                  bytes: m.bytes,
-                                  height: m.dimensions?.height,
-                                  width: m.dimensions?.width,
-                                  blurHash: m.blurHash,
-                                  originalFilename: m.originalFilename,
-                                ),
-                              )
-                              .toList();
-
-                          downloadUrls = (await Future.wait(
-                            selectedMedia.map(
-                              (m) async =>
-                                  await uploadData(m.storagePath, m.bytes),
-                            ),
-                          )).where((u) => u != null).map((u) => u!).toList();
-                        } finally {
-                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                          _model.isDataUploading_uploadData1mc = false;
-                        }
-                        if (selectedUploadedFiles.length ==
-                                selectedMedia.length &&
-                            downloadUrls.length == selectedMedia.length) {
-                          safeSetState(() {
-                            _model.uploadedLocalFile_uploadData1mc =
-                                selectedUploadedFiles.first;
-                            _model.uploadedFileUrl_uploadData1mc =
-                                downloadUrls.first;
-                          });
-                          showUploadMessage(context, 'Success!');
-                        } else {
-                          safeSetState(() {});
-                          showUploadMessage(context, 'Failed to upload data');
-                          return;
-                        }
-                      }
+                      // TODO: Implement image selection logic using the 'image_picker' package.
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Image upload logic needs to be implemented.',
+                          ),
+                        ),
+                      );
                     },
                     child: Container(
                       width: 100,
@@ -221,12 +142,14 @@ class _CreateYourProfileWidgetState extends State<CreateYourProfileWidget> {
                         shape: BoxShape.circle,
                       ),
                       child: Padding(
-                        padding: EdgeInsets.all(2),
+                        padding: const EdgeInsets.all(2),
                         child: Container(
                           width: 90,
                           height: 90,
                           clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(shape: BoxShape.circle),
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
                           child: CachedNetworkImage(
                             fadeInDuration: Duration(milliseconds: 500),
                             fadeOutDuration: Duration(milliseconds: 500),
@@ -250,83 +173,36 @@ class _CreateYourProfileWidgetState extends State<CreateYourProfileWidget> {
                 obscureText: false,
                 decoration: InputDecoration(
                   labelText: 'Your Name',
-                  labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                    font: GoogleFonts.plusJakartaSans(
-                      fontWeight: FontWeight.normal,
-                      fontStyle: FlutterFlowTheme.of(
-                        context,
-                      ).labelMedium.fontStyle,
-                    ),
-                    color: Color(0xFF57636C),
+                  labelStyle: GoogleFonts.plusJakartaSans(
+                    color: const Color(0xFF57636C),
                     fontSize: 14,
-                    letterSpacing: 0.0,
-                    fontWeight: FontWeight.normal,
-                    fontStyle: FlutterFlowTheme.of(
-                      context,
-                    ).labelMedium.fontStyle,
                   ),
-                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                    font: GoogleFonts.plusJakartaSans(
-                      fontWeight: FontWeight.normal,
-                      fontStyle: FlutterFlowTheme.of(
-                        context,
-                      ).labelMedium.fontStyle,
-                    ),
-                    color: Color(0xFF57636C),
+                  hintStyle: GoogleFonts.plusJakartaSans(
+                    color: const Color(0xFF57636C),
                     fontSize: 14,
-                    letterSpacing: 0.0,
-                    fontWeight: FontWeight.normal,
-                    fontStyle: FlutterFlowTheme.of(
-                      context,
-                    ).labelMedium.fontStyle,
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFE0E3E7), width: 2),
+                    borderSide: const BorderSide(
+                      color: Color(0xFFE0E3E7),
+                      width: 2,
+                    ),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF4B39EF), width: 2),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFFF5963), width: 2),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFFF5963), width: 2),
+                    borderSide: const BorderSide(
+                      color: Color(0xFF4B39EF),
+                      width: 2,
+                    ),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   filled: true,
                   fillColor: Colors.white,
                   contentPadding: EdgeInsetsDirectional.fromSTEB(20, 24, 0, 24),
                 ),
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                  font: GoogleFonts.plusJakartaSans(
-                    fontWeight: FontWeight.normal,
-                    fontStyle: FlutterFlowTheme.of(
-                      context,
-                    ).bodyMedium.fontStyle,
-                  ),
-                  color: Color(0xFF14181B),
+                style: GoogleFonts.plusJakartaSans(
+                  color: const Color(0xFF14181B),
                   fontSize: 14,
-                  letterSpacing: 0.0,
-                  fontWeight: FontWeight.normal,
-                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                 ),
-                validator: _model.yourNameTextControllerValidator.asValidator(
-                  context,
-                ),
-                inputFormatters: [
-                  if (!isAndroid && !isiOS)
-                    TextInputFormatter.withFunction((oldValue, newValue) {
-                      return TextEditingValue(
-                        selection: newValue.selection,
-                        text: newValue.text.toCapitalization(
-                          TextCapitalization.words,
-                        ),
-                      );
-                    }),
-                ],
               ),
             ),
             Padding(
@@ -338,174 +214,120 @@ class _CreateYourProfileWidgetState extends State<CreateYourProfileWidget> {
                 obscureText: false,
                 decoration: InputDecoration(
                   labelText: 'Your City',
-                  labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                    font: GoogleFonts.plusJakartaSans(
-                      fontWeight: FontWeight.normal,
-                      fontStyle: FlutterFlowTheme.of(
-                        context,
-                      ).labelMedium.fontStyle,
-                    ),
-                    color: Color(0xFF57636C),
+                  labelStyle: GoogleFonts.plusJakartaSans(
+                    color: const Color(0xFF57636C),
                     fontSize: 14,
-                    letterSpacing: 0.0,
-                    fontWeight: FontWeight.normal,
-                    fontStyle: FlutterFlowTheme.of(
-                      context,
-                    ).labelMedium.fontStyle,
                   ),
-                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                    font: GoogleFonts.plusJakartaSans(
-                      fontWeight: FontWeight.normal,
-                      fontStyle: FlutterFlowTheme.of(
-                        context,
-                      ).labelMedium.fontStyle,
-                    ),
-                    color: Color(0xFF57636C),
+                  hintStyle: GoogleFonts.plusJakartaSans(
+                    color: const Color(0xFF57636C),
                     fontSize: 14,
-                    letterSpacing: 0.0,
-                    fontWeight: FontWeight.normal,
-                    fontStyle: FlutterFlowTheme.of(
-                      context,
-                    ).labelMedium.fontStyle,
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFE0E3E7), width: 2),
+                    borderSide: const BorderSide(
+                      color: Color(0xFFE0E3E7),
+                      width: 2,
+                    ),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF4B39EF), width: 2),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFFF5963), width: 2),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFFF5963), width: 2),
+                    borderSide: const BorderSide(
+                      color: Color(0xFF4B39EF),
+                      width: 2,
+                    ),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   filled: true,
                   fillColor: Colors.white,
                   contentPadding: EdgeInsetsDirectional.fromSTEB(20, 24, 0, 24),
                 ),
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                  font: GoogleFonts.plusJakartaSans(
-                    fontWeight: FontWeight.normal,
-                    fontStyle: FlutterFlowTheme.of(
-                      context,
-                    ).bodyMedium.fontStyle,
-                  ),
-                  color: Color(0xFF14181B),
+                style: GoogleFonts.plusJakartaSans(
+                  color: const Color(0xFF14181B),
                   fontSize: 14,
-                  letterSpacing: 0.0,
-                  fontWeight: FontWeight.normal,
-                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                 ),
-                validator: _model.cityTextControllerValidator.asValidator(
-                  context,
-                ),
-                inputFormatters: [
-                  if (!isAndroid && !isiOS)
-                    TextInputFormatter.withFunction((oldValue, newValue) {
-                      return TextEditingValue(
-                        selection: newValue.selection,
-                        text: newValue.text.toCapitalization(
-                          TextCapitalization.words,
-                        ),
-                      );
-                    }),
-                ],
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 12),
-              child: FlutterFlowDropDown<String>(
-                controller: _model.stateValueController ??=
-                    FormFieldController<String>(_model.stateValue ??= 'State'),
-                options: [
-                  'State',
-                  'Alabama',
-                  'Alaska',
-                  'Arizona',
-                  'Arkansas',
-                  'California',
-                  'Colorado',
-                  'Connecticut',
-                  'Delaware',
-                  'Florida',
-                  'Georgia',
-                  'Hawaii',
-                  'Idaho',
-                  'Illinoi',
-                  'Indiana',
-                  'Iowa',
-                  'Kansas',
-                  'Kentucky',
-                  'Louisiana',
-                  'Maine',
-                  'Maryland',
-                  'Massachusetts',
-                  'Michigan',
-                  'Minnesota',
-                  'Mississippi',
-                  'Missouri',
-                  'Monta',
-                  'Nebraska',
-                  'Nevada',
-                  'New Hampshire',
-                  'New Jersey',
-                  'New Mexico',
-                  'New York',
-                  'North Carolina',
-                  'North Dak',
-                  'Ohio',
-                  'Oklahoma',
-                  'Oregon',
-                  'Pennsylvani',
-                  'Rhode Island',
-                  'South Caroli',
-                  'South Dakota',
-                  'Tennessee',
-                  'Texas',
-                  'Utah',
-                  'Vermont',
-                  'Virginia',
-                  'Washingto',
-                  'West Virginia',
-                  'Wisconsin',
-                  'Wyoming',
-                ],
-                onChanged: (val) => safeSetState(() => _model.stateValue = val),
-                width: double.infinity,
-                height: 56,
-                textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                  font: GoogleFonts.plusJakartaSans(
-                    fontWeight: FontWeight.normal,
-                    fontStyle: FlutterFlowTheme.of(
-                      context,
-                    ).bodyMedium.fontStyle,
-                  ),
-                  color: Color(0xFF14181B),
+              padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 12),
+              child: DropdownButtonFormField<String>(
+                value: _model.stateValue ?? 'State',
+                items:
+                    [
+                      'State',
+                      'Alabama',
+                      'Alaska',
+                      'Arizona',
+                      'Arkansas',
+                      'California',
+                      'Colorado',
+                      'Connecticut',
+                      'Delaware',
+                      'Florida',
+                      'Georgia',
+                      'Hawaii',
+                      'Idaho',
+                      'Illinoi',
+                      'Indiana',
+                      'Iowa',
+                      'Kansas',
+                      'Kentucky',
+                      'Louisiana',
+                      'Maine',
+                      'Maryland',
+                      'Massachusetts',
+                      'Michigan',
+                      'Minnesota',
+                      'Mississippi',
+                      'Missouri',
+                      'Monta',
+                      'Nebraska',
+                      'Nevada',
+                      'New Hampshire',
+                      'New Jersey',
+                      'New Mexico',
+                      'New York',
+                      'North Carolina',
+                      'North Dak',
+                      'Ohio',
+                      'Oklahoma',
+                      'Oregon',
+                      'Pennsylvani',
+                      'Rhode Island',
+                      'South Caroli',
+                      'South Dakota',
+                      'Tennessee',
+                      'Texas',
+                      'Utah',
+                      'Vermont',
+                      'Virginia',
+                      'Washingto',
+                      'West Virginia',
+                      'Wisconsin',
+                      'Wyoming',
+                    ].map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                onChanged: (val) {
+                  if (mounted) setState(() => _model.stateValue = val);
+                },
+                style: GoogleFonts.plusJakartaSans(
+                  color: const Color(0xFF14181B),
                   fontSize: 14,
-                  letterSpacing: 0.0,
-                  fontWeight: FontWeight.normal,
-                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                 ),
-                hintText: 'Select State',
-                icon: Icon(
-                  Icons.keyboard_arrow_down_rounded,
-                  color: Color(0xFF57636C),
-                  size: 15,
+                decoration: InputDecoration(
+                  hintText: 'Select State',
+                  filled: true,
+                  fillColor: Colors.white,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: Color(0xFFE0E3E7),
+                      width: 2,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
-                fillColor: Colors.white,
-                elevation: 2,
-                borderColor: Color(0xFFE0E3E7),
-                borderWidth: 2,
-                borderRadius: 8,
-                margin: EdgeInsetsDirectional.fromSTEB(20, 4, 12, 4),
-                hidesUnderline: true,
-                isSearchable: false,
-                isMultiSelect: false,
               ),
             ),
             Padding(
@@ -516,125 +338,64 @@ class _CreateYourProfileWidgetState extends State<CreateYourProfileWidget> {
                 textCapitalization: TextCapitalization.sentences,
                 obscureText: false,
                 decoration: InputDecoration(
-                  labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                    font: GoogleFonts.plusJakartaSans(
-                      fontWeight: FontWeight.normal,
-                      fontStyle: FlutterFlowTheme.of(
-                        context,
-                      ).labelMedium.fontStyle,
-                    ),
-                    color: Color(0xFF57636C),
+                  labelStyle: GoogleFonts.plusJakartaSans(
+                    color: const Color(0xFF57636C),
                     fontSize: 14,
-                    letterSpacing: 0.0,
-                    fontWeight: FontWeight.normal,
-                    fontStyle: FlutterFlowTheme.of(
-                      context,
-                    ).labelMedium.fontStyle,
                   ),
                   hintText: 'Your bio',
-                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                    font: GoogleFonts.plusJakartaSans(
-                      fontWeight: FontWeight.normal,
-                      fontStyle: FlutterFlowTheme.of(
-                        context,
-                      ).labelMedium.fontStyle,
-                    ),
-                    color: Color(0xFF57636C),
+                  hintStyle: GoogleFonts.plusJakartaSans(
+                    color: const Color(0xFF57636C),
                     fontSize: 14,
-                    letterSpacing: 0.0,
-                    fontWeight: FontWeight.normal,
-                    fontStyle: FlutterFlowTheme.of(
-                      context,
-                    ).labelMedium.fontStyle,
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFE0E3E7), width: 2),
+                    borderSide: const BorderSide(
+                      color: Color(0xFFE0E3E7),
+                      width: 2,
+                    ),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF4B39EF), width: 2),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFFF5963), width: 2),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFFF5963), width: 2),
+                    borderSide: const BorderSide(
+                      color: Color(0xFF4B39EF),
+                      width: 2,
+                    ),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   filled: true,
                   fillColor: Colors.white,
                   contentPadding: EdgeInsetsDirectional.fromSTEB(20, 24, 0, 24),
                 ),
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                  font: GoogleFonts.plusJakartaSans(
-                    fontWeight: FontWeight.normal,
-                    fontStyle: FlutterFlowTheme.of(
-                      context,
-                    ).bodyMedium.fontStyle,
-                  ),
-                  color: Color(0xFF14181B),
+                style: GoogleFonts.plusJakartaSans(
+                  color: const Color(0xFF14181B),
                   fontSize: 14,
-                  letterSpacing: 0.0,
-                  fontWeight: FontWeight.normal,
-                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                 ),
                 textAlign: TextAlign.start,
                 maxLines: 3,
-                validator: _model.myBioTextControllerValidator.asValidator(
-                  context,
-                ),
-                inputFormatters: [
-                  if (!isAndroid && !isiOS)
-                    TextInputFormatter.withFunction((oldValue, newValue) {
-                      return TextEditingValue(
-                        selection: newValue.selection,
-                        text: newValue.text.toCapitalization(
-                          TextCapitalization.sentences,
-                        ),
-                      );
-                    }),
-                ],
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0, 0.05),
+              alignment: const AlignmentDirectional(0, 0.05),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-                child: FFButtonWidget(
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+                child: ElevatedButton(
                   onPressed: () async {
-                    unawaited(() async {
-                      context.pushNamed(HomePageWidget.routeName);
-                    }());
+                    // Replace with your actual home route name
+                    Navigator.of(context).pushNamed('/');
                   },
-                  text: 'Save Changes',
-                  options: FFButtonOptions(
-                    width: 270,
-                    height: 50,
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    color: Color(0xFF4B39EF),
-                    textStyle: FlutterFlowTheme.of(context).titleMedium
-                        .override(
-                          font: GoogleFonts.plusJakartaSans(
-                            fontWeight: FontWeight.normal,
-                            fontStyle: FlutterFlowTheme.of(
-                              context,
-                            ).titleMedium.fontStyle,
-                          ),
-                          color: Colors.white,
-                          fontSize: 18,
-                          letterSpacing: 0.0,
-                          fontWeight: FontWeight.normal,
-                          fontStyle: FlutterFlowTheme.of(
-                            context,
-                          ).titleMedium.fontStyle,
-                        ),
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(270, 50),
+                    backgroundColor: const Color(0xFF4B39EF),
+                    foregroundColor: Colors.white,
                     elevation: 2,
-                    borderSide: BorderSide(color: Colors.transparent, width: 1),
-                    borderRadius: BorderRadius.circular(12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    textStyle: GoogleFonts.plusJakartaSans(
+                      fontSize: 18,
+                      fontWeight: FontWeight.normal,
+                    ),
                   ),
+                  child: const Text('Save Changes'),
                 ),
               ),
             ),

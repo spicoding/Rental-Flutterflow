@@ -1,7 +1,8 @@
+// ignore_for_file: deprecated_member_use, avoid_unnecessary_containers
+
 import '../models/address_editor_page_model.dart';
 import '../components/address_type_chip_widget.dart';
 import '../components/form_section_header_widget.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -62,44 +63,42 @@ class _AddressEditorPageWidgetState extends State<AddressEditorPageWidget> {
                 children: [
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(24, 16, 24, 16),
-                    child: Container(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                icon: Icon(
-                                  Icons.arrow_back_rounded,
-                                  color: Theme.of(
-                                    context,
-                                  ).textTheme.bodyLarge?.color,
-                                  size: 24,
-                                ),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            IconButton(
+                              icon: Icon(
+                                Icons.arrow_back_rounded,
+                                color: Theme.of(
+                                  context,
+                                ).textTheme.bodyLarge?.color,
+                                size: 24,
                               ),
-                              const SizedBox(width: 16),
-                              Text(
-                                'Edit Address',
-                                style: GoogleFonts.interTight(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w600,
-                                  color: Theme.of(
-                                    context,
-                                  ).textTheme.titleLarge?.color,
-                                ),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            const SizedBox(width: 16),
+                            Text(
+                              'Edit Address',
+                              style: GoogleFonts.interTight(
+                                fontSize: 22,
+                                fontWeight: FontWeight.w600,
+                                color: Theme.of(
+                                  context,
+                                ).textTheme.titleLarge?.color,
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                   Container(
@@ -355,7 +354,7 @@ class _AddressEditorPageWidgetState extends State<AddressEditorPageWidget> {
                   ),
                   Padding(
                     padding: EdgeInsets.all(24),
-                    child: Container(child: Container(width: 0, height: 0)),
+                    child: Container(child: SizedBox(width: 0, height: 0)),
                   ),
                 ],
               ),

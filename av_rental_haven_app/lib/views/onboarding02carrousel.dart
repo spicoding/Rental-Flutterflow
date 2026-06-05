@@ -1,21 +1,11 @@
-import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
-import 'dart:ui';
-import '/index.dart';
+import '../models/onboarding02carrouselmodel.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
-import 'onboarding02_carrousel_model.dart';
-export 'onboarding02_carrousel_model.dart';
+import 'authscreen.dart';
 
 class Onboarding02CarrouselWidget extends StatefulWidget {
   const Onboarding02CarrouselWidget({super.key});
@@ -29,204 +19,16 @@ class Onboarding02CarrouselWidget extends StatefulWidget {
 }
 
 class _Onboarding02CarrouselWidgetState
-    extends State<Onboarding02CarrouselWidget>
-    with TickerProviderStateMixin {
+    extends State<Onboarding02CarrouselWidget> {
   late Onboarding02CarrouselModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final animationsMap = <String, AnimationInfo>{};
-
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => Onboarding02CarrouselModel());
-
-    animationsMap.addAll({
-      'containerOnPageLoadAnimation': AnimationInfo(
-        loop: true,
-        reverse: true,
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          MoveEffect(
-            curve: Curves.easeOut,
-            delay: 0.0.ms,
-            duration: 3200.0.ms,
-            begin: Offset(0.0, -80.0),
-            end: Offset(0.0, 0.0),
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 3200.0.ms,
-            duration: 3200.0.ms,
-            begin: Offset(0.0, 0.0),
-            end: Offset(0.0, -80.0),
-          ),
-        ],
-      ),
-      'textOnPageLoadAnimation1': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          VisibilityEffect(duration: 200.ms),
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 200.0.ms,
-            duration: 300.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 200.0.ms,
-            duration: 300.0.ms,
-            begin: Offset(0.0, 20.0),
-            end: Offset(0.0, 0.0),
-          ),
-          ScaleEffect(
-            curve: Curves.easeInOut,
-            delay: 200.0.ms,
-            duration: 300.0.ms,
-            begin: Offset(0.9, 0.9),
-            end: Offset(1.0, 1.0),
-          ),
-        ],
-      ),
-      'textOnPageLoadAnimation2': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          VisibilityEffect(duration: 300.ms),
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 300.0.ms,
-            duration: 300.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 300.0.ms,
-            duration: 300.0.ms,
-            begin: Offset(0.0, 20.0),
-            end: Offset(0.0, 0.0),
-          ),
-          ScaleEffect(
-            curve: Curves.easeInOut,
-            delay: 300.0.ms,
-            duration: 300.0.ms,
-            begin: Offset(0.9, 0.9),
-            end: Offset(1.0, 1.0),
-          ),
-        ],
-      ),
-      'textOnPageLoadAnimation3': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          VisibilityEffect(duration: 200.ms),
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 200.0.ms,
-            duration: 300.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 200.0.ms,
-            duration: 300.0.ms,
-            begin: Offset(0.0, 20.0),
-            end: Offset(0.0, 0.0),
-          ),
-          ScaleEffect(
-            curve: Curves.easeInOut,
-            delay: 200.0.ms,
-            duration: 300.0.ms,
-            begin: Offset(0.9, 0.9),
-            end: Offset(1.0, 1.0),
-          ),
-        ],
-      ),
-      'textOnPageLoadAnimation4': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          VisibilityEffect(duration: 300.ms),
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 300.0.ms,
-            duration: 300.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 300.0.ms,
-            duration: 300.0.ms,
-            begin: Offset(0.0, 20.0),
-            end: Offset(0.0, 0.0),
-          ),
-          ScaleEffect(
-            curve: Curves.easeInOut,
-            delay: 300.0.ms,
-            duration: 300.0.ms,
-            begin: Offset(0.9, 0.9),
-            end: Offset(1.0, 1.0),
-          ),
-        ],
-      ),
-      'textOnPageLoadAnimation5': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          VisibilityEffect(duration: 200.ms),
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 200.0.ms,
-            duration: 300.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 200.0.ms,
-            duration: 300.0.ms,
-            begin: Offset(0.0, 20.0),
-            end: Offset(0.0, 0.0),
-          ),
-          ScaleEffect(
-            curve: Curves.easeInOut,
-            delay: 200.0.ms,
-            duration: 300.0.ms,
-            begin: Offset(0.9, 0.9),
-            end: Offset(1.0, 1.0),
-          ),
-        ],
-      ),
-      'textOnPageLoadAnimation6': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          VisibilityEffect(duration: 300.ms),
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 300.0.ms,
-            duration: 300.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 300.0.ms,
-            duration: 300.0.ms,
-            begin: Offset(0.0, 20.0),
-            end: Offset(0.0, 0.0),
-          ),
-          ScaleEffect(
-            curve: Curves.easeInOut,
-            delay: 300.0.ms,
-            duration: 300.0.ms,
-            begin: Offset(0.9, 0.9),
-            end: Offset(1.0, 1.0),
-          ),
-        ],
-      ),
-    });
+    _model = Onboarding02CarrouselModel();
+    _model.initState(context);
   }
 
   @override
@@ -389,8 +191,6 @@ class _Onboarding02CarrouselWidgetState
                           ][index]();
                         },
                       ),
-                    ).animateOnPageLoad(
-                      animationsMap['containerOnPageLoadAnimation']!,
                     ),
                   ],
                 ),
@@ -406,7 +206,7 @@ class _Onboarding02CarrouselWidgetState
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Container(
+                      SizedBox(
                         width: double.infinity,
                         height: 230,
                         child: Stack(
@@ -438,30 +238,15 @@ class _Onboarding02CarrouselWidgetState
                                         Text(
                                           'Personalized gear discovery',
                                           textAlign: TextAlign.center,
-                                          style: FlutterFlowTheme.of(context)
-                                              .displaySmall
-                                              .override(
-                                                font:
-                                                    GoogleFonts.plusJakartaSans(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .displaySmall
-                                                              .fontStyle,
-                                                    ),
-                                                color: Color(0xFF101213),
-                                                fontSize: 36,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
-                                                fontStyle: FlutterFlowTheme.of(
-                                                  context,
-                                                ).displaySmall.fontStyle,
-                                              ),
-                                        ).animateOnPageLoad(
-                                          animationsMap['textOnPageLoadAnimation1']!,
+                                          style: GoogleFonts.plusJakartaSans(
+                                            color: const Color(0xFF101213),
+                                            fontSize: 36,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                            fontStyle: Theme.of(
+                                              context,
+                                            ).textTheme.displaySmall?.fontStyle,
+                                          ),
                                         ),
                                         Padding(
                                           padding:
@@ -471,39 +256,19 @@ class _Onboarding02CarrouselWidgetState
                                                 0,
                                                 0,
                                               ),
-                                          child:
-                                              Text(
-                                                'I have some great gear options here!! Get your sound on!!',
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(
-                                                      context,
-                                                    ).labelLarge.override(
-                                                      font: GoogleFonts.plusJakartaSans(
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .labelLarge
-                                                                .fontStyle,
-                                                      ),
-                                                      color: Color(0xFF57636C),
-                                                      fontSize: 16,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .labelLarge
-                                                              .fontStyle,
-                                                    ),
-                                              ).animateOnPageLoad(
-                                                animationsMap['textOnPageLoadAnimation2']!,
-                                              ),
+                                          child: Text(
+                                            'I have some great gear options here!! Get your sound on!!',
+                                            textAlign: TextAlign.center,
+                                            style: GoogleFonts.plusJakartaSans(
+                                              color: const Color(0xFF57636C),
+                                              fontSize: 16,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                              fontStyle: Theme.of(
+                                                context,
+                                              ).textTheme.labelLarge?.fontStyle,
+                                            ),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -523,30 +288,15 @@ class _Onboarding02CarrouselWidgetState
                                         Text(
                                           'Awesome Recipes',
                                           textAlign: TextAlign.center,
-                                          style: FlutterFlowTheme.of(context)
-                                              .displaySmall
-                                              .override(
-                                                font:
-                                                    GoogleFonts.plusJakartaSans(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .displaySmall
-                                                              .fontStyle,
-                                                    ),
-                                                color: Color(0xFF101213),
-                                                fontSize: 36,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
-                                                fontStyle: FlutterFlowTheme.of(
-                                                  context,
-                                                ).displaySmall.fontStyle,
-                                              ),
-                                        ).animateOnPageLoad(
-                                          animationsMap['textOnPageLoadAnimation3']!,
+                                          style: GoogleFonts.plusJakartaSans(
+                                            color: const Color(0xFF101213),
+                                            fontSize: 36,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                            fontStyle: Theme.of(
+                                              context,
+                                            ).textTheme.displaySmall?.fontStyle,
+                                          ),
                                         ),
                                         Padding(
                                           padding:
@@ -556,39 +306,19 @@ class _Onboarding02CarrouselWidgetState
                                                 0,
                                                 0,
                                               ),
-                                          child:
-                                              Text(
-                                                'I have some great food options here!! Yum yum!!',
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(
-                                                      context,
-                                                    ).labelLarge.override(
-                                                      font: GoogleFonts.plusJakartaSans(
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .labelLarge
-                                                                .fontStyle,
-                                                      ),
-                                                      color: Color(0xFF57636C),
-                                                      fontSize: 16,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .labelLarge
-                                                              .fontStyle,
-                                                    ),
-                                              ).animateOnPageLoad(
-                                                animationsMap['textOnPageLoadAnimation4']!,
-                                              ),
+                                          child: Text(
+                                            'I have some great food options here!! Yum yum!!',
+                                            textAlign: TextAlign.center,
+                                            style: GoogleFonts.plusJakartaSans(
+                                              color: const Color(0xFF57636C),
+                                              fontSize: 16,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                              fontStyle: Theme.of(
+                                                context,
+                                              ).textTheme.labelLarge?.fontStyle,
+                                            ),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -608,30 +338,15 @@ class _Onboarding02CarrouselWidgetState
                                         Text(
                                           'Personalized recipe discovery',
                                           textAlign: TextAlign.center,
-                                          style: FlutterFlowTheme.of(context)
-                                              .displaySmall
-                                              .override(
-                                                font:
-                                                    GoogleFonts.plusJakartaSans(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .displaySmall
-                                                              .fontStyle,
-                                                    ),
-                                                color: Color(0xFF101213),
-                                                fontSize: 36,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
-                                                fontStyle: FlutterFlowTheme.of(
-                                                  context,
-                                                ).displaySmall.fontStyle,
-                                              ),
-                                        ).animateOnPageLoad(
-                                          animationsMap['textOnPageLoadAnimation5']!,
+                                          style: GoogleFonts.plusJakartaSans(
+                                            color: const Color(0xFF101213),
+                                            fontSize: 36,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                            fontStyle: Theme.of(
+                                              context,
+                                            ).textTheme.displaySmall?.fontStyle,
+                                          ),
                                         ),
                                         Padding(
                                           padding:
@@ -641,39 +356,19 @@ class _Onboarding02CarrouselWidgetState
                                                 0,
                                                 0,
                                               ),
-                                          child:
-                                              Text(
-                                                'I have some great food options here!! Yum yum!!',
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(
-                                                      context,
-                                                    ).labelLarge.override(
-                                                      font: GoogleFonts.plusJakartaSans(
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                  context,
-                                                                )
-                                                                .labelLarge
-                                                                .fontStyle,
-                                                      ),
-                                                      color: Color(0xFF57636C),
-                                                      fontSize: 16,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .labelLarge
-                                                              .fontStyle,
-                                                    ),
-                                              ).animateOnPageLoad(
-                                                animationsMap['textOnPageLoadAnimation6']!,
-                                              ),
+                                          child: Text(
+                                            'I have some great food options here!! Yum yum!!',
+                                            textAlign: TextAlign.center,
+                                            style: GoogleFonts.plusJakartaSans(
+                                              color: const Color(0xFF57636C),
+                                              fontSize: 16,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                              fontStyle: Theme.of(
+                                                context,
+                                              ).textTheme.labelLarge?.fontStyle,
+                                            ),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -702,7 +397,9 @@ class _Onboarding02CarrouselWidgetState
                                           duration: Duration(milliseconds: 500),
                                           curve: Curves.ease,
                                         );
-                                    safeSetState(() {});
+                                    if (mounted) {
+                                      setState(() {});
+                                    }
                                   },
                                   effect:
                                       smooth_page_indicator.ExpandingDotsEffect(
@@ -723,97 +420,69 @@ class _Onboarding02CarrouselWidgetState
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            context.pushNamed(AuthScreenWidget.routeName);
-                          },
-                          text: 'Next',
-                          options: FFButtonOptions(
-                            width: double.infinity,
-                            height: 60,
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0,
-                              0,
-                              0,
-                              0,
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: 60,
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              Navigator.pushNamed(
+                                context,
+                                AuthScreenWidget.routeName,
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF101213),
+                              foregroundColor: Colors.white,
+                              elevation: 4,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50),
+                              ),
                             ),
-                            color: Color(0xFF101213),
-                            textStyle: FlutterFlowTheme.of(context).titleMedium
-                                .override(
-                                  font: GoogleFonts.plusJakartaSans(
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FlutterFlowTheme.of(
-                                      context,
-                                    ).titleMedium.fontStyle,
-                                  ),
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
-                                  fontStyle: FlutterFlowTheme.of(
-                                    context,
-                                  ).titleMedium.fontStyle,
-                                ),
-                            elevation: 4,
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1,
+                            child: Text(
+                              'Next',
+                              style: GoogleFonts.plusJakartaSans(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                fontStyle: Theme.of(
+                                  context,
+                                ).textTheme.titleMedium?.fontStyle,
+                              ),
                             ),
-                            borderRadius: BorderRadius.circular(50),
-                            hoverColor: Color(0xFF101213),
                           ),
                         ),
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 44),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            context.pushNamed(
-                              AuthScreenWidget.routeName,
-                              extra: <String, dynamic>{
-                                '__transition_info__': TransitionInfo(
-                                  hasTransition: true,
-                                  transitionType: PageTransitionType.fade,
-                                ),
-                              },
-                            );
-                          },
-                          text: 'Skip',
-                          options: FFButtonOptions(
-                            width: double.infinity,
-                            height: 60,
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0,
-                              0,
-                              0,
-                              0,
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: 60,
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              Navigator.pushNamed(
+                                context,
+                                AuthScreenWidget.routeName,
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              foregroundColor: const Color(0xFF101213),
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50),
+                              ),
                             ),
-                            color: Colors.white,
-                            textStyle: FlutterFlowTheme.of(context).titleLarge
-                                .override(
-                                  font: GoogleFonts.urbanist(
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FlutterFlowTheme.of(
-                                      context,
-                                    ).titleLarge.fontStyle,
-                                  ),
-                                  color: Color(0xFF101213),
-                                  fontSize: 18,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
-                                  fontStyle: FlutterFlowTheme.of(
-                                    context,
-                                  ).titleLarge.fontStyle,
-                                ),
-                            elevation: 0,
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1,
+                            child: Text(
+                              'Skip',
+                              style: GoogleFonts.urbanist(
+                                color: const Color(0xFF101213),
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                fontStyle: Theme.of(
+                                  context,
+                                ).textTheme.titleLarge?.fontStyle,
+                              ),
                             ),
-                            borderRadius: BorderRadius.circular(50),
-                            hoverColor: Color(0xFFE0E3E7),
                           ),
                         ),
                       ),
