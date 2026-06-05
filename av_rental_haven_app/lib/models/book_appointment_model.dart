@@ -49,6 +49,10 @@ class BookAppointmentModel {
   String? Function(BuildContext, String?)? descriptionTextControllerValidator;
   DateTime? datePicked;
 
+  get dateOfBirthMask => null;
+
+  String? choiceChipsValue;
+
   void initState(BuildContext context) {
     fullNameTextControllerValidator = _fullNameTextControllerValidator;
     ageTextControllerValidator = _ageTextControllerValidator;

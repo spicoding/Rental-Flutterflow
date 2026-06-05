@@ -1,11 +1,32 @@
-import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'book_appointment_model.dart';
-export 'book_appointment_model.dart';
+import '../models/book_appointment_model.dart';
+
+extension StringCapitalizationExtension on String {
+  String toCapitalization(TextCapitalization capitalization) {
+    switch (capitalization) {
+      case TextCapitalization.characters:
+        return toUpperCase();
+      case TextCapitalization.words:
+        return split(' ')
+            .map((word) {
+              if (word.isEmpty) return word;
+              return '${word[0].toUpperCase()}${word.substring(1)}';
+            })
+            .join(' ');
+      case TextCapitalization.sentences:
+        return replaceAllMapped(
+          RegExp('(^\\s*|[.!?]\\s+)([a-z])'),
+          (match) => '${match.group(1)}${match.group(2)!.toUpperCase()}',
+        );
+      case TextCapitalization.none:
+        return this;
+    }
+  }
+}
 
 class BookAppointmentWidget extends StatefulWidget {
   const BookAppointmentWidget({super.key});
@@ -119,24 +140,13 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                 children: [
                                   Text(
                                     'Personal Information',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          font: GoogleFonts.figtree(
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).bodyLarge.fontStyle,
-                                          ),
-                                          color: Color(0xFF15161E),
-                                          fontSize: 16,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).bodyLarge.fontStyle,
-                                        ),
+                                    style: GoogleFonts.figtree(
+                                      color: const Color(0xFF15161E),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
+                                  const SizedBox(height: 12),
                                   TextFormField(
                                     controller: _model.fullNameTextController,
                                     focusNode: _model.fullNameFocusNode,
@@ -146,57 +156,21 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelText: 'Full name*',
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .headlineMedium
-                                          .override(
-                                            font: GoogleFonts.outfit(
-                                              fontWeight: FontWeight.w500,
-                                              fontStyle: FlutterFlowTheme.of(
-                                                context,
-                                              ).headlineMedium.fontStyle,
-                                            ),
-                                            color: Color(0xFF606A85),
-                                            fontSize: 24,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).headlineMedium.fontStyle,
-                                          ),
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            font: GoogleFonts.outfit(
-                                              fontWeight: FontWeight.w500,
-                                              fontStyle: FlutterFlowTheme.of(
-                                                context,
-                                              ).labelMedium.fontStyle,
-                                            ),
-                                            color: Color(0xFF606A85),
-                                            fontSize: 14,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).labelMedium.fontStyle,
-                                          ),
-                                      errorStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.figtree(
-                                              fontWeight: FontWeight.w600,
-                                              fontStyle: FlutterFlowTheme.of(
-                                                context,
-                                              ).bodyMedium.fontStyle,
-                                            ),
-                                            color: Color(0xFFFF5963),
-                                            fontSize: 12,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).bodyMedium.fontStyle,
-                                          ),
+                                      labelStyle: GoogleFonts.outfit(
+                                        color: const Color(0xFF606A85),
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      hintStyle: GoogleFonts.outfit(
+                                        color: const Color(0xFF606A85),
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      errorStyle: GoogleFonts.figtree(
+                                        color: const Color(0xFFFF5963),
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: Color(0xFFE5E7EB),
@@ -239,29 +213,20 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                             20,
                                           ),
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineMedium
-                                        .override(
-                                          font: GoogleFonts.outfit(
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).headlineMedium.fontStyle,
-                                          ),
-                                          color: Color(0xFF15161E),
-                                          fontSize: 24,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).headlineMedium.fontStyle,
-                                        ),
-                                    cursorColor: Color(0xFF6F61EF),
-                                    validator: _model
+                                    style: GoogleFonts.outfit(
+                                      color: const Color(0xFF15161E),
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    cursorColor: const Color(0xFF6F61EF),
+                                    validator: (val) => _model
                                         .fullNameTextControllerValidator
-                                        .asValidator(context),
+                                        ?.call(context, val),
                                     inputFormatters: [
-                                      if (!isAndroid && !isiOS)
+                                      if (defaultTargetPlatform !=
+                                              TargetPlatform.android &&
+                                          defaultTargetPlatform !=
+                                              TargetPlatform.iOS)
                                         TextInputFormatter.withFunction((
                                           oldValue,
                                           newValue,
@@ -276,6 +241,7 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                         }),
                                     ],
                                   ),
+                                  const SizedBox(height: 12),
                                   TextFormField(
                                     controller: _model.ageTextController,
                                     focusNode: _model.ageFocusNode,
@@ -285,57 +251,21 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelText: 'Age*',
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .override(
-                                            font: GoogleFonts.outfit(
-                                              fontWeight: FontWeight.w500,
-                                              fontStyle: FlutterFlowTheme.of(
-                                                context,
-                                              ).labelLarge.fontStyle,
-                                            ),
-                                            color: Color(0xFF606A85),
-                                            fontSize: 16,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).labelLarge.fontStyle,
-                                          ),
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            font: GoogleFonts.outfit(
-                                              fontWeight: FontWeight.w500,
-                                              fontStyle: FlutterFlowTheme.of(
-                                                context,
-                                              ).labelMedium.fontStyle,
-                                            ),
-                                            color: Color(0xFF606A85),
-                                            fontSize: 14,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).labelMedium.fontStyle,
-                                          ),
-                                      errorStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.figtree(
-                                              fontWeight: FontWeight.w600,
-                                              fontStyle: FlutterFlowTheme.of(
-                                                context,
-                                              ).bodyMedium.fontStyle,
-                                            ),
-                                            color: Color(0xFFFF5963),
-                                            fontSize: 12,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).bodyMedium.fontStyle,
-                                          ),
+                                      labelStyle: GoogleFonts.outfit(
+                                        color: const Color(0xFF606A85),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      hintStyle: GoogleFonts.outfit(
+                                        color: const Color(0xFF606A85),
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      errorStyle: GoogleFonts.figtree(
+                                        color: const Color(0xFFFF5963),
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: Color(0xFFE5E7EB),
@@ -378,28 +308,20 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                             20,
                                           ),
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          font: GoogleFonts.figtree(
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).bodyLarge.fontStyle,
-                                          ),
-                                          color: Color(0xFF15161E),
-                                          fontSize: 16,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).bodyLarge.fontStyle,
-                                        ),
-                                    cursorColor: Color(0xFF6F61EF),
-                                    validator: _model.ageTextControllerValidator
-                                        .asValidator(context),
+                                    style: GoogleFonts.figtree(
+                                      color: const Color(0xFF15161E),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                    cursorColor: const Color(0xFF6F61EF),
+                                    validator: (val) => _model
+                                        .ageTextControllerValidator
+                                        ?.call(context, val),
                                     inputFormatters: [
-                                      if (!isAndroid && !isiOS)
+                                      if (defaultTargetPlatform !=
+                                              TargetPlatform.android &&
+                                          defaultTargetPlatform !=
+                                              TargetPlatform.iOS)
                                         TextInputFormatter.withFunction((
                                           oldValue,
                                           newValue,
@@ -414,6 +336,7 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                         }),
                                     ],
                                   ),
+                                  const SizedBox(height: 12),
                                   TextFormField(
                                     controller:
                                         _model.dateOfBirthTextController,
@@ -424,57 +347,21 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelText: 'Date of birth*',
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .override(
-                                            font: GoogleFonts.outfit(
-                                              fontWeight: FontWeight.w500,
-                                              fontStyle: FlutterFlowTheme.of(
-                                                context,
-                                              ).labelLarge.fontStyle,
-                                            ),
-                                            color: Color(0xFF606A85),
-                                            fontSize: 16,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).labelLarge.fontStyle,
-                                          ),
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            font: GoogleFonts.outfit(
-                                              fontWeight: FontWeight.w500,
-                                              fontStyle: FlutterFlowTheme.of(
-                                                context,
-                                              ).labelMedium.fontStyle,
-                                            ),
-                                            color: Color(0xFF606A85),
-                                            fontSize: 14,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).labelMedium.fontStyle,
-                                          ),
-                                      errorStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.figtree(
-                                              fontWeight: FontWeight.w600,
-                                              fontStyle: FlutterFlowTheme.of(
-                                                context,
-                                              ).bodyMedium.fontStyle,
-                                            ),
-                                            color: Color(0xFFFF5963),
-                                            fontSize: 12,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).bodyMedium.fontStyle,
-                                          ),
+                                      labelStyle: GoogleFonts.outfit(
+                                        color: const Color(0xFF606A85),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      hintStyle: GoogleFonts.outfit(
+                                        color: const Color(0xFF606A85),
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      errorStyle: GoogleFonts.figtree(
+                                        color: const Color(0xFFFF5963),
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: Color(0xFFE5E7EB),
@@ -519,147 +406,65 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                             20,
                                           ),
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          font: GoogleFonts.figtree(
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).bodyLarge.fontStyle,
-                                          ),
-                                          color: Color(0xFF15161E),
-                                          fontSize: 16,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).bodyLarge.fontStyle,
-                                        ),
-                                    cursorColor: Color(0xFF6F61EF),
-                                    validator: _model
+                                    style: GoogleFonts.figtree(
+                                      color: const Color(0xFF15161E),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                    cursorColor: const Color(0xFF6F61EF),
+                                    validator: (val) => _model
                                         .dateOfBirthTextControllerValidator
-                                        .asValidator(context),
+                                        ?.call(context, val),
                                     inputFormatters: [_model.dateOfBirthMask],
                                   ),
+                                  const SizedBox(height: 12),
                                   Text(
                                     'Gender',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          font: GoogleFonts.outfit(
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).labelMedium.fontStyle,
-                                          ),
-                                          color: Color(0xFF606A85),
-                                          fontSize: 14,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).labelMedium.fontStyle,
+                                    style: GoogleFonts.outfit(
+                                      color: const Color(0xFF606A85),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 12),
+                                  Wrap(
+                                    spacing: 12,
+                                    children: ['Female', 'Male', 'Other'].map((
+                                      gender,
+                                    ) {
+                                      return ChoiceChip(
+                                        label: Text(gender),
+                                        selected:
+                                            _model.choiceChipsValue == gender,
+                                        onSelected: (val) {
+                                          setState(
+                                            () => _model.choiceChipsValue =
+                                                gender,
+                                          );
+                                        },
+                                        selectedColor: const Color(0x4C39D2C0),
+                                        backgroundColor: const Color(
+                                          0xFFF1F4F8,
                                         ),
+                                      );
+                                    }).toList(),
                                   ),
-                                  FlutterFlowChoiceChips(
-                                    options: [
-                                      ChipData('Female'),
-                                      ChipData('Male'),
-                                      ChipData('Other'),
-                                    ],
-                                    onChanged: (val) => safeSetState(
-                                      () => _model.choiceChipsValue =
-                                          val?.firstOrNull,
-                                    ),
-                                    selectedChipStyle: ChipStyle(
-                                      backgroundColor: Color(0x4C39D2C0),
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.figtree(
-                                              fontWeight: FontWeight.w600,
-                                              fontStyle: FlutterFlowTheme.of(
-                                                context,
-                                              ).bodyMedium.fontStyle,
-                                            ),
-                                            color: Color(0xFF15161E),
-                                            fontSize: 14,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).bodyMedium.fontStyle,
-                                          ),
-                                      iconColor: Color(0xFF15161E),
-                                      iconSize: 18,
-                                      elevation: 0,
-                                      borderColor: Color(0xFF39D2C0),
-                                      borderWidth: 2,
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    unselectedChipStyle: ChipStyle(
-                                      backgroundColor: Color(0xFFF1F4F8),
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.figtree(
-                                              fontWeight: FontWeight.w600,
-                                              fontStyle: FlutterFlowTheme.of(
-                                                context,
-                                              ).bodyMedium.fontStyle,
-                                            ),
-                                            color: Color(0xFF606A85),
-                                            fontSize: 14,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).bodyMedium.fontStyle,
-                                          ),
-                                      iconColor: Color(0xFF606A85),
-                                      iconSize: 18,
-                                      elevation: 0,
-                                      borderColor: Color(0xFFE5E7EB),
-                                      borderWidth: 2,
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    chipSpacing: 12,
-                                    rowSpacing: 12,
-                                    multiselect: false,
-                                    alignment: WrapAlignment.start,
-                                    controller:
-                                        _model.choiceChipsValueController ??=
-                                            FormFieldController<List<String>>(
-                                              [],
-                                            ),
-                                    wrapped: true,
-                                  ),
+                                  const SizedBox(height: 12),
                                   Divider(
                                     height: 2,
                                     thickness: 2,
                                     color: Color(0xFFE5E7EB),
                                   ),
+                                  const SizedBox(height: 12),
                                   Text(
                                     'Appointment Information',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          font: GoogleFonts.figtree(
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).bodyLarge.fontStyle,
-                                          ),
-                                          color: Color(0xFF15161E),
-                                          fontSize: 16,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).bodyLarge.fontStyle,
-                                        ),
+                                    style: GoogleFonts.figtree(
+                                      color: const Color(0xFF15161E),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
+                                  const SizedBox(height: 12),
                                   TextFormField(
                                     controller:
                                         _model.descriptionTextController,
@@ -671,58 +476,22 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                     decoration: InputDecoration(
                                       labelText:
                                           'Please describe your symptoms...',
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .override(
-                                            font: GoogleFonts.outfit(
-                                              fontWeight: FontWeight.w500,
-                                              fontStyle: FlutterFlowTheme.of(
-                                                context,
-                                              ).labelLarge.fontStyle,
-                                            ),
-                                            color: Color(0xFF606A85),
-                                            fontSize: 16,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).labelLarge.fontStyle,
-                                          ),
+                                      labelStyle: GoogleFonts.outfit(
+                                        color: const Color(0xFF606A85),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                       alignLabelWithHint: true,
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            font: GoogleFonts.outfit(
-                                              fontWeight: FontWeight.w500,
-                                              fontStyle: FlutterFlowTheme.of(
-                                                context,
-                                              ).labelMedium.fontStyle,
-                                            ),
-                                            color: Color(0xFF606A85),
-                                            fontSize: 14,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).labelMedium.fontStyle,
-                                          ),
-                                      errorStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.figtree(
-                                              fontWeight: FontWeight.w600,
-                                              fontStyle: FlutterFlowTheme.of(
-                                                context,
-                                              ).bodyMedium.fontStyle,
-                                            ),
-                                            color: Color(0xFFFF5963),
-                                            fontSize: 12,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).bodyMedium.fontStyle,
-                                          ),
+                                      hintStyle: GoogleFonts.outfit(
+                                        color: const Color(0xFF606A85),
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      errorStyle: GoogleFonts.figtree(
+                                        color: const Color(0xFFFF5963),
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: Color(0xFFE5E7EB),
@@ -767,31 +536,22 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                             16,
                                           ),
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          font: GoogleFonts.figtree(
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle: FlutterFlowTheme.of(
-                                              context,
-                                            ).bodyLarge.fontStyle,
-                                          ),
-                                          color: Color(0xFF15161E),
-                                          fontSize: 16,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                          fontStyle: FlutterFlowTheme.of(
-                                            context,
-                                          ).bodyLarge.fontStyle,
-                                        ),
+                                    style: GoogleFonts.figtree(
+                                      color: const Color(0xFF15161E),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                     maxLines: 9,
                                     minLines: 5,
-                                    cursorColor: Color(0xFF6F61EF),
-                                    validator: _model
+                                    cursorColor: const Color(0xFF6F61EF),
+                                    validator: (val) => _model
                                         .descriptionTextControllerValidator
-                                        .asValidator(context),
+                                        ?.call(context, val),
                                     inputFormatters: [
-                                      if (!isAndroid && !isiOS)
+                                      if (defaultTargetPlatform !=
+                                              TargetPlatform.android &&
+                                          defaultTargetPlatform !=
+                                              TargetPlatform.iOS)
                                         TextInputFormatter.withFunction((
                                           oldValue,
                                           newValue,
@@ -806,6 +566,7 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                         }),
                                     ],
                                   ),
+                                  const SizedBox(height: 12),
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
@@ -817,30 +578,13 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                           children: [
                                             Text(
                                               'Start Date',
-                                              style:
-                                                  FlutterFlowTheme.of(
-                                                    context,
-                                                  ).labelMedium.override(
-                                                    font: GoogleFonts.outfit(
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .labelMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF606A85),
-                                                    fontSize: 14,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).labelMedium.fontStyle,
-                                                  ),
+                                              style: GoogleFonts.outfit(
+                                                color: const Color(0xFF606A85),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                              ),
                                             ),
+                                            const SizedBox(height: 4),
                                             InkWell(
                                               splashColor: Colors.transparent,
                                               focusColor: Colors.transparent,
@@ -848,145 +592,42 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
-                                                final _datePickedDate = await showDatePicker(
-                                                  context: context,
-                                                  initialDate:
-                                                      getCurrentTimestamp,
-                                                  firstDate:
-                                                      getCurrentTimestamp,
-                                                  lastDate: DateTime(2050),
-                                                  builder: (context, child) {
-                                                    return wrapInMaterialDatePickerTheme(
-                                                      context,
-                                                      child!,
-                                                      headerBackgroundColor:
-                                                          Color(0xFF6F61EF),
-                                                      headerForegroundColor:
-                                                          Colors.white,
-                                                      headerTextStyle:
-                                                          FlutterFlowTheme.of(
-                                                            context,
-                                                          ).headlineLarge.override(
-                                                            font: GoogleFonts.outfit(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                        context,
-                                                                      )
-                                                                      .headlineLarge
-                                                                      .fontStyle,
-                                                            ),
-                                                            color: Color(
-                                                              0xFF15161E,
-                                                            ),
-                                                            fontSize: 32,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .headlineLarge
-                                                                    .fontStyle,
-                                                          ),
-                                                      pickerBackgroundColor:
-                                                          Colors.white,
-                                                      pickerForegroundColor:
-                                                          Color(0xFF15161E),
-                                                      selectedDateTimeBackgroundColor:
-                                                          Color(0xFF6F61EF),
-                                                      selectedDateTimeForegroundColor:
-                                                          Colors.white,
-                                                      actionButtonForegroundColor:
-                                                          Color(0xFF15161E),
-                                                      iconSize: 24,
+                                                final datePickedDate =
+                                                    await showDatePicker(
+                                                      context: context,
+                                                      initialDate:
+                                                          DateTime.now(),
+                                                      firstDate: DateTime.now(),
+                                                      lastDate: DateTime(2050),
                                                     );
-                                                  },
-                                                );
 
-                                                TimeOfDay? _datePickedTime;
-                                                if (_datePickedDate != null) {
-                                                  _datePickedTime = await showTimePicker(
-                                                    context: context,
-                                                    initialTime:
-                                                        TimeOfDay.fromDateTime(
-                                                          getCurrentTimestamp,
-                                                        ),
-                                                    builder: (context, child) {
-                                                      return wrapInMaterialTimePickerTheme(
-                                                        context,
-                                                        child!,
-                                                        headerBackgroundColor:
-                                                            Color(0xFF6F61EF),
-                                                        headerForegroundColor:
-                                                            Colors.white,
-                                                        headerTextStyle:
-                                                            FlutterFlowTheme.of(
-                                                              context,
-                                                            ).headlineLarge.override(
-                                                              font: GoogleFonts.outfit(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontStyle:
-                                                                    FlutterFlowTheme.of(
-                                                                          context,
-                                                                        )
-                                                                        .headlineLarge
-                                                                        .fontStyle,
-                                                              ),
-                                                              color: Color(
-                                                                0xFF15161E,
-                                                              ),
-                                                              fontSize: 32,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                        context,
-                                                                      )
-                                                                      .headlineLarge
-                                                                      .fontStyle,
-                                                            ),
-                                                        pickerBackgroundColor:
-                                                            Colors.white,
-                                                        pickerForegroundColor:
-                                                            Color(0xFF15161E),
-                                                        selectedDateTimeBackgroundColor:
-                                                            Color(0xFF6F61EF),
-                                                        selectedDateTimeForegroundColor:
-                                                            Colors.white,
-                                                        actionButtonForegroundColor:
-                                                            Color(0xFF15161E),
-                                                        iconSize: 24,
+                                                TimeOfDay? datePickedTime;
+                                                if (datePickedDate != null) {
+                                                  datePickedTime =
+                                                      await showTimePicker(
+                                                        context: context,
+                                                        initialTime:
+                                                            TimeOfDay.now(),
                                                       );
-                                                    },
-                                                  );
                                                 }
 
-                                                if (_datePickedDate != null &&
-                                                    _datePickedTime != null) {
-                                                  safeSetState(() {
-                                                    _model
-                                                        .datePicked = DateTime(
-                                                      _datePickedDate.year,
-                                                      _datePickedDate.month,
-                                                      _datePickedDate.day,
-                                                      _datePickedTime!.hour,
-                                                      _datePickedTime.minute,
-                                                    );
+                                                if (datePickedDate != null &&
+                                                    datePickedTime != null) {
+                                                  setState(() {
+                                                    _model.datePicked =
+                                                        DateTime(
+                                                          datePickedDate.year,
+                                                          datePickedDate.month,
+                                                          datePickedDate.day,
+                                                          datePickedTime!.hour,
+                                                          datePickedTime.minute,
+                                                        );
                                                   });
                                                 } else if (_model.datePicked !=
                                                     null) {
-                                                  safeSetState(() {
+                                                  setState(() {
                                                     _model.datePicked =
-                                                        getCurrentTimestamp;
+                                                        DateTime.now();
                                                   });
                                                 }
                                               },
@@ -1017,47 +658,27 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                                           0,
                                                         ),
                                                     child: Text(
-                                                      dateTimeFormat(
-                                                        "MMMEd",
-                                                        _model.datePicked,
-                                                      ),
+                                                      _model.datePicked
+                                                              ?.toString() ??
+                                                          'Select Date',
                                                       style:
-                                                          FlutterFlowTheme.of(
-                                                            context,
-                                                          ).bodyLarge.override(
-                                                            font: GoogleFonts.figtree(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                        context,
-                                                                      )
-                                                                      .bodyLarge
-                                                                      .fontStyle,
-                                                            ),
-                                                            color: Color(
+                                                          GoogleFonts.figtree(
+                                                            color: const Color(
                                                               0xFF15161E,
                                                             ),
                                                             fontSize: 16,
-                                                            letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w600,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .bodyLarge
-                                                                    .fontStyle,
                                                           ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                          ].divide(SizedBox(height: 4)),
+                                          ],
                                         ),
                                       ),
+                                      const SizedBox(width: 12),
                                       Expanded(
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -1066,30 +687,13 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                           children: [
                                             Text(
                                               'Start Time',
-                                              style:
-                                                  FlutterFlowTheme.of(
-                                                    context,
-                                                  ).labelMedium.override(
-                                                    font: GoogleFonts.outfit(
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                context,
-                                                              )
-                                                              .labelMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF606A85),
-                                                    fontSize: 14,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).labelMedium.fontStyle,
-                                                  ),
+                                              style: GoogleFonts.outfit(
+                                                color: const Color(0xFF606A85),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                              ),
                                             ),
+                                            const SizedBox(height: 4),
                                             Container(
                                               width: double.infinity,
                                               height: 48,
@@ -1116,48 +720,30 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                                         0,
                                                       ),
                                                   child: Text(
-                                                    dateTimeFormat(
-                                                      "jm",
-                                                      _model.datePicked,
+                                                    _model.datePicked != null
+                                                        ? TimeOfDay.fromDateTime(
+                                                            _model.datePicked!,
+                                                          ).format(context)
+                                                        : 'Select Time',
+                                                    style: GoogleFonts.figtree(
+                                                      color: const Color(
+                                                        0xFF15161E,
+                                                      ),
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                     ),
-                                                    style:
-                                                        FlutterFlowTheme.of(
-                                                          context,
-                                                        ).bodyLarge.override(
-                                                          font: GoogleFonts.figtree(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                      context,
-                                                                    )
-                                                                    .bodyLarge
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: Color(
-                                                            0xFF15161E,
-                                                          ),
-                                                          fontSize: 16,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                    context,
-                                                                  )
-                                                                  .bodyLarge
-                                                                  .fontStyle,
-                                                        ),
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                          ].divide(SizedBox(height: 4)),
+                                          ],
                                         ),
                                       ),
-                                    ].divide(SizedBox(width: 12)),
+                                    ],
                                   ),
-                                ].divide(SizedBox(height: 12)).addToEnd(SizedBox(height: 32)),
+                                  const SizedBox(height: 32),
+                                ],
                               ),
                             ),
                           ),
@@ -1171,42 +757,28 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                   decoration: BoxDecoration(),
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
-                    child: FFButtonWidget(
+                    child: ElevatedButton(
                       onPressed: () async {
                         if (_model.formKey.currentState == null ||
                             !_model.formKey.currentState!.validate()) {
                           return;
                         }
                       },
-                      text: 'Request Appointment',
-                      options: FFButtonOptions(
-                        width: double.infinity,
-                        height: 48,
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                        iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                        color: Color(0xFF6F61EF),
-                        textStyle: FlutterFlowTheme.of(context).titleSmall
-                            .override(
-                              font: GoogleFonts.figtree(
-                                fontWeight: FontWeight.w500,
-                                fontStyle: FlutterFlowTheme.of(
-                                  context,
-                                ).titleSmall.fontStyle,
-                              ),
-                              color: Colors.white,
-                              fontSize: 16,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w500,
-                              fontStyle: FlutterFlowTheme.of(
-                                context,
-                              ).titleSmall.fontStyle,
-                            ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF6F61EF),
+                        foregroundColor: Colors.white,
+                        minimumSize: const Size(double.infinity, 48),
                         elevation: 3,
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Text(
+                        'Request Appointment',
+                        style: GoogleFonts.figtree(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ),

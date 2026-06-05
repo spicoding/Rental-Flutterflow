@@ -4,7 +4,6 @@ import '../components/form_section_header_widget.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 /// An address editor
 class AddressEditorPageWidget extends StatefulWidget {
@@ -74,40 +73,30 @@ class _AddressEditorPageWidgetState extends State<AddressEditorPageWidget> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              FlutterFlowIconButton(
-                                borderRadius: 8,
-                                buttonSize: 40,
-                                fillColor: Colors.transparent,
+                              IconButton(
                                 icon: Icon(
                                   Icons.arrow_back_rounded,
-                                  color: FlutterFlowTheme.of(
+                                  color: Theme.of(
                                     context,
-                                  ).primaryText,
+                                  ).textTheme.bodyLarge?.color,
                                   size: 24,
                                 ),
                                 onPressed: () {
-                                  context.pop();
+                                  Navigator.of(context).pop();
                                 },
                               ),
+                              const SizedBox(width: 16),
                               Text(
                                 'Edit Address',
-                                style: FlutterFlowTheme.of(context).titleLarge
-                                    .override(
-                                      font: GoogleFonts.interTight(
-                                        fontWeight: FontWeight.w600,
-                                        fontStyle: FlutterFlowTheme.of(
-                                          context,
-                                        ).titleLarge.fontStyle,
-                                      ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
-                                      fontStyle: FlutterFlowTheme.of(
-                                        context,
-                                      ).titleLarge.fontStyle,
-                                      lineHeight: 1.4,
-                                    ),
+                                style: GoogleFonts.interTight(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w600,
+                                  color: Theme.of(
+                                    context,
+                                  ).textTheme.titleLarge?.color,
+                                ),
                               ),
-                            ].divide(SizedBox(width: 16)),
+                            ],
                           ),
                         ],
                       ),
